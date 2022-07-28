@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
-    static login({ credential, password }) {
+    static async login({ credential, password }) {
       const Op = Sequelize.Op;
       const user = await User.scope('loginUser').findOne({
         where: {
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
-    static signup({username,email,password}){
+    static async signup({username,email,password}){
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
