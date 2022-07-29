@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/hazeluwuz/API-Project/issues"
   },
-  "homepage": "https://github.com/hazeluwuz/API-Project#readme"
+  "homepage": "https://github.com/hazeluwuz/API-Project#readme",
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
 }
