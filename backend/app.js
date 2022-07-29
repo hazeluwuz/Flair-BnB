@@ -10,7 +10,6 @@ const { environment } = require("./config");
 const { ValidationError } = require("sequelize");
 
 const isProduction = environment === "production";
-console.log(isProduction);
 const app = express();
 
 app.use(morgan("dev"));
