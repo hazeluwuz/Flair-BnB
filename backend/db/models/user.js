@@ -20,26 +20,26 @@ module.exports = (sequelize, DataTypes) => {
     }
     static async login({ credential, password }) {
       const Op = Sequelize.Op;
-      const user = await User.scope('loginUser').findOne({
+      const user = await User.scope("loginUser").findOne({
         where: {
-          [Op.or]:{
+          [Op.or]: {
             username: credential,
-            email: credential
-          }
-        }
-      })
-      if(user && user.validatePassword(password)){
-        return await User.scope('currentUser').findByPk(user.id);
+            email: credential,
+          },
+        },
+      });
+      if (user && user.validatePassword(password)) {
+        return await User.scope("currentUser").findByPk(user.id);
       }
     }
-    static async signup({username,email,password}){
+    static async signup({ username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
         email,
-        hashedPassword
+        hashedPassword,
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await User.scope("currentUser").findByPk(user.id);
     }
     static associate(models) {
       // define association here
@@ -47,6 +47,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
+      firstName: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
