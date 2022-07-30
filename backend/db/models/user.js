@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const { id, email, username } = this;
-      return { id, email, username };
+      const { id, firstName, lastName, email, username } = this;
+      return { id, firstName, lastName, email, username };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
