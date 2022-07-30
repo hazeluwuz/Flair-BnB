@@ -54,7 +54,11 @@ app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
   // console.log("does this get hit lo;");
   if (err instanceof ValidationError) {
-    err.errors = err.errors.map((e) => e.message);
+    const errors = {};
+    err.errors.forEach((e) => {
+      errors[e.path] = e.message;
+    });
+    err.errors = errors;
     err.message = "User already exists";
     err.status = 403;
   }
@@ -63,7 +67,6 @@ app.use((err, _req, _res, next) => {
 
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
-  console.error(err);
   res.json({
     message: err.message,
     statusCode: err.status,
