@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const { environment } = require("./config");
-const { ValidationError } = require("sequelize");
+const { ValidationError, UniqueConstraintError } = require("sequelize");
 
 const isProduction = environment === "production";
 const app = express();
@@ -52,9 +52,11 @@ app.use((_req, _res, next) => {
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
+  // console.log("does this get hit lo;");
   if (err instanceof ValidationError) {
     err.errors = err.errors.map((e) => e.message);
-    err.title = "Validation error";
+    err.message = "User already exists";
+    err.status = 403;
   }
   next(err);
 });
@@ -63,10 +65,9 @@ app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   console.error(err);
   res.json({
-    title: err.title || "Server Error",
     message: err.message,
+    statusCode: err.status,
     errors: err.errors,
-    stack: isProduction ? null : err.stack,
   });
 });
 
