@@ -2,7 +2,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth } = require("../../utils/auth");
-const { Spot } = require("../../db/models");
+const { Spot, User } = require("../../db/models");
 const express = require("express");
 const router = express.Router();
 
@@ -25,7 +25,13 @@ router.get("/current", requireAuth, async (req, res, next) => {
 });
 
 router.get("/:spotId", requireAuth, async (req, res, next) => {
-  const spot = await Spot.findByPk(req.params.spotId);
+  const spot = await Spot.findByPk(req.params.spotId, {
+    include: {
+      model: User,
+      as: "Owner",
+      attributes: ["id", "firstName", "lastName"],
+    },
+  });
   res.json(spot);
 });
 
