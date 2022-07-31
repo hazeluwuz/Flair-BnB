@@ -12,4 +12,16 @@ router.get("/", async (req, res, next) => {
   res.json({ Spots: spots });
 });
 
+router.get("/current", requireAuth, async (req, res, next) => {
+  const { user } = req;
+  const userId = user.dataValues.id;
+  // need to add avgRating and previewImage once implemented
+  const spots = await Spot.findAll({
+    where: {
+      ownerId: userId,
+    },
+  });
+  res.json({ Spots: spots });
+});
+
 module.exports = router;
