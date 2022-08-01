@@ -44,6 +44,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Image",
+      scopes: {
+        reviews: {
+          attributes: ["id", "spotId", "userId", "url"],
+        },
+      },
     }
   );
   return Image;

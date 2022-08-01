@@ -95,6 +95,19 @@ router.get("/:spotId", async (req, res, next) => {
   }
 });
 
+router.get("/:spotId/reviews", async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  if (spotFound(spot, next)) {
+    const reviews = await spot.getReviews({
+      include: [
+        { model: User, attributes: ["id", "firstName", "lastName"] },
+        { model: Image.scope("reviews") },
+      ],
+    });
+    res.json({ Reviews: reviews });
+  }
+});
+
 router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const id = req.user.id;
   const spotData = Object.assign({ ownerId: id }, req.body);
