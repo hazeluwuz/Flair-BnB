@@ -16,21 +16,18 @@ module.exports = {
         url: "https://imgur.com/4231.png",
         previewImage: false,
         spotId: 1,
-        reviewId: 1,
         userId: 1,
       },
       {
         url: "https://imgur.com/516.png",
         previewImage: false,
-        spotId: 1,
-        reviewId: 2,
+        reviewId: 1,
         userId: 1,
       },
       {
         url: "https://imgur.com/6198.png",
         previewImage: false,
         spotId: 2,
-        reviewId: 1,
         userId: 1,
       },
     ]);
