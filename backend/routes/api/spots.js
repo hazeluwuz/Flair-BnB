@@ -9,12 +9,8 @@ const validateSpotData = [
   check("address")
     .exists({ checkFalsy: true })
     .withMessage("Street address is required"),
-  check("city")
-    .exists({ checkFalsy: true })
-    .withMessage("City is required"),
-  check("state")
-    .exists({ checkFalsy: true })
-    .withMessage("State is required"),
+  check("city").exists({ checkFalsy: true }).withMessage("City is required"),
+  check("state").exists({ checkFalsy: true }).withMessage("State is required"),
   check("country")
     .exists({ checkFalsy: true })
     .withMessage("Country is required"),
@@ -23,18 +19,18 @@ const validateSpotData = [
     .isDecimal()
     .withMessage("Latitude is not valid"),
   check("lng")
-    .exists({checkFalsy:true})
+    .exists({ checkFalsy: true })
     .isDecimal()
     .withMessage("Longitude is not valid"),
   check("name")
-    .exists({checkFalsy:true})
+    .exists({ checkFalsy: true })
     .isLength({ max: 50 })
     .withMessage("Name must be less than 50 characters"),
   check("description")
-    .exists({checkFalsy:true})
+    .exists({ checkFalsy: true })
     .withMessage("Description is required"),
-   check("price")
-    .exists({checkFalsy:true})
+  check("price")
+    .exists({ checkFalsy: true })
     .withMessage("Price per day is required"),
   handleValidationErrors,
 ];
@@ -87,5 +83,36 @@ router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const newSpot = await Spot.create(spotData);
   res.json(newSpot);
 });
+
+router.put(
+  "/:spotId",
+  requireAuth,
+  validateSpotData,
+  async (req, res, next) => {
+    // Get current userId
+    const userId = req.user.id;
+    const spot = await Spot.findByPk(req.params.spotId);
+    // Check if we failed to find a spot
+    if (!spot) {
+      const err = new Error("Spot couldn't be found");
+      err.message = "Spot couldn't be found";
+      err.status = 404;
+      return next(err);
+    }
+
+    // Get owner of spot
+    const spotOwner = spot.dataValues.ownerId;
+    if (userId === spotOwner) {
+      spot.set(req.body);
+      await spot.save();
+      res.json(spot);
+    } else {
+      const err = new Error("Forbidden");
+      err.message = "Forbidden";
+      err.status = 403;
+      return next(err);
+    }
+  }
+);
 
 module.exports = router;
