@@ -31,15 +31,27 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: {
+          msg: "User already has a review for this spot",
+        },
       },
       spotId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: {
+          msg: "User already has a review for this spot",
+        },
       },
     },
     {
       sequelize,
       modelName: "Review",
+      indexes: [
+        {
+          unique: true,
+          fields: ["userId", "spotId"],
+        },
+      ],
     }
   );
   return Review;

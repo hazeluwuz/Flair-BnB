@@ -141,7 +141,13 @@ router.post(
         spotId: spot.id,
       };
       const reviewData = Object.assign(template, req.body);
-      const newReview = await Review.create(reviewData);
+      const newReview = await Review.create(reviewData).catch((e) => {
+        res.status(403);
+        res.json({
+          message: "User already has a review for this spot",
+          statusCode: 403,
+        });
+      });
       res.json(newReview);
     }
   }
