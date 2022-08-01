@@ -1,7 +1,7 @@
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
-const { requireAuth } = require("../../utils/auth");
+const { requireAuth, verifyOwner } = require("../../utils/auth");
 const { Spot, User, Image } = require("../../db/models");
 const express = require("express");
 const router = express.Router();
@@ -35,6 +35,18 @@ const validateSpotData = [
   handleValidationErrors,
 ];
 
+const spotFound = function (spot, next) {
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.message = "Spot couldn't be found";
+    err.status = 404;
+    next(err);
+    return err;
+  } else {
+    return true;
+  }
+};
+
 router.get("/", async (req, res, next) => {
   // need to add avgReview and previewImage once implemented
   const spots = await Spot.findAll();
@@ -67,12 +79,7 @@ router.get("/:spotId", async (req, res, next) => {
       },
     ],
   });
-  if (!spot) {
-    const err = new Error("Spot couldn't be found");
-    err.message = "Spot couldn't be found";
-    err.status = 404;
-    return next(err);
-  } else {
+  if (spotFound(spot, next)) {
     res.json(spot);
   }
 });
@@ -89,30 +96,26 @@ router.put(
   requireAuth,
   validateSpotData,
   async (req, res, next) => {
-    // Get current userId
-    const userId = req.user.id;
     const spot = await Spot.findByPk(req.params.spotId);
-    // Check if we failed to find a spot
-    if (!spot) {
-      const err = new Error("Spot couldn't be found");
-      err.message = "Spot couldn't be found";
-      err.status = 404;
-      return next(err);
-    }
-
-    // Get owner of spot
-    const spotOwner = spot.dataValues.ownerId;
-    if (userId === spotOwner) {
+    // Check if we found the spot and that the current user is the spot owner
+    if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
       spot.set(req.body);
       await spot.save();
       res.json(spot);
-    } else {
-      const err = new Error("Forbidden");
-      err.message = "Forbidden";
-      err.status = 403;
-      return next(err);
     }
   }
 );
+
+router.delete("/:spotId", requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  // Check if we found the spot and that the current user is the spot owner
+  if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
+    await spot.destroy();
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  }
+});
 
 module.exports = router;

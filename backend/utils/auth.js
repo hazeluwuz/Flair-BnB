@@ -60,4 +60,15 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 };
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+const verifyOwner = function (user, record, next) {
+  if (user.id !== record.dataValues.ownerId) {
+    const err = new Error("Forbidden");
+    err.message = "Forbidden";
+    err.status = 403;
+    next(err);
+  } else {
+    return true;
+  }
+};
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, verifyOwner };
