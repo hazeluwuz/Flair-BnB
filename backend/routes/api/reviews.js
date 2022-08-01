@@ -11,7 +11,11 @@ router.get("/current", requireAuth, async (req, res, next) => {
     where: {
       userId,
     },
-    include: [{ model: Spot.scope("reviews") }, { model: Image }],
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      { model: Spot.scope("reviews") },
+      { model: Image },
+    ],
   });
   res.json({ Reviews: reviews });
 });
