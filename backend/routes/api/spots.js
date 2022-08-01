@@ -38,7 +38,14 @@ router.get("/:spotId", requireAuth, async (req, res, next) => {
       },
     ],
   });
-  res.json(spot);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.message = "Spot couldn't be found";
+    err.status = 404;
+    return next(err);
+  } else {
+    res.json(spot);
+  }
 });
 
 module.exports = router;
