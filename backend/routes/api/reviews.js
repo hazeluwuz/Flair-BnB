@@ -28,6 +28,15 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     err.status = 404;
     next(err);
   }
+  const images = await review.getImages();
+  if (images.length > 10) {
+    const err = new Error(
+      "Maximum number of images for this resource was reached"
+    );
+    err.message = "Maximum number of images for this resource was reached";
+    err.status = 403;
+    next(err);
+  }
   const { url } = req.body;
   if (req.user.id === review.userId) {
     const image = await review.createImage({
@@ -42,6 +51,11 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       spotId: image.spotId,
       reviewId: image.spotId,
       url,
+    });
+  } else {
+    res.json({
+      message: "Forbidden",
+      statusCode: 403,
     });
   }
 });
