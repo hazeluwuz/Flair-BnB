@@ -1,5 +1,9 @@
 const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+const {
+  handleValidationErrors,
+  validateReviewData,
+  validateSpotData,
+} = require("../../utils/validation");
 const { requireAuth, verifyOwner } = require("../../utils/auth");
 const { Review, User, Spot, Image } = require("../../db/models");
 
@@ -53,11 +57,42 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       url,
     });
   } else {
+    res.status(403);
     res.json({
       message: "Forbidden",
       statusCode: 403,
     });
   }
 });
+
+router.put(
+  "/:reviewId",
+  requireAuth,
+  validateReviewData,
+  async (req, res, next) => {
+    const review = await Review.findByPk(req.params.reviewId);
+    const userId = req.user.id;
+    if (!review) {
+      res.status(404);
+      res.json({
+        message: "Review couldn't be found",
+        statusCode: 404,
+      });
+    }
+    if (userId !== review.userId) {
+      res.status(403);
+      res.json({
+        message: "Forbidden",
+        statusCode: 403,
+      });
+    }
+
+    await review.set(req.body);
+
+    await review.save();
+
+    res.json(review);
+  }
+);
 
 module.exports = router;
