@@ -2,7 +2,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth, verifyOwner } = require("../../utils/auth");
-const { Spot, User, Image } = require("../../db/models");
+const { Spot, User, Image, Review } = require("../../db/models");
 const express = require("express");
 const router = express.Router();
 const validateSpotData = [
@@ -32,6 +32,17 @@ const validateSpotData = [
   check("price")
     .exists({ checkFalsy: true })
     .withMessage("Price per day is required"),
+  handleValidationErrors,
+];
+
+const validateReviewData = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .isInt({ min: 1, max: 5 })
+    .withMessage("Stars must be an integer from 1 to 5"),
   handleValidationErrors,
 ];
 
@@ -117,5 +128,23 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
     });
   }
 });
+
+router.post(
+  "/:spotId/reviews",
+  requireAuth,
+  validateReviewData,
+  async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (spotFound(spot, next)) {
+      const template = {
+        userId: req.user.id,
+        spotId: spot.id,
+      };
+      const reviewData = Object.assign(template, req.body);
+      const newReview = await Review.create(reviewData);
+      res.json(newReview);
+    }
+  }
+);
 
 module.exports = router;

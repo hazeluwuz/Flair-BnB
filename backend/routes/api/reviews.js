@@ -5,7 +5,6 @@ const { Review, User } = require("../../db/models");
 
 const express = require("express");
 const router = express.Router();
-
 router.get("/current", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const reviews = Review.findAll({
@@ -15,5 +14,6 @@ router.get("/current", requireAuth, async (req, res, next) => {
   });
   res.json({ Reviews: reviews });
 });
+
 
 module.exports = router;
