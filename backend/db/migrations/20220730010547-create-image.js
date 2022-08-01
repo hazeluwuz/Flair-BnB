@@ -21,16 +21,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Spots" },
+        onDelete: "cascade",
       },
       reviewId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Reviews" },
+        onDelete: "cascade",
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" },
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,
