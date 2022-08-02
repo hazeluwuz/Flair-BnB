@@ -76,6 +76,35 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
 router.get("/:spotId", async (req, res, next) => {
   // must add numReviews, and avgStarRating once implemented.
+  const template = {
+    id: 0,
+    ownerId: 0,
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    lat: 0,
+    lng: 0,
+    name: "",
+    description: "",
+    price: 123,
+    createdAt: "",
+    updatedAt: "",
+    numReviews: 0,
+    avgStarRating: 0,
+    Images: [
+      {
+        id: 0,
+        imageableId: 0,
+        url: "",
+      },
+    ],
+    Owner: {
+      id: 0,
+      firstName: "",
+      lastName: "",
+    },
+  };
   const spot = await Spot.findByPk(req.params.spotId, {
     include: [
       {
@@ -88,14 +117,20 @@ router.get("/:spotId", async (req, res, next) => {
         as: "Owner",
         attributes: ["id", "firstName", "lastName"],
       },
-      {
-        model: Review,
-        attributes: [],
-      },
     ],
   });
+
   if (spotFound(spot, next)) {
-    res.json(spot);
+    const reviewData = await spot.getReviews({
+      attributes: [
+        [sequelize.fn("COUNT", sequelize.col("id")), "numReviews"],
+        [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
+      ],
+    });
+    spot.dataValues.numReviews = reviewData[0].dataValues.numReviews;
+    spot.dataValues.avgStarRating = reviewData[0].dataValues.avgRating;
+    const out = Object.assign(template, spot.toJSON());
+    res.json(out);
   }
 });
 
