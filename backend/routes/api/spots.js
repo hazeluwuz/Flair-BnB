@@ -72,6 +72,26 @@ router.get("/current", requireAuth, async (req, res, next) => {
       ownerId: userId,
     },
   });
+  for (let spot of spots) {
+    const spotReviewData = await spot.getReviews({
+      attributes: [
+        [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+      ],
+    });
+    const avgRating = spotReviewData[0].dataValues.avgStarRating;
+    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+    const previewImage = await Image.findOne({
+      where: {
+        [Op.and]: {
+          spotId: spot.id,
+          previewImage: true,
+        },
+      },
+    });
+    if (previewImage) {
+      spot.dataValues.previewImage = previewImage.dataValues.url;
+    }
+  }
   res.json({ Spots: spots });
 });
 
