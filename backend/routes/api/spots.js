@@ -6,7 +6,7 @@ const {
 } = require("../../utils/validation");
 
 const { requireAuth, verifyOwner } = require("../../utils/auth");
-const { Spot, User, Image, Review } = require("../../db/models");
+const { Spot, User, Image, Review, sequelize } = require("../../db/models");
 const express = require("express");
 const router = express.Router();
 
@@ -24,7 +24,17 @@ const spotFound = function (spot, next) {
 
 router.get("/", async (req, res, next) => {
   // need to add avgReview and previewImage once implemented
-  const spots = await Spot.findAll();
+  const spots = await Spot.findAll({
+    attributes: {
+      include: [
+        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+      ],
+    },
+    include: {
+      model: Review,
+      attributes: [],
+    },
+  });
   res.json({ Spots: spots });
 });
 
