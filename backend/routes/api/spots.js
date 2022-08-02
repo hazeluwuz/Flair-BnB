@@ -149,7 +149,9 @@ router.get("/:spotId", async (req, res, next) => {
       ],
     });
     spot.dataValues.numReviews = reviewData[0].dataValues.numReviews;
-    spot.dataValues.avgStarRating = reviewData[0].dataValues.avgRating;
+    spot.dataValues.avgStarRating = Number(
+      reviewData[0].dataValues.avgRating
+    ).toFixed(1);
     const out = Object.assign(template, spot.toJSON());
     res.json(out);
   }
