@@ -26,14 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       startDate: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isDate: true,
-          dateChecker(value) {
-            if (value < this.startDate) {
-              throw new Error("startDate must be before endDate");
-            }
-          },
-        },
       },
       endDate: {
         type: DataTypes.STRING,
@@ -41,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isDate: true,
           dateChecker(value) {
-            if (value < this.startDate) {
-              throw new Error("endDate must be after startDate");
+            if (new Date(value) <= new Date(this.startDate)) {
+              throw new Error("endDate cannot be on or before startDate");
             }
           },
         },
