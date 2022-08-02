@@ -184,4 +184,21 @@ router.post(
   }
 );
 
+router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
+    const { startDate, endDate } = req.body;
+    console.log(startDate, endDate);
+    const booking = await spot.createBooking({
+      spotId: req.params.spotId,
+      userId: req.user.id,
+      startDate,
+      endDate,
+    });
+    res.json(booking);
+  } else {
+    res.json("forbidden");
+  }
+});
+
 module.exports = router;
