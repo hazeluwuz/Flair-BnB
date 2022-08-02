@@ -208,8 +208,12 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       createdAt,
       updatedAt,
     });
-  } else {
-    res.json("forbidden");
+  }
+  if (spot.ownerId === req.user.id) {
+    const err = new Error("Forbidden");
+    err.message = "Forbidden";
+    err.status = 403;
+    next(err);
   }
 });
 
