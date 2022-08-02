@@ -200,6 +200,7 @@ router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const id = req.user.id;
   const spotData = Object.assign({ ownerId: id }, req.body);
   const newSpot = await Spot.create(spotData);
+  res.status(201);
   res.json(newSpot);
 });
 
