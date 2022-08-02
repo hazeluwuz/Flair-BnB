@@ -195,7 +195,19 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       startDate,
       endDate,
     });
-    res.json(booking);
+    let createdAt = booking.createdAt.toISOString();
+    let updatedAt = booking.createdAt.toISOString();
+    createdAt = createdAt.slice(0, 10) + " " + createdAt.slice(11, 19);
+    updatedAt = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 19);
+    res.json({
+      id: booking.id,
+      spotId: booking.spotId,
+      userId: booking.userId,
+      startDate: booking.startDate,
+      endDate: booking.endDate,
+      createdAt,
+      updatedAt,
+    });
   } else {
     res.json("forbidden");
   }
