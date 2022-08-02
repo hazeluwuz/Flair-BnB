@@ -34,6 +34,11 @@ const spotFound = function (spot, next) {
 router.get("/", async (req, res, next) => {
   // need to add avgReview and previewImage once implemented
   const spots = await Spot.findAll({
+    attributes: {
+      include: [
+        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+      ],
+    },
     include: {
       model: Review,
       attributes: [],
