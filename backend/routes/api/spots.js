@@ -62,12 +62,6 @@ router.get("/current", requireAuth, async (req, res, next) => {
 router.get("/:spotId", async (req, res, next) => {
   // must add numReviews, and avgStarRating once implemented.
   const spot = await Spot.findByPk(req.params.spotId, {
-    attributes: {
-      include: [
-        [sequelize.fn("COUNT", sequelize.col("Reviews.id")), "numReviews"],
-        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"],
-      ],
-    },
     include: [
       {
         model: Image,
@@ -84,7 +78,6 @@ router.get("/:spotId", async (req, res, next) => {
         attributes: [],
       },
     ],
-    group: "Spot.id",
   });
   if (spotFound(spot, next)) {
     res.json(spot);
@@ -275,10 +268,10 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         model: User,
       },
     });
-    const test = bookings.map((booking) =>
+    const out = bookings.map((booking) =>
       Object.assign(ownerExpected, booking.toJSON())
     );
-    res.json({ Bookings: test });
+    res.json({ Bookings: out });
   } else if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
     const bookings = await spot.getBookings({
       attributes: ["spotId", "startDate", "endDate"],
