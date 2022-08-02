@@ -160,12 +160,17 @@ router.get("/:spotId", async (req, res, next) => {
 router.get("/:spotId/reviews", async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId);
   if (spotFound(spot, next)) {
-    const reviews = await spot.getReviews({
-      include: [
-        { model: User, attributes: ["id", "firstName", "lastName"] },
-        { model: Image.scope("reviews") },
-      ],
-    });
+    const reviews = await spot.getReviews();
+    for (let review of reviews) {
+      const owner = await review.getUser({
+        attributes: ["id", "firstName", "lastName"],
+      });
+      const images = await review.getImages({
+        attributes: ["id", "reviewId", "url"],
+      });
+      review.dataValues.User = owner.toJSON();
+      review.dataValues.Images = images;
+    }
     res.json({ Reviews: reviews });
   }
 });
