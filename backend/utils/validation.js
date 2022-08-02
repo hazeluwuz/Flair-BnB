@@ -67,13 +67,14 @@ const validateImageData = [
 ];
 
 const validateBookingData = [
-  check("")
-]
-
+  check("startDate").isDate().withMessage("startDate must be a valid date!"),
+  check("endDate").isDate().withMessage("endDate must be a valid date!"),
+];
 
 module.exports = {
   handleValidationErrors,
   validateReviewData,
   validateSpotData,
   validateImageData,
+  validateBookingData,
 };
