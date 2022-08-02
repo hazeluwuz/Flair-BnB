@@ -8,7 +8,7 @@ const {
 } = require("../../db/models");
 const { requireAuth } = require("../../utils/auth");
 const { validateBookingData } = require("../../utils/validation");
-const { Op } = require("sequelize");
+const { Op, EmptyResultError } = require("sequelize");
 
 const express = require("express");
 const router = express.Router();
@@ -90,5 +90,35 @@ router.put(
     res.json(booking);
   }
 );
+
+router.delete("/:bookingId", requireAuth, async (req, res, next) => {
+  const booking = await Booking.findByPk(req.params.bookingId);
+  if (!booking) {
+    const err = new Error("Booking couldn't be found");
+    err.message = "Booking couldn't be found";
+    err.status = 404;
+    next(err);
+  }
+  if (booking.userId !== req.user.id) {
+    const err = new Error("Forbidden");
+    err.message = "Forbidden";
+    err.status = 403;
+    next(err);
+  }
+
+  const now = Date.now();
+  if (now > new Date(booking.startDate)) {
+    const err = new Error("Bookings that have been started can't be deleted");
+    err.message = "Bookings that have been started can't be deleted";
+    err.status = 403;
+    next(err);
+  }
+
+  await booking.destroy();
+  res.json({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
+});
 
 module.exports = router;
