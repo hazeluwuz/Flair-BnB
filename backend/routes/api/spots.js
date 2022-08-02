@@ -40,7 +40,10 @@ router.get("/", async (req, res, next) => {
     },
   });
   for (let spot of spots) {
-    const spotReviewData = await spot.getReviews({
+    const spotReviewData = await Review.findAll({
+      where: {
+        spotId: spot.id,
+      },
       attributes: {
         include: [
           [sequelize.fn("AVG", sequelize.col("id")), "numReviews"],
