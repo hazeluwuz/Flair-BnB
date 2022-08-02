@@ -45,8 +45,9 @@ router.get("/", async (req, res, next) => {
         [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
       ],
     });
-    spot.dataValues.avgRating =
-      spotReviewData[0].dataValues.avgStarRating.toFixed(1);
+
+    const avgRating = spotReviewData[0].dataValues.avgStarRating;
+    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {
