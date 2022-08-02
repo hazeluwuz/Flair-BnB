@@ -20,7 +20,17 @@ router.get("/current", requireAuth, async (req, res, next) => {
       userId: user.id,
     },
   });
-  res.json(bookings);
+  for (let booking of bookings) {
+    const spot = await booking.getSpot();
+    const prevImg = await spot.getImages({
+      where: {
+        previewImage: true,
+      },
+    });
+    spot.dataValues.previewImage = prevImg.dataValues.url;
+    booking.dataValues.Spot = spot;
+  }
+  res.json({ Bookings: bookings });
 });
 
 router.put(
