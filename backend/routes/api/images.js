@@ -6,6 +6,12 @@ const router = express.Router();
 
 router.delete("/:imageId", requireAuth, async (req, res, next) => {
   const imageToDelete = await Image.findByPk(req.params.imageId);
+  if (!imageToDelete) {
+    const err = new Error("Forbidden");
+    err.message = "Image couldn't be found";
+    err.status = 404;
+    next(err);
+  }
   if (imageToDelete.userId === req.user.id) {
     await imageToDelete.destroy();
     res.json({
