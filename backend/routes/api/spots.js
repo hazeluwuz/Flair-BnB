@@ -40,20 +40,23 @@ router.get("/", async (req, res, next) => {
     },
   });
   for (let spot of spots) {
-    // const spotReviewData = await Review.findAll({
-    //   where: {
-    //     spotId: spot.id,
-    //   },
-    //   attributes: [
-    //     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
-    //   ],
-    // });
     const spotReviewData = await spot.getReviews({
       attributes: [
         [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
       ],
     });
     spot.dataValues.avgRating = spotReviewData[0].dataValues.avgStarRating;
+    const previewImage = await Image.findOne({
+      where: {
+        [Op.and]: {
+          spotId: spot.id,
+          previewImage: true,
+        },
+      },
+    });
+    if (previewImage) {
+      spot.dataValues.previewImage = previewImage.dataValues.url;
+    }
   }
   res.json({ Spots: spots });
 });
