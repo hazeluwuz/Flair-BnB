@@ -56,6 +56,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       reviewId: review.id,
       userId: req.user.id,
     });
+    res.status(201);
     res.json({
       id: image.id,
       reviewId: image.reviewId,

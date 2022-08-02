@@ -228,6 +228,7 @@ router.post(
           statusCode: 403,
         });
       });
+      res.status(201);
       res.json(newReview);
     }
   }
@@ -256,6 +257,7 @@ router.post(
         spotId: req.params.spotId,
         userId: req.user.id,
       });
+      res.status(201);
       res.json({
         id: image.id,
         imageableId: image.spotId,
@@ -307,6 +309,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       startDate,
       endDate,
     });
+    res.status(201);
     res.json({
       id: booking.id,
       spotId: booking.spotId,
