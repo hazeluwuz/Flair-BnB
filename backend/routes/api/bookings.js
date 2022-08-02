@@ -27,7 +27,9 @@ router.get("/current", requireAuth, async (req, res, next) => {
         previewImage: true,
       },
     });
-    spot.dataValues.previewImage = prevImg.dataValues.url;
+    if (prevImg) {
+      spot.dataValues.previewImage = prevImg.dataValues.url;
+    }
     booking.dataValues.Spot = spot;
   }
   res.json({ Bookings: bookings });
