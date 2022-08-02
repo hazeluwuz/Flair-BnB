@@ -1,8 +1,8 @@
 const { check } = require("express-validator");
 const {
-  handleValidationErrors,
   validateReviewData,
   validateSpotData,
+  validateImageData,
 } = require("../../utils/validation");
 
 const { requireAuth, verifyOwner } = require("../../utils/auth");
@@ -95,13 +95,6 @@ router.get("/:spotId/reviews", async (req, res, next) => {
   }
 });
 
-router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
-  const id = req.user.id;
-  const spotData = Object.assign({ ownerId: id }, req.body);
-  const newSpot = await Spot.create(spotData);
-  res.json(newSpot);
-});
-
 router.put(
   "/:spotId",
   requireAuth,
@@ -128,6 +121,12 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
     });
   }
 });
+router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
+  const id = req.user.id;
+  const spotData = Object.assign({ ownerId: id }, req.body);
+  const newSpot = await Spot.create(spotData);
+  res.json(newSpot);
+});
 
 router.post(
   "/:spotId/reviews",
@@ -149,6 +148,38 @@ router.post(
         });
       });
       res.json(newReview);
+    }
+  }
+);
+
+router.post(
+  "/:spotId/images",
+  requireAuth,
+  validateImageData,
+  async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    const { url } = req.body;
+
+    if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
+      const images = await spot.getImages();
+      if (images.length >= 10) {
+        const err = new Error(
+          "Maximum number of images for this resource was reached"
+        );
+        err.message = "Maximum number of images for this resource was reached";
+        err.status = 403;
+        next(err);
+      }
+      const image = await spot.createImage({
+        url,
+        spotId: req.params.spotId,
+        userId: req.user.id,
+      });
+      res.json({
+        id: image.id,
+        imageableId: image.spotId,
+        url: image.url,
+      });
     }
   }
 );
