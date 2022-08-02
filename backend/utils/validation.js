@@ -66,6 +66,7 @@ const validateImageData = [
   check("url").isURL().withMessage("Invalid url provided"),
 ];
 
+
 module.exports = {
   handleValidationErrors,
   validateReviewData,

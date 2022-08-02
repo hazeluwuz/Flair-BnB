@@ -68,7 +68,13 @@ router.put(
   requireAuth,
   validateReviewData,
   async (req, res, next) => {
-    const review = await Review.findByPk(req.params.reviewId);
+    const review = await Review.findByPk(req.params.reviewId).catch((e) => {
+      res.status(404);
+      res.json({
+        message: "Review couldn't be found",
+        statusCode: 404,
+      });
+    });
     const userId = req.user.id;
     if (!review) {
       res.status(404);
