@@ -16,6 +16,7 @@ const {
 } = require("../../db/models");
 const { Op } = require("sequelize");
 const express = require("express");
+const e = require("express");
 const router = express.Router();
 
 const spotFound = function (spot, next) {
@@ -196,7 +197,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId);
   if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
     const { startDate, endDate } = req.body;
-
     const currentSpotBookings = await Booking.findAll({
       where: {
         spotId: req.params.spotId,
@@ -235,18 +235,14 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       startDate,
       endDate,
     });
-    let createdAt = booking.createdAt.toISOString();
-    let updatedAt = booking.createdAt.toISOString();
-    createdAt = createdAt.slice(0, 10) + " " + createdAt.slice(11, 19);
-    updatedAt = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 19);
     res.json({
       id: booking.id,
       spotId: booking.spotId,
       userId: booking.userId,
       startDate: booking.startDate,
       endDate: booking.endDate,
-      createdAt,
-      updatedAt,
+      createdAt: booking.createdAt,
+      updatedAt: booking.updatedAt,
     });
   }
   if (spot.ownerId === req.user.id) {
@@ -254,6 +250,40 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     err.message = "Forbidden";
     err.status = 403;
     next(err);
+  }
+});
+
+router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  const ownerExpected = {
+    User: {
+      id: "",
+      firstName: "",
+      lastName: "",
+    },
+    id: "",
+    spotId: "",
+    userId: "",
+    startDate: "",
+    endDate: "",
+    createdAt: "",
+    updatedAt: "",
+  };
+  if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
+    const bookings = await spot.getBookings({
+      include: {
+        model: User,
+      },
+    });
+    const test = bookings.map((booking) =>
+      Object.assign(ownerExpected, booking.toJSON())
+    );
+    res.json({ Bookings: test });
+  } else if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
+    const bookings = await spot.getBookings({
+      attributes: ["spotId", "startDate", "endDate"],
+    });
+    res.json({ Bookings: bookings });
   }
 });
 
