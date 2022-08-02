@@ -3,6 +3,7 @@ const {
   validateReviewData,
   validateSpotData,
   validateImageData,
+  validateQueryParams,
 } = require("../../utils/validation");
 
 const { requireAuth, verifyOwner } = require("../../utils/auth");
@@ -14,7 +15,7 @@ const {
   Review,
   sequelize,
 } = require("../../db/models");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const express = require("express");
 const e = require("express");
 const router = express.Router();
@@ -31,22 +32,24 @@ const spotFound = function (spot, next) {
   }
 };
 
-router.get("/", async (req, res, next) => {
-  // need to add avgReview and previewImage once implemented
-  const spots = await Spot.findAll({
-    attributes: {
-      include: [
-        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
-      ],
-    },
+router.get("/", validateQueryParams, async (req, res, next) => {
+  let query = {
+    where: {},
     include: {
       model: Review,
       attributes: [],
     },
-  });
-  res.json({ Spots: spots });
+  };
+  const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
+  const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+  if (page >= 1 && size >= 1) {
+    query.limit = size;
+    query.offset = size * (page - 1);
+  }
+  // need to add avgReview and previewImage once implemented
+  const spots = await Spot.findAll(query);
+  res.json(spots);
 });
-
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const userId = user.dataValues.id;
