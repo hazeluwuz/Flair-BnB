@@ -53,16 +53,28 @@ router.get("/current", requireAuth, async (req, res, next) => {
 router.get("/:spotId", async (req, res, next) => {
   // must add numReviews, and avgStarRating once implemented.
   const spot = await Spot.findByPk(req.params.spotId, {
+    attributes: {
+      include: [
+        [sequelize.fn("COUNT", sequelize.col("Reviews.id")), "numReviews"],
+        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"],
+      ],
+    },
     include: [
       {
         model: Image,
+        attributes: ["id", "url"],
       },
       {
         model: User,
         as: "Owner",
         attributes: ["id", "firstName", "lastName"],
       },
+      {
+        model: Review,
+        attributes: [],
+      },
     ],
+    group: "Spot.id",
   });
   if (spotFound(spot, next)) {
     res.json(spot);
