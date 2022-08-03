@@ -410,6 +410,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     const bookings = await spot.getBookings({
       include: {
         model: User,
+        attributes: ["id", "firstName", "lastName"],
       },
     });
     const out = bookings.map((booking) =>
