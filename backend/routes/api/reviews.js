@@ -5,7 +5,7 @@ const {
   validateSpotData,
 } = require("../../utils/validation");
 const { requireAuth, verifyOwner } = require("../../utils/auth");
-const { Review, User, Spot, Image } = require("../../db/models");
+const { Review, User, Spot, Image, sequelize } = require("../../db/models");
 
 const express = require("express");
 const router = express.Router();
@@ -30,7 +30,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
     });
     const spot = await review.getSpot();
     const images = await review.getImages({
-      attributes: ["id", "reviewId", "url"],
+      attributes: ["id", [sequelize.literal("reviewId"), "imageableId"], "url"],
     });
     review.dataValues.User = owner.toJSON();
     review.dataValues.Spot = spot.toJSON();
@@ -69,7 +69,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     });
     res.json({
       id: image.id,
-      reviewId: image.reviewId,
+      imageableId: image.reviewId,
       url,
     });
   } else {

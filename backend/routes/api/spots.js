@@ -171,7 +171,11 @@ router.get("/:spotId", async (req, res, next) => {
     include: [
       {
         model: Image,
-        attributes: ["id", "url"],
+        attributes: [
+          "id",
+          [sequelize.literal("spotId"), "imageableId"],
+          "url",
+        ],
         group: "id",
       },
       {
@@ -210,7 +214,11 @@ router.get("/:spotId/reviews", async (req, res, next) => {
         attributes: ["id", "firstName", "lastName"],
       });
       const images = await review.getImages({
-        attributes: ["id", "reviewId", "url"],
+        attributes: [
+          "id",
+          [sequelize.literal("reviewId"), "imageableId"],
+          "url",
+        ],
       });
       review.dataValues.User = owner.toJSON();
       review.dataValues.Images = images;
