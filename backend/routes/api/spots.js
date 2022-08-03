@@ -32,12 +32,7 @@ const spotFound = function (spot, next) {
 
 router.get("/", async (req, res, next) => {
   // need to add avgReview and previewImage once implemented
-  const spots = await Spot.findAll({
-    include: {
-      model: Review,
-      attributes: [],
-    },
-  });
+  const spots = await Spot.findAll();
   for (let spot of spots) {
     const spotReviewData = await spot.getReviews({
       attributes: [
