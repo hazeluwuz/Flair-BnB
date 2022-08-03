@@ -58,7 +58,6 @@ app.use((err, _req, _res, next) => {
       errors[e.path] = e.message;
     });
     err.errors = errors;
-    // err.message = "User already exists";
     err.status = 403;
   }
   next(err);
