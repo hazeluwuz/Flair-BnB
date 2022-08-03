@@ -66,7 +66,6 @@ router.get("/", async (req, res, next) => {
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const userId = user.dataValues.id;
-  // need to add avgRating and previewImage once implemented
   const spots = await Spot.findAll({
     where: {
       ownerId: userId,
@@ -96,7 +95,6 @@ router.get("/current", requireAuth, async (req, res, next) => {
 });
 
 router.get("/:spotId", async (req, res, next) => {
-  // must add numReviews, and avgStarRating once implemented.
   const template = {
     id: 0,
     ownerId: 0,
