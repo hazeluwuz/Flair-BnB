@@ -254,7 +254,6 @@ router.post(
         spotId: req.params.spotId,
         userId: req.user.id,
       });
-      res.status(201);
       res.json({
         id: image.id,
         imageableId: image.spotId,
