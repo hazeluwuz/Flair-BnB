@@ -10,8 +10,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Spot.belongsTo(models.User, { foreignKey: "ownerId", as: "Owner" });
-      Spot.hasMany(models.Booking, { foreignKey: "spotId" });
-      Spot.hasMany(models.Image, { foreignKey: "spotId" });
+      Spot.hasMany(models.Booking, {
+        foreignKey: "spotId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      Spot.hasMany(models.Image, {
+        foreignKey: "spotId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      Spot.hasMany(models.Review, {
+        foreignKey: "spotId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
     }
   }
   Spot.init(
@@ -56,10 +69,37 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.createdAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.updatedAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
+      },
     },
     {
       sequelize,
       modelName: "Spot",
+      scopes: {
+        reviews: {
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "description"],
+          },
+        },
+      },
     }
   );
   return Spot;

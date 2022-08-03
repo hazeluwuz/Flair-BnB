@@ -24,19 +24,39 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       startDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isDate: true,
-          isBefore: this.endDate,
-        },
       },
       endDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           isDate: true,
-          isAfter: this.startDate,
+          dateChecker(value) {
+            if (new Date(value) <= new Date(this.startDate)) {
+              throw new Error("endDate cannot be on or before startDate");
+            }
+          },
+        },
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.createdAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.updatedAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
         },
       },
     },

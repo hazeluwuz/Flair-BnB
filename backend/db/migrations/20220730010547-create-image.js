@@ -11,34 +11,37 @@ module.exports = {
       url: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       previewImage: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       spotId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: { model: "Spots" },
+        onDelete: "cascade",
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: { model: "Reviews" },
+        onDelete: "cascade",
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" },
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },

@@ -9,13 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Review.hasMany(models.Image, { foreignKey: "reviewId" });
+      Review.hasMany(models.Image, {
+        foreignKey: "reviewId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
       Review.belongsTo(models.User, { foreignKey: "userId" });
       Review.belongsTo(models.Spot, { foreignKey: "spotId" });
     }
   }
   Review.init(
     {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      spotId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       review: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,18 +40,36 @@ module.exports = (sequelize, DataTypes) => {
           max: 5,
         },
       },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      createdAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.createdAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
       },
-      spotId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      updatedAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.updatedAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
       },
     },
     {
       sequelize,
       modelName: "Review",
+      indexes: [
+        {
+          unique: true,
+          fields: ["userId", "spotId"],
+        },
+      ],
     }
   );
   return Review;

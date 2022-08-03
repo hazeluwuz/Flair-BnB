@@ -52,14 +52,12 @@ app.use((_req, _res, next) => {
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
-  // console.log("does this get hit lo;");
   if (err instanceof ValidationError) {
     const errors = {};
     err.errors.forEach((e) => {
       errors[e.path] = e.message;
     });
     err.errors = errors;
-    err.message = "User already exists";
     err.status = 403;
   }
   next(err);

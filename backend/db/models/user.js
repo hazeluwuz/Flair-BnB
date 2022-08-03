@@ -45,10 +45,26 @@ module.exports = (sequelize, DataTypes) => {
     }
     static associate(models) {
       // define association here
-      User.hasMany(models.Image, { foreignKey: "userId" });
-      User.hasMany(models.Review, { foreignKey: "userId" });
-      User.hasMany(models.Spot, { foreignKey: "ownerId" });
-      User.hasMany(models.Booking, { foreignKey: "userId" });
+      User.hasMany(models.Image, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      User.hasMany(models.Review, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      User.hasMany(models.Spot, {
+        foreignKey: "ownerId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
+      User.hasMany(models.Booking, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true,
+      });
     }
   }
   User.init(
@@ -92,6 +108,26 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [60, 60],
+        },
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.createdAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
+        },
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        get() {
+          const date = new Date(this.dataValues.updatedAt);
+          return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
+            [],
+            { timeStyle: "medium", hour12: false }
+          )}`;
         },
       },
     },

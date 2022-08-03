@@ -20,19 +20,23 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" },
+        onDelete: "cascade",
       },
       spotId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Spots" },
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
