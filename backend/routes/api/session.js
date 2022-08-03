@@ -34,7 +34,6 @@ router.post("/", validateLogin, async (req, res, next) => {
 
   const token = setTokenCookie(res, user);
   const out = user.toJSON();
-  res.status(201);
   return res.json({
     id: out.id,
     firstName: out.firstName,
