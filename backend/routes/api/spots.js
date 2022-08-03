@@ -406,7 +406,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     createdAt: "",
     updatedAt: "",
   };
-  if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
+  if (spotFound(spot, next) && spot.ownerId === req.user.id) {
     const bookings = await spot.getBookings({
       include: {
         model: User,
