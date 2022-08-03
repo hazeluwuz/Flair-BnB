@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
           const date = new Date(this.dataValues.createdAt);
           return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
             [],
-            { hour12: false }
+            { timeStyle: "medium", hour12: false }
           )}`;
         },
       },
@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
           const date = new Date(this.dataValues.updatedAt);
           return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
             [],
-            { hour12: false }
+            { timeStyle: "medium", hour12: false }
           )}`;
         },
       },

@@ -14,19 +14,19 @@ module.exports = {
     await queryInterface.bulkInsert("Images", [
       {
         url: "https://imgur.com/4231.png",
-        previewImage: false,
+        previewImage: true,
         spotId: 1,
         userId: 1,
       },
       {
-        url: "https://imgur.com/516.png",
+        url: "https://imgur.com/5136.png",
         previewImage: false,
         reviewId: 1,
         userId: 1,
       },
       {
         url: "https://imgur.com/6198.png",
-        previewImage: false,
+        previewImage: true,
         spotId: 2,
         userId: 1,
       },

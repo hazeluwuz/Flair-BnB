@@ -15,12 +15,19 @@ router.get("/current", requireAuth, async (req, res, next) => {
     where: {
       userId,
     },
-    include: [
-      { model: User, attributes: ["id", "firstName", "lastName"] },
-      { model: Spot.scope("reviews") },
-      { model: Image },
-    ],
   });
+  for (let review of reviews) {
+    const owner = await review.getUser({
+      attributes: ["id", "firstName", "lastName"],
+    });
+    const spot = await review.getSpot();
+    const images = await review.getImages({
+      attributes: ["id", "reviewId", "url"],
+    });
+    review.dataValues.User = owner.toJSON();
+    review.dataValues.Spot = spot.toJSON();
+    review.dataValues.Images = images;
+  }
   res.json({ Reviews: reviews });
 });
 
