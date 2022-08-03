@@ -73,11 +73,10 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       url,
     });
   } else {
-    res.status(403);
-    res.json({
-      message: "Forbidden",
-      statusCode: 403,
-    });
+    const err = new Error("Forbidden");
+    err.message = "Forbidden";
+    err.status = 403;
+    return next(err);
   }
 });
 
@@ -102,11 +101,10 @@ router.put(
       });
     }
     if (userId !== review.userId) {
-      res.status(403);
-      res.json({
-        message: "Forbidden",
-        statusCode: 403,
-      });
+      const err = new Error("Forbidden");
+      err.message = "Forbidden";
+      err.status = 403;
+      return next(err);
     }
 
     await review.set(req.body);
@@ -127,11 +125,10 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
     });
   }
   if (req.user.id !== review.userId) {
-    res.status(403);
-    res.json({
-      message: "Forbidden",
-      statusCode: 403,
-    });
+    const err = new Error("Forbidden");
+    err.message = "Forbidden";
+    err.status = 403;
+    return next(err);
   }
 
   await review.destroy();
