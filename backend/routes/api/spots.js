@@ -32,8 +32,19 @@ const spotFound = function (spot, next) {
 };
 
 router.get("/", validateQueryParams, async (req, res, next) => {
+  const { maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
   let query = {
-    where: {},
+    where: {
+      lat: {
+        [Op.and]: {},
+      },
+      lng: {
+        [Op.and]: {},
+      },
+      price: {
+        [Op.and]: {},
+      },
+    },
   };
   const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
   const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
@@ -41,6 +52,26 @@ router.get("/", validateQueryParams, async (req, res, next) => {
     query.limit = size;
     query.offset = size * (page - 1);
   }
+
+  if (minLat) {
+    query.where.lat[Op.and][Op.gte] = parseInt(minLat);
+  }
+  if (maxLat) {
+    query.where.lat[Op.and][Op.lte] = parseInt(maxLat);
+  }
+  if (minLng) {
+    query.where.lng[Op.and][Op.gte] = minLng;
+  }
+  if (maxLng) {
+    query.where.lng[Op.and][Op.lte] = maxLng;
+  }
+  if (minPrice) {
+    query.where.price[Op.and][Op.gte] = minPrice;
+  }
+  if (maxPrice) {
+    query.where.price[Op.and][Op.lte] = maxPrice;
+  }
+
   const spots = await Spot.findAll(query);
   for (let spot of spots) {
     const spotReviewData = await spot.getReviews({

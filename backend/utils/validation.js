@@ -72,9 +72,11 @@ const validateBookingData = [
 
 const validateQueryParams = [
   query("page")
+    .optional()
     .isInt({ min: 0, max: 10 })
     .withMessage("Page must be greater than or equal to 0"),
   query("size")
+    .optional()
     .isInt({ min: 0, max: 20 })
     .withMessage("Page must be greater than or equal to 0"),
   query("maxLat")
