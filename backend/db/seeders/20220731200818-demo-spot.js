@@ -1,42 +1,28 @@
 "use strict";
 
+const { faker } = require("@faker-js/faker");
+const randomNumber = (num) => Math.floor(Math.random() * Math.floor(num) + 1);
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
-    await queryInterface.bulkInsert("Spots", [
-      {
+    const spots = [];
+    let i = 0;
+    while (i < 10) {
+      const spot = {
         ownerId: 1,
-        address: "123 Example Lane",
-        city: "Demo",
-        state: "Connecticut",
-        country: "United States of America",
-        lat: 23.7645358,
-        lng: -1252.4730327,
-        name: "Town Hall",
-        description: "Center of town",
-        price: 200,
-      },
-      {
-        ownerId: 1,
-        address: "531 Wooster Street",
-        city: "Demo",
-        state: "Connecticut",
-        country: "United States of America",
-        lat: 223.7645358,
-        lng: -12.4730327,
-        name: "Example House",
-        description: "Example description",
-        price: 250,
-      },
-    ]);
+        address: faker.address.streetAddress(),
+        city: faker.address.city(),
+        state: faker.address.state(),
+        country: faker.address.country(),
+        lat: faker.address.latitude(),
+        lng: faker.address.longitude(),
+        name: `Random Spot ${i}`,
+        description: faker.random.words(),
+        price: faker.random.numeric(5),
+      };
+      spots.push(spot);
+      i++;
+    }
+    await queryInterface.bulkInsert("Spots", spots);
   },
 
   async down(queryInterface, Sequelize) {
@@ -46,10 +32,13 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    const { Op } = require("sequelize");
     await queryInterface.bulkDelete(
       "Spots",
       {
-        city: "Demo",
+        name: {
+          [Op.like]: "Random Spot%",
+        },
       },
       {}
     );
