@@ -16,7 +16,6 @@ const {
 } = require("../../db/models");
 const { Op } = require("sequelize");
 const express = require("express");
-const e = require("express");
 const router = express.Router();
 
 const spotFound = function (spot, next) {
