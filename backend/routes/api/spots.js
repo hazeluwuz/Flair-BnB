@@ -240,7 +240,7 @@ router.post(
   validateImageData,
   async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId);
-    const { url } = req.body;
+    const { url, previewImage } = req.body;
 
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
       const images = await spot.getImages();
@@ -254,6 +254,7 @@ router.post(
       }
       const image = await spot.createImage({
         url,
+        previewImage,
         spotId: req.params.spotId,
         userId: req.user.id,
       });
