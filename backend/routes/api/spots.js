@@ -25,7 +25,7 @@ const spotFound = function (spot, next) {
     err.message = "Spot couldn't be found";
     err.status = 404;
     next(err);
-    return err;
+    return false;
   } else {
     return true;
   }
