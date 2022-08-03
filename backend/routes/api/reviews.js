@@ -48,11 +48,11 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     err.status = 403;
     next(err);
   }
-  const { url } = req.body;
+  const { url, previewImage } = req.body;
   if (req.user.id === review.userId) {
     const image = await review.createImage({
       url: url,
-      previewImage: false,
+      previewImage: previewImage,
       reviewId: review.id,
       userId: req.user.id,
     });
