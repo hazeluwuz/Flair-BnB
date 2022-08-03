@@ -368,7 +368,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       startDate,
       endDate,
     });
-    res.status(201);
     res.json({
       id: booking.id,
       spotId: booking.spotId,
