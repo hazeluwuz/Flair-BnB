@@ -34,10 +34,6 @@ const spotFound = function (spot, next) {
 router.get("/", validateQueryParams, async (req, res, next) => {
   let query = {
     where: {},
-    include: {
-      model: Review,
-      attributes: [],
-    },
   };
   const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
   const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
