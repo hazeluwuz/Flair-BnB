@@ -31,6 +31,13 @@ const spotFound = function (spot, next) {
   }
 };
 
+const invalidIdError = function () {
+  const err = new Error("Spot couldn't be found");
+  err.message = "Spot couldn't be found";
+  err.status = 404;
+  throw err;
+};
+
 router.get("/", validateQueryParams, async (req, res, next) => {
   const { maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
   let query = {
@@ -157,6 +164,9 @@ router.get("/:spotId", async (req, res, next) => {
       lastName: "",
     },
   };
+  if (!parseInt(req.params.spotId)) {
+    invalidIdError();
+  }
   const spot = await Spot.findByPk(req.params.spotId, {
     include: [
       {
@@ -189,6 +199,9 @@ router.get("/:spotId", async (req, res, next) => {
 });
 
 router.get("/:spotId/reviews", async (req, res, next) => {
+  if (!req.params.spotId) {
+    invalidIdError();
+  }
   const spot = await Spot.findByPk(req.params.spotId);
   if (spotFound(spot, next)) {
     const reviews = await spot.getReviews();
@@ -211,6 +224,9 @@ router.put(
   requireAuth,
   validateSpotData,
   async (req, res, next) => {
+    if (!req.params.spotId) {
+      invalidIdError();
+    }
     const spot = await Spot.findByPk(req.params.spotId);
     // Check if we found the spot and that the current user is the spot owner
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
@@ -222,6 +238,9 @@ router.put(
 );
 
 router.delete("/:spotId", requireAuth, async (req, res, next) => {
+  if (!req.params.spotId) {
+    invalidIdError();
+  }
   const spot = await Spot.findByPk(req.params.spotId);
   // Check if we found the spot and that the current user is the spot owner
   if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
@@ -245,6 +264,9 @@ router.post(
   requireAuth,
   validateReviewData,
   async (req, res, next) => {
+    if (!req.params.spotId) {
+      invalidIdError();
+    }
     const spot = await Spot.findByPk(req.params.spotId);
     if (spotFound(spot, next)) {
       const template = {
@@ -270,6 +292,9 @@ router.post(
   requireAuth,
   validateImageData,
   async (req, res, next) => {
+    if (!req.params.spotId) {
+      invalidIdError();
+    }
     const spot = await Spot.findByPk(req.params.spotId);
     const { url, previewImage } = req.body;
 
@@ -299,6 +324,9 @@ router.post(
 );
 
 router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
+  if (!req.params.spotId) {
+    invalidIdError();
+  }
   const spot = await Spot.findByPk(req.params.spotId);
   if (spotFound(spot, next) && spot.ownerId !== req.user.id) {
     const { startDate, endDate } = req.body;
@@ -360,6 +388,9 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
 });
 
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
+  if (!req.params.spotId) {
+    invalidIdError();
+  }
   const spot = await Spot.findByPk(req.params.spotId);
   const ownerExpected = {
     User: {

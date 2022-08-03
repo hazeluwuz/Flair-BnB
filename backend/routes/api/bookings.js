@@ -13,6 +13,13 @@ const { Op, EmptyResultError } = require("sequelize");
 const express = require("express");
 const router = express.Router();
 
+const invalidIdError = function () {
+  const err = new Error("Booking couldn't be found");
+  err.message = "Booking couldn't be found";
+  err.status = 404;
+  throw err;
+};
+
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const bookings = await Booking.findAll({
@@ -40,6 +47,9 @@ router.put(
   requireAuth,
   validateBookingData,
   async (req, res, next) => {
+    if (!parseInt(req.params.bookingId)) {
+      invalidIdError();
+    }
     const booking = await Booking.findByPk(req.params.bookingId);
     const { startDate, endDate } = req.body;
     if (!booking) {
@@ -104,6 +114,9 @@ router.put(
 );
 
 router.delete("/:bookingId", requireAuth, async (req, res, next) => {
+  if (!parseInt(req.params.bookingId)) {
+    invalidIdError();
+  }
   const booking = await Booking.findByPk(req.params.bookingId);
   if (!booking) {
     const err = new Error("Booking couldn't be found");

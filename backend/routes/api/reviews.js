@@ -9,6 +9,14 @@ const { Review, User, Spot, Image } = require("../../db/models");
 
 const express = require("express");
 const router = express.Router();
+
+const invalidIdError = function () {
+  const err = new Error("Review couldn't be found");
+  err.message = "Review couldn't be found";
+  err.status = 404;
+  throw err;
+};
+
 router.get("/current", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const reviews = await Review.findAll({
@@ -32,6 +40,9 @@ router.get("/current", requireAuth, async (req, res, next) => {
 });
 
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
+  if (!parseInt(req.params.reviewId)) {
+    invalidIdError();
+  }
   const review = await Review.findByPk(req.params.reviewId);
   if (!review) {
     const err = new Error("Invalid review id");
