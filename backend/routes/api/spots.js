@@ -173,7 +173,7 @@ router.get("/:spotId", async (req, res, next) => {
         model: Image,
         attributes: [
           "id",
-          [sequelize.literal("spotId"), "imageableId"],
+          [sequelize.literal("Images.spotId"), "imageableId"],
           "url",
         ],
         group: "id",
@@ -216,7 +216,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
       const images = await review.getImages({
         attributes: [
           "id",
-          [sequelize.literal("reviewId"), "imageableId"],
+          [sequelize.literal("Reviews.reviewId"), "imageableId"],
           "url",
         ],
       });
