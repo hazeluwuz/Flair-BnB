@@ -101,7 +101,11 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       spot.dataValues.previewImage = previewImage.dataValues.url;
     }
   }
-  res.json({ Spots: spots });
+  res.json({
+    Spots: spots,
+    page: query.offset + 1,
+    size: query.limit,
+  });
 });
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
@@ -171,11 +175,7 @@ router.get("/:spotId", async (req, res, next) => {
     include: [
       {
         model: Image,
-        attributes: [
-          "id",
-          ["spotId", "imageableId"],
-          "url",
-        ],
+        attributes: ["id", ["spotId", "imageableId"], "url"],
         group: "id",
       },
       {
@@ -214,11 +214,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
         attributes: ["id", "firstName", "lastName"],
       });
       const images = await review.getImages({
-        attributes: [
-          "id",
-          ["reviewId", "imageableId"],
-          "url",
-        ],
+        attributes: ["id", ["reviewId", "imageableId"], "url"],
       });
       review.dataValues.User = owner.toJSON();
       review.dataValues.Images = images;
