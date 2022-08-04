@@ -30,7 +30,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
     });
     const spot = await review.getSpot();
     const images = await review.getImages({
-      attributes: ["id", [sequelize.literal("reviewId"), "imageableId"], "url"],
+      attributes: ["id", ["reviewId", "imageableId"], "url"],
     });
     review.dataValues.User = owner.toJSON();
     review.dataValues.Spot = spot.toJSON();
