@@ -101,9 +101,10 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       spot.dataValues.previewImage = previewImage.dataValues.url;
     }
   }
+  if (query.offset !== undefined) query.offset = query.offset + 1;
   res.json({
     Spots: spots,
-    page: query.offset + 1,
+    page: query.offset,
     size: query.limit,
   });
 });
