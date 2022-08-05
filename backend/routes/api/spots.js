@@ -62,22 +62,22 @@ router.get("/", validateQueryParams, async (req, res, next) => {
   }
 
   if (minLat) {
-    query.where.lat[Op.and][Op.gte] = parseInt(minLat);
+    query.where.lat[Op.and][Op.gte] = parseFloat(minLat);
   }
   if (maxLat) {
-    query.where.lat[Op.and][Op.lte] = parseInt(maxLat);
+    query.where.lat[Op.and][Op.lte] = parseFloat(maxLat);
   }
   if (minLng) {
-    query.where.lng[Op.and][Op.gte] = minLng;
+    query.where.lng[Op.and][Op.gte] = parseFloat(minLng);
   }
   if (maxLng) {
-    query.where.lng[Op.and][Op.lte] = maxLng;
+    query.where.lng[Op.and][Op.lte] = parseFloat(maxLng);
   }
   if (minPrice) {
-    query.where.price[Op.and][Op.gte] = minPrice;
+    query.where.price[Op.and][Op.gte] = parseFloat(minPrice);
   }
   if (maxPrice) {
-    query.where.price[Op.and][Op.lte] = maxPrice;
+    query.where.price[Op.and][Op.lte] = parseFloat(maxPrice);
   }
 
   const spots = await Spot.findAll(query);
