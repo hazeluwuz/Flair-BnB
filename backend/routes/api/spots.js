@@ -124,7 +124,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
       ],
     });
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
-    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+    spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(1));
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {
