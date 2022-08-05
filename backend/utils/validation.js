@@ -66,8 +66,15 @@ const validateImageData = [
 ];
 
 const validateBookingData = [
-  check("startDate").isDate().withMessage("startDate must be a valid date!"),
-  check("endDate").isDate().withMessage("endDate must be a valid date!"),
+  check("startDate")
+    .exists({ checkFalsy: true })
+    .isDate()
+    .withMessage("startDate must be a valid date!"),
+  check("endDate")
+    .exists({ checkFalsy: true })
+    .isDate()
+    .withMessage("endDate must be a valid date!"),
+  handleValidationErrors,
 ];
 
 const validateQueryParams = [
