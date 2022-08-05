@@ -8,7 +8,9 @@ const { port } = require('../config');
 
 const app = require('../app');
 const db = require('../db/models');
-
+import * as pg from "pg";
+// setup your Sequelize instance
+pg.types.setTypeParser(1700, parseFloat);
 // Check the database connection before starting the app
 db.sequelize
   .authenticate()
