@@ -259,7 +259,20 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
 });
 router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const id = req.user.id;
-  const spotData = Object.assign({ ownerId: id }, req.body);
+  const { address, city, state, country, lat, lng, name, description, price } =
+    req.body;
+  const spotData = {
+    ownerId: id,
+    address: address,
+    city: city,
+    state: state,
+    country: country,
+    lat: lat,
+    lng: lng,
+    name: name,
+    description: description,
+    price: price,
+  };
   const newSpot = await Spot.create(spotData);
   res.status(201);
   res.json(newSpot);
