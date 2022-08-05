@@ -62,22 +62,22 @@ router.get("/", validateQueryParams, async (req, res, next) => {
   }
 
   if (minLat) {
-    query.where.lat[Op.and][Op.gte] = parseInt(minLat);
+    query.where.lat[Op.and][Op.gte] = parseFloat(minLat);
   }
   if (maxLat) {
-    query.where.lat[Op.and][Op.lte] = parseInt(maxLat);
+    query.where.lat[Op.and][Op.lte] = parseFloat(maxLat);
   }
   if (minLng) {
-    query.where.lng[Op.and][Op.gte] = minLng;
+    query.where.lng[Op.and][Op.gte] = parseFloat(minLng);
   }
   if (maxLng) {
-    query.where.lng[Op.and][Op.lte] = maxLng;
+    query.where.lng[Op.and][Op.lte] = parseFloat(maxLng);
   }
   if (minPrice) {
-    query.where.price[Op.and][Op.gte] = minPrice;
+    query.where.price[Op.and][Op.gte] = parseFloat(minPrice);
   }
   if (maxPrice) {
-    query.where.price[Op.and][Op.lte] = maxPrice;
+    query.where.price[Op.and][Op.lte] = parseFloat(maxPrice);
   }
 
   const spots = await Spot.findAll(query);
@@ -89,7 +89,7 @@ router.get("/", validateQueryParams, async (req, res, next) => {
     });
 
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
-    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+    spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(1));
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {
@@ -124,7 +124,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
       ],
     });
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
-    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+    spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(1));
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {
@@ -196,9 +196,9 @@ router.get("/:spotId", async (req, res, next) => {
       ],
     });
     spot.dataValues.numReviews = reviewData[0].dataValues.numReviews;
-    spot.dataValues.avgStarRating = Number(
-      reviewData[0].dataValues.avgRating
-    ).toFixed(1);
+    spot.dataValues.avgStarRating = parseFloat(
+      Number(reviewData[0].dataValues.avgRating).toFixed(1)
+    );
     const out = Object.assign(template, spot.toJSON());
     res.json(out);
   }
@@ -259,7 +259,20 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
 });
 router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const id = req.user.id;
-  const spotData = Object.assign({ ownerId: id }, req.body);
+  const { address, city, state, country, lat, lng, name, description, price } =
+    req.body;
+  const spotData = {
+    ownerId: id,
+    address: address,
+    city: city,
+    state: state,
+    country: country,
+    lat: lat,
+    lng: lng,
+    name: name,
+    description: description,
+    price: price,
+  };
   const newSpot = await Spot.create(spotData);
   res.status(201);
   res.json(newSpot);

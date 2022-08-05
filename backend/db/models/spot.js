@@ -52,10 +52,18 @@ module.exports = (sequelize, DataTypes) => {
       lat: {
         type: DataTypes.DECIMAL,
         allowNull: false,
+        get() {
+          const value = this.dataValues.lat;
+          return value === null ? null : parseFloat(value);
+        },
       },
       lng: {
         type: DataTypes.DECIMAL,
         allowNull: false,
+        get() {
+          const value = this.dataValues.lng;
+          return value === null ? null : parseFloat(value);
+        },
       },
       name: {
         type: DataTypes.STRING,
