@@ -39,6 +39,7 @@ const validateSpotData = [
     .withMessage("Longitude is not valid"),
   check("name")
     .exists({ checkFalsy: true })
+    .withMessage("Name is not valid")
     .isLength({ max: 50 })
     .withMessage("Name must be less than 50 characters"),
   check("description")
@@ -62,7 +63,12 @@ const validateReviewData = [
 ];
 
 const validateImageData = [
-  check("url").isURL().withMessage("Invalid url provided"),
+  check("url")
+    .exists({ checkFalsy: true })
+    .withMessage("Invalid url provided")
+    .isURL()
+    .withMessage("Invalid url provided"),
+  handleValidationErrors,
 ];
 
 const validateBookingData = [
