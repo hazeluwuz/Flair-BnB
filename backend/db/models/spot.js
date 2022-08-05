@@ -56,6 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       lng: {
         type: DataTypes.DECIMAL,
         allowNull: false,
+        get() {
+          const value = this.dataValues.lng;
+          return value === null ? null : parseFloat(value);
+        },
       },
       name: {
         type: DataTypes.STRING,
