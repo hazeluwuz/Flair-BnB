@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL,
         allowNull: false,
         get() {
-          const value = this.dataValues.lng;
+          const value = this.dataValues.lat;
           return value === null ? null : parseFloat(value);
         },
       },
