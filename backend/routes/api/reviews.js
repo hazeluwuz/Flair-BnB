@@ -85,6 +85,9 @@ router.put(
   requireAuth,
   validateReviewData,
   async (req, res, next) => {
+    if (!parseInt(req.params.reviewId)) {
+      invalidIdError();
+    }
     const review = await Review.findByPk(req.params.reviewId).catch((e) => {
       res.status(404);
       res.json({
@@ -116,6 +119,9 @@ router.put(
 );
 
 router.delete("/:reviewId", requireAuth, async (req, res, next) => {
+  if (!parseInt(req.params.reviewId)) {
+    invalidIdError();
+  }
   const review = await Review.findByPk(req.params.reviewId);
   if (!review) {
     res.status(403);

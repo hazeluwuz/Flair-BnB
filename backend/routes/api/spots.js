@@ -205,7 +205,7 @@ router.get("/:spotId", async (req, res, next) => {
 });
 
 router.get("/:spotId/reviews", async (req, res, next) => {
-  if (!req.params.spotId) {
+  if (!parseInt(req.params.spotId)) {
     invalidIdError();
   }
   const spot = await Spot.findByPk(req.params.spotId);
@@ -230,7 +230,7 @@ router.put(
   requireAuth,
   validateSpotData,
   async (req, res, next) => {
-    if (!req.params.spotId) {
+    if (!parseInt(req.params.spotId)) {
       invalidIdError();
     }
     const spot = await Spot.findByPk(req.params.spotId);
@@ -244,7 +244,7 @@ router.put(
 );
 
 router.delete("/:spotId", requireAuth, async (req, res, next) => {
-  if (!req.params.spotId) {
+  if (!parseInt(req.params.spotId)) {
     invalidIdError();
   }
   const spot = await Spot.findByPk(req.params.spotId);
@@ -270,7 +270,7 @@ router.post(
   requireAuth,
   validateReviewData,
   async (req, res, next) => {
-    if (!req.params.spotId) {
+    if (!parseInt(req.params.spotId)) {
       invalidIdError();
     }
     const spot = await Spot.findByPk(req.params.spotId);
@@ -298,7 +298,7 @@ router.post(
   requireAuth,
   validateImageData,
   async (req, res, next) => {
-    if (!req.params.spotId) {
+    if (!parseInt(req.params.spotId)) {
       invalidIdError();
     }
     const spot = await Spot.findByPk(req.params.spotId);
@@ -334,7 +334,7 @@ router.post(
   requireAuth,
   validateBookingData,
   async (req, res, next) => {
-    if (!req.params.spotId) {
+    if (!parseInt(req.params.spotId)) {
       invalidIdError();
     }
     const spot = await Spot.findByPk(req.params.spotId);
@@ -398,7 +398,7 @@ router.post(
 );
 
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
-  if (!req.params.spotId) {
+  if (!parseInt(req.params.spotId)) {
     invalidIdError();
   }
   const spot = await Spot.findByPk(req.params.spotId);
