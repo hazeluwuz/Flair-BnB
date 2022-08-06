@@ -59,7 +59,6 @@ router.put(
       next(err);
     }
     const now = Date.now();
-    console.log(now > new Date(booking.endDate));
     if (now > new Date(booking.endDate)) {
       const err = new Error("Past bookings can't be modified");
       err.message = "Past bookings can't be modified";
