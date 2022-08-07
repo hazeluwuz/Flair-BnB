@@ -335,7 +335,7 @@ router.post(
         );
         err.message = "Maximum number of images for this resource was reached";
         err.status = 403;
-        next(err);
+        return next(err);
       }
       const image = await spot.createImage({
         url,
