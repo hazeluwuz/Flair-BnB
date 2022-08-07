@@ -198,7 +198,7 @@ router.get("/:spotId", async (req, res, next) => {
         [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
       ],
     });
-    spot.dataValues.numReviews = reviewData[0].dataValues.numReviews;
+    spot.dataValues.numReviews = parseInt(reviewData[0].dataValues.numReviews);
     spot.dataValues.avgStarRating = parseFloat(
       Number(reviewData[0].dataValues.avgRating).toFixed(1)
     );
