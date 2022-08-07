@@ -130,26 +130,27 @@ router.delete("/:bookingId", requireAuth, async (req, res, next) => {
     err.status = 404;
     next(err);
   }
-  if (booking.userId !== req.user.id) {
+  const spot = await booking.getSpot().then((spot) => spot.toJSON());
+  if (booking.userId === req.user.id || spot.ownerId === req.user.id) {
+    const now = Date.now();
+    if (now > new Date(booking.startDate)) {
+      const err = new Error("Bookings that have been started can't be deleted");
+      err.message = "Bookings that have been started can't be deleted";
+      err.status = 403;
+      next(err);
+    }
+
+    await booking.destroy();
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  } else {
     const err = new Error("Forbidden");
     err.message = "Forbidden";
     err.status = 403;
     next(err);
   }
-
-  const now = Date.now();
-  if (now > new Date(booking.startDate)) {
-    const err = new Error("Bookings that have been started can't be deleted");
-    err.message = "Bookings that have been started can't be deleted";
-    err.status = 403;
-    next(err);
-  }
-
-  await booking.destroy();
-  res.json({
-    message: "Successfully deleted",
-    statusCode: 200,
-  });
 });
 
 module.exports = router;
