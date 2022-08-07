@@ -328,15 +328,6 @@ router.post(
     const { url, previewImage } = req.body;
 
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
-      const images = await spot.getImages();
-      if (images.length >= 10) {
-        const err = new Error(
-          "Maximum number of images for this resource was reached"
-        );
-        err.message = "Maximum number of images for this resource was reached";
-        err.status = 403;
-        return next(err);
-      }
       const image = await spot.createImage({
         url,
         previewImage,

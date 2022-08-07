@@ -59,7 +59,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     );
     err.message = "Maximum number of images for this resource was reached";
     err.status = 403;
-    next(err);
+    return next(err);
   }
   const { url, previewImage } = req.body;
   if (req.user.id === review.userId) {
