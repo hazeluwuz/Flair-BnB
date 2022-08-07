@@ -62,20 +62,20 @@ router.put(
       const err = new Error("Booking couldn't be found");
       err.message = "Booking couldn't be found";
       err.status = 404;
-      next(err);
+      return next(err);
+    }
+    if (booking.userId !== req.user.id) {
+      const err = new Error("Forbidden");
+      err.message = "Forbidden";
+      err.status = 403;
+      return next(err);
     }
     const now = Date.now();
     if (now > new Date(booking.endDate)) {
       const err = new Error("Past bookings can't be modified");
       err.message = "Past bookings can't be modified";
       err.status = 403;
-      next(err);
-    }
-    if (booking.userId !== req.user.id) {
-      const err = new Error("Forbidden");
-      err.message = "Forbidden";
-      err.status = 403;
-      next(err);
+      return next(err);
     }
     const spotId = booking.spotId;
 
