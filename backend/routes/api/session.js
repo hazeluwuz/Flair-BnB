@@ -21,6 +21,7 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
+// Login and create new User session
 router.post("/", validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
 
@@ -44,11 +45,13 @@ router.post("/", validateLogin, async (req, res, next) => {
   });
 });
 
+// Logout / Clear User Session
 router.delete("/", (_req, res) => {
   res.clearCookie("token");
   return res.json({ message: "success" });
 });
 
+// Get Current User Data
 router.get("/", restoreUser, requireAuth, (req, res) => {
   const { user } = req;
   if (user) {

@@ -17,6 +17,7 @@ const invalidIdError = function () {
   throw err;
 };
 
+// Get the Current User's Reviews
 router.get("/current", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const reviews = await Review.findAll({
@@ -28,7 +29,11 @@ router.get("/current", requireAuth, async (req, res, next) => {
     const owner = await review.getUser({
       attributes: ["id", "firstName", "lastName"],
     });
-    const spot = await review.getSpot();
+    const spot = await review.getSpot({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
     const images = await review.getImages({
       attributes: ["id", ["reviewId", "imageableId"], "url"],
     });
@@ -39,6 +44,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json({ Reviews: reviews });
 });
 
+// Create a new Image for a Review by reviewId
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.reviewId)) {
     invalidIdError();
@@ -57,7 +63,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     );
     err.message = "Maximum number of images for this resource was reached";
     err.status = 403;
-    next(err);
+    return next(err);
   }
   const { url, previewImage } = req.body;
   if (req.user.id === review.userId) {
@@ -80,6 +86,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   }
 });
 
+// Edit an existing Review by reviewId
 router.put(
   "/:reviewId",
   requireAuth,
@@ -118,6 +125,7 @@ router.put(
   }
 );
 
+// Delete an existing Review by reviewId
 router.delete("/:reviewId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.reviewId)) {
     invalidIdError();

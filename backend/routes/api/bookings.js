@@ -20,6 +20,7 @@ const invalidIdError = function () {
   throw err;
 };
 
+// Get the Current User's Bookings
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const bookings = await Booking.findAll({
@@ -28,7 +29,11 @@ router.get("/current", requireAuth, async (req, res, next) => {
     },
   });
   for (let booking of bookings) {
-    const spot = await booking.getSpot();
+    const spot = await booking.getSpot({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
     const prevImg = await spot.getImages({
       where: {
         previewImage: true,
@@ -42,6 +47,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json({ Bookings: bookings });
 });
 
+// Edit an existing Booking by bookingId
 router.put(
   "/:bookingId",
   requireAuth,
@@ -56,21 +62,20 @@ router.put(
       const err = new Error("Booking couldn't be found");
       err.message = "Booking couldn't be found";
       err.status = 404;
-      next(err);
-    }
-    const now = Date.now();
-    console.log(now > new Date(booking.endDate));
-    if (now > new Date(booking.endDate)) {
-      const err = new Error("Past bookings can't be modified");
-      err.message = "Past bookings can't be modified";
-      err.status = 403;
-      next(err);
+      return next(err);
     }
     if (booking.userId !== req.user.id) {
       const err = new Error("Forbidden");
       err.message = "Forbidden";
       err.status = 403;
-      next(err);
+      return next(err);
+    }
+    const now = Date.now();
+    if (now > new Date(booking.endDate)) {
+      const err = new Error("Past bookings can't be modified");
+      err.message = "Past bookings can't be modified";
+      err.status = 403;
+      return next(err);
     }
     const spotId = booking.spotId;
 
@@ -113,6 +118,7 @@ router.put(
   }
 );
 
+// Delete an existing Booking by bookingId
 router.delete("/:bookingId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.bookingId)) {
     invalidIdError();
@@ -124,26 +130,27 @@ router.delete("/:bookingId", requireAuth, async (req, res, next) => {
     err.status = 404;
     next(err);
   }
-  if (booking.userId !== req.user.id) {
+  const spot = await booking.getSpot().then((spot) => spot.toJSON());
+  if (booking.userId === req.user.id || spot.ownerId === req.user.id) {
+    const now = Date.now();
+    if (now > new Date(booking.startDate)) {
+      const err = new Error("Bookings that have been started can't be deleted");
+      err.message = "Bookings that have been started can't be deleted";
+      err.status = 403;
+      next(err);
+    }
+
+    await booking.destroy();
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200,
+    });
+  } else {
     const err = new Error("Forbidden");
     err.message = "Forbidden";
     err.status = 403;
     next(err);
   }
-
-  const now = Date.now();
-  if (now > new Date(booking.startDate)) {
-    const err = new Error("Bookings that have been started can't be deleted");
-    err.message = "Bookings that have been started can't be deleted";
-    err.status = 403;
-    next(err);
-  }
-
-  await booking.destroy();
-  res.json({
-    message: "Successfully deleted",
-    statusCode: 200,
-  });
 });
 
 module.exports = router;

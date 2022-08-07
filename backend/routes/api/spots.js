@@ -20,6 +20,7 @@ const { Op, where } = require("sequelize");
 const express = require("express");
 const router = express.Router();
 
+// Helper function to verify that a Spot record was found
 const spotFound = function (spot, next) {
   if (!spot) {
     const err = new Error("Spot couldn't be found");
@@ -39,6 +40,7 @@ const invalidIdError = function () {
   throw err;
 };
 
+// Get All Spots
 router.get("/", validateQueryParams, async (req, res, next) => {
   const { maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
   let query = {
@@ -60,7 +62,6 @@ router.get("/", validateQueryParams, async (req, res, next) => {
     query.limit = size;
     query.offset = size * (page - 1);
   }
-
   if (minLat) {
     query.where.lat[Op.and][Op.gte] = parseFloat(minLat);
   }
@@ -87,7 +88,6 @@ router.get("/", validateQueryParams, async (req, res, next) => {
         [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
       ],
     });
-
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
     spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(1));
     const previewImage = await Image.findOne({
@@ -109,6 +109,8 @@ router.get("/", validateQueryParams, async (req, res, next) => {
     size: query.limit,
   });
 });
+
+// Get Current User's Spots
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const userId = user.dataValues.id;
@@ -140,6 +142,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json({ Spots: spots });
 });
 
+// Get Spot by spotId
 router.get("/:spotId", async (req, res, next) => {
   const template = {
     id: 0,
@@ -195,7 +198,7 @@ router.get("/:spotId", async (req, res, next) => {
         [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
       ],
     });
-    spot.dataValues.numReviews = reviewData[0].dataValues.numReviews;
+    spot.dataValues.numReviews = parseInt(reviewData[0].dataValues.numReviews);
     spot.dataValues.avgStarRating = parseFloat(
       Number(reviewData[0].dataValues.avgRating).toFixed(1)
     );
@@ -204,6 +207,7 @@ router.get("/:spotId", async (req, res, next) => {
   }
 });
 
+// Get Reviews of Spot by spotId
 router.get("/:spotId/reviews", async (req, res, next) => {
   if (!parseInt(req.params.spotId)) {
     invalidIdError();
@@ -225,6 +229,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
   }
 });
 
+// Edit an existing Spot
 router.put(
   "/:spotId",
   requireAuth,
@@ -243,6 +248,7 @@ router.put(
   }
 );
 
+// Delete an existing Spot
 router.delete("/:spotId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.spotId)) {
     invalidIdError();
@@ -257,6 +263,8 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
     });
   }
 });
+
+// Create a new Spot
 router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   const id = req.user.id;
   const { address, city, state, country, lat, lng, name, description, price } =
@@ -278,6 +286,7 @@ router.post("/", requireAuth, validateSpotData, async (req, res, next) => {
   res.json(newSpot);
 });
 
+// Create a Review for a Spot by spotId
 router.post(
   "/:spotId/reviews",
   requireAuth,
@@ -306,6 +315,7 @@ router.post(
   }
 );
 
+// Create a new Image for a Spot by spotId
 router.post(
   "/:spotId/images",
   requireAuth,
@@ -318,15 +328,6 @@ router.post(
     const { url, previewImage } = req.body;
 
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
-      const images = await spot.getImages();
-      if (images.length >= 10) {
-        const err = new Error(
-          "Maximum number of images for this resource was reached"
-        );
-        err.message = "Maximum number of images for this resource was reached";
-        err.status = 403;
-        next(err);
-      }
       const image = await spot.createImage({
         url,
         previewImage,
@@ -342,6 +343,7 @@ router.post(
   }
 );
 
+// Create a new Booking for a Spot by spotId
 router.post(
   "/:spotId/bookings",
   requireAuth,
@@ -410,6 +412,7 @@ router.post(
   }
 );
 
+// Get all Bookings for a Spot by spotId
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.spotId)) {
     invalidIdError();

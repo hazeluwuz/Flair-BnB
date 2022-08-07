@@ -9,6 +9,7 @@ const invalidIdError = function () {
   err.status = 404;
   throw err;
 };
+// Delete an existing Image by imageId
 router.delete("/:imageId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.imageId)) {
     invalidIdError();
