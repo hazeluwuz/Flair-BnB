@@ -29,7 +29,11 @@ router.get("/current", requireAuth, async (req, res, next) => {
     },
   });
   for (let booking of bookings) {
-    const spot = await booking.getSpot();
+    const spot = await booking.getSpot({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
     const prevImg = await spot.getImages({
       where: {
         previewImage: true,
