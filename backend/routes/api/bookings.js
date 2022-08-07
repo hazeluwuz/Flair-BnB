@@ -20,6 +20,7 @@ const invalidIdError = function () {
   throw err;
 };
 
+// Get the Current User's Bookings
 router.get("/current", requireAuth, async (req, res, next) => {
   const { user } = req;
   const bookings = await Booking.findAll({
@@ -42,6 +43,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json({ Bookings: bookings });
 });
 
+// Edit an existing Booking by bookingId
 router.put(
   "/:bookingId",
   requireAuth,
@@ -112,6 +114,7 @@ router.put(
   }
 );
 
+// Delete an existing Booking by bookingId
 router.delete("/:bookingId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.bookingId)) {
     invalidIdError();

@@ -17,6 +17,7 @@ const invalidIdError = function () {
   throw err;
 };
 
+// Get the Current User's Reviews
 router.get("/current", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const reviews = await Review.findAll({
@@ -39,6 +40,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
   res.json({ Reviews: reviews });
 });
 
+// Create a new Image for a Review by reviewId
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.reviewId)) {
     invalidIdError();
@@ -80,6 +82,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   }
 });
 
+// Edit an existing Review by reviewId
 router.put(
   "/:reviewId",
   requireAuth,
@@ -118,6 +121,7 @@ router.put(
   }
 );
 
+// Delete an existing Review by reviewId
 router.delete("/:reviewId", requireAuth, async (req, res, next) => {
   if (!parseInt(req.params.reviewId)) {
     invalidIdError();

@@ -31,6 +31,7 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
+// Create a new User
 router.post("/", validateSignup, async (req, res, next) => {
   const { firstName, lastName, username, password, email } = req.body;
   const user = await User.signup({
