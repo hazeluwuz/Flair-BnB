@@ -38,8 +38,6 @@ const validateSpotData = [
     .isDecimal()
     .withMessage("Longitude is not valid"),
   check("name")
-    .exists({ checkFalsy: true })
-    .withMessage("Name is not valid")
     .isLength({ max: 50 })
     .withMessage("Name must be less than 50 characters"),
   check("description")
