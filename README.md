@@ -1,3 +1,3 @@
-# Flaire-BnB (AirBnB Clone)
+# Flair-BnB (AirBnB Clone)
 
-Flaire-BnB is a clone of [Air-BnB](https://www.airbnb.com/).
+Flair-BnB is a clone of [Air-BnB](https://www.airbnb.com/).
