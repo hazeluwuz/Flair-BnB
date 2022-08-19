@@ -1,0 +1,34 @@
+.profile-dropdown-container {
+  border: 1px solid gray;
+  position: absolute;
+  width: 200px;
+  height: 400px;
+  left: -200px;
+  top: 35px;
+  z-index: 0;
+}
+
+.profile-dropdown-container > div {
+  padding-left: 10px;
+}
+
+.profile-dropdown-container button {
+  width: 55%;
+}
+
+.profile-menu {
+  position: relative;
+  width: 100px;
+  z-index: 1;
+}
+
+.profile-menu > button {
+  padding: 10px;
+  width: 75px;
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+.profile-bars {
+  padding-right: 10px;
+}
