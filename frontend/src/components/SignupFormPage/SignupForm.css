@@ -1,0 +1,17 @@
+ul.signup_error {
+  color: red;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  padding: 5px;
+}
+
+input {
+  margin-left: 10px;
+}

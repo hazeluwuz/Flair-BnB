@@ -56,8 +56,9 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       },
     },
   };
-  const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
+  const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
   const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+
   if (page >= 1 && size >= 1) {
     query.limit = size;
     query.offset = size * (page - 1);

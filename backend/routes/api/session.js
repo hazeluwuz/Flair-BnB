@@ -30,6 +30,7 @@ router.post("/", validateLogin, async (req, res, next) => {
     const err = new Error("Login failed");
     err.message = "Invalid credentials";
     err.status = 401;
+    err.errors = ["The provided credentials were invalid."];
     return next(err);
   }
 
@@ -52,11 +53,11 @@ router.delete("/", (_req, res) => {
 });
 
 // Get Current User Data
-router.get("/", restoreUser, requireAuth, (req, res) => {
+router.get("/", restoreUser, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json(user.toSafeObject());
-  } else return res.json({});
+  } else return res.json(null);
 });
 
 module.exports = router;
