@@ -1,0 +1,20 @@
+.nav-container {
+  padding: 5px;
+  display: flex;
+  margin: auto;
+  width: 77%;
+  height: 38px;
+  justify-content: space-between;
+}
+.login-button {
+  margin: 15px;
+}
+.home-button {
+  margin: 15px;
+  margin-left: 0px;
+}
+.search-bar {
+  width: 20%;
+  height: 100%;
+  border-radius: 25px;
+}
