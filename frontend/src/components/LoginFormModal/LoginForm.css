@@ -78,6 +78,7 @@ ul.login_error {
   text-align: center;
   margin-left: 16px;
   margin-right: 16px;
+  width: 100%;
   flex: 0 1 auto;
   overflow: hidden;
 }
@@ -97,8 +98,11 @@ ul.login_error {
   cursor: pointer;
   color: #ffffff;
   padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
   margin-top: 20px;
   text-align: center;
+  border: none;
   background: rgba(0, 0, 0, 0)
     linear-gradient(
       to right,

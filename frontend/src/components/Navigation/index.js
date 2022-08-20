@@ -24,11 +24,12 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="nav-container">
-      <NavLink className="home-button" exact to="/">
-        Home
-      </NavLink>
-      <input className="search-bar"></input>
-      {isLoaded && sessionLinks}
+      <div className="nav-bar">
+        <NavLink className="home-button" exact to="/">
+          Home
+        </NavLink>
+        {isLoaded && sessionLinks}
+      </div>
     </div>
   );
 }

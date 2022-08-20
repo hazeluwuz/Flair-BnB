@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import LoginForm from "./LoginForm";
-
+import "./LoginFormModal.css";
 function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
 
@@ -21,17 +21,15 @@ function LoginFormModal() {
             </button>
           </div>
           <div className="login-modal-header">
-            <div />
             <div className="login-modal-h3-container">
               <h1 className="login-modal-header-text">
                 <div>Log in</div>
               </h1>
             </div>
-            <div />
           </div>
           <div className="login-modal-form">
             <div className="login-modal-greeting">
-              <h3>Welcome to Flairebnb</h3>
+              <h3>Welcome to FlairBnB</h3>
             </div>
             <LoginForm />
           </div>

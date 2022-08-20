@@ -48,7 +48,17 @@ function LoginForm() {
         </div>
       </div>
       <button type="submit" className="login-modal-submit">
-        Continue
+        Log In
+      </button>
+      <button
+        type="submit"
+        className="login-modal-submit"
+        onClick={() => {
+          setCredential("demo1");
+          setPassword("password");
+        }}
+      >
+        Demo User
       </button>
     </form>
   );
