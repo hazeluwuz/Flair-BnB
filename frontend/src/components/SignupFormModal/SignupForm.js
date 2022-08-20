@@ -101,7 +101,7 @@ function SignupForm() {
         />
       </div>
       <button className="signup-modal-submit" type="submit">
-        Sign Up
+        Create Account
       </button>
     </form>
   );
