@@ -1,5 +1,11 @@
 /* TODO Add site wide styles */
 body {
+  margin-left: 0px;
+  margin-right: 0px;
+  font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
+    sans-serif;
+}
+* {
   font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }

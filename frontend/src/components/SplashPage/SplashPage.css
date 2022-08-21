@@ -1,0 +1,36 @@
+.splash-page-container {
+  margin-top: 16px;
+}
+.spots-container {
+  display: flex;
+  justify-content: center;
+}
+
+.spots-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+  gap: 20px;
+}
+
+@media (min-width: 375px) {
+  .spots-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 950px) {
+  .spots-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .spots-container {
+    max-width: none;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
