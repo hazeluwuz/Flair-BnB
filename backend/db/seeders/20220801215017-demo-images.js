@@ -13,7 +13,7 @@ module.exports = {
      */
     await queryInterface.bulkInsert("Images", [
       {
-        url: "https://imgur.com/4231.png",
+        url: "https://a0.muscache.com/im/pictures/miso/Hosting-637090369513451459/original/1782d9d6-4a11-4d4b-b416-69c18e363f5a.jpeg?im_w=1200",
         previewImage: true,
         spotId: 1,
         userId: 1,
