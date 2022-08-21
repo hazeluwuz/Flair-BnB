@@ -90,7 +90,7 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       ],
     });
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
-    spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(1));
+    spot.dataValues.avgRating = parseFloat(Number(avgRating).toFixed(2));
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {

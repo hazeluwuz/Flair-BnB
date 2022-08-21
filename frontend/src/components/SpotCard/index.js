@@ -8,16 +8,18 @@ function Spotcard({ spot }) {
         <div className="spot-info-container">
           <div className="spot-info">
             <div className="spot-location">{`${spot?.city}, ${spot.state}`}</div>
-            <div className="spot-distance">distance???</div>
             <div className="spot-price-container">
               <div className="spot-price">
-                ${spot?.price.toLocaleString("en-US")}{" "}
+                ${spot?.price.toLocaleString("en-US")}
               </div>
               <div className="spot-night">night</div>
             </div>
           </div>
           <div className="spot-review-data">
-            <div className="spot-rating">review data</div>
+            <div className="spot-star">
+              <i class="fa-solid fa-star fa-xs"></i>
+            </div>
+            <div className="spot-rating">{spot?.avgRating}</div>
           </div>
         </div>
       </div>
