@@ -4,6 +4,7 @@ import "./SpotDetailPage.css";
 import { deleteSpotById, getSpotById } from "../../store/spots";
 import { useEffect } from "react";
 import SpotEditModal from "../SpotEditModal";
+import { getReviewsBySpotId } from "../../store/reviews";
 function SpotDetailPage() {
   const spots = useSelector((state) => Object.values(state.spots));
   const { spotId } = useParams();
@@ -14,6 +15,7 @@ function SpotDetailPage() {
   let owner = false;
   useEffect(() => {
     dispatch(getSpotById(spotId));
+    dispatch(getReviewsBySpotId(spotId))
   }, []);
   if (sessionUser && spot) {
     owner = sessionUser.id === spot.ownerId;

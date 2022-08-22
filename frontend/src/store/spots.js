@@ -101,12 +101,6 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
 export default function spotsReducer(state = {}, action) {
   let newState;
   switch (action.type) {
-    case READ:
-      newState = { ...state };
-      action.spots.forEach((spot) => {
-        newState[spot.id] = spot;
-      });
-      return newState;
     case CREATE: {
       newState = { ...state };
       newState[action.spot.id] = action.spot;

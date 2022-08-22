@@ -12,11 +12,11 @@ export const loadReviews = (reviews) => {
   };
 };
 
-export const getReviewBySpotId = (spotId) => async (dispatch) => {
+export const getReviewsBySpotId = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
   if (res.ok) {
-    const reviews = await res.json();
-    dispatch(loadReviews(reviews));
+    const data = await res.json();
+    dispatch(loadReviews(data.Reviews));
   }
 };
 
