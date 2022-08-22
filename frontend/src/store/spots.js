@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { clearReviews } from "./reviews";
 const CREATE = "spots/CREATE";
 const READ = "spots/READ";
 const UPDATE = "spots/UPDATE";
@@ -94,6 +95,7 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`, reqData);
   if (res.ok) {
     dispatch(deleteSpot(spotId));
+    dispatch(clearReviews());
   }
   return res;
 };

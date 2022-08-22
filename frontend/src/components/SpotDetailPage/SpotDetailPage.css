@@ -102,3 +102,48 @@
 .spot-detail-review-info {
   padding-left: 6em;
 }
+
+.spot-review-container {
+  /* display: flex; */
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1200px;
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.spot-review-container-data {
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  align-items: center;
+}
+
+.spot-reviews {
+  display: flex;
+}
+
+.reviews-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.spot-create-review {
+  padding-left: 75%;
+}
+.spot-create-review > button {
+  color: white;
+  padding: 9px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 120px;
+  background-color: #e51d53;
+}

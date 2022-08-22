@@ -5,8 +5,11 @@ import { deleteSpotById, getSpotById } from "../../store/spots";
 import { useEffect } from "react";
 import SpotEditModal from "../SpotEditModal";
 import { getReviewsBySpotId } from "../../store/reviews";
+import ReviewCard from "../ReviewCard";
+import ReviewFormModal from "../ReviewFormModal";
 function SpotDetailPage() {
   const spots = useSelector((state) => Object.values(state.spots));
+  const reviews = useSelector((state) => Object.values(state.reviews));
   const { spotId } = useParams();
   const spot = spots.find((spot) => spot.id == spotId);
   const sessionUser = useSelector((state) => state.session.user);
@@ -15,8 +18,9 @@ function SpotDetailPage() {
   let owner = false;
   useEffect(() => {
     dispatch(getSpotById(spotId));
-    dispatch(getReviewsBySpotId(spotId))
+    dispatch(getReviewsBySpotId(spotId));
   }, []);
+
   if (sessionUser && spot) {
     owner = sessionUser.id === spot.ownerId;
   }
@@ -68,6 +72,20 @@ function SpotDetailPage() {
             <i class="fa-solid fa-star fa-xs star-icon"></i>
             {spot?.avgRating} · {spot?.numReviews} reviews
           </div>
+        </div>
+      </div>
+      <div className="spot-review-container">
+        <div className="spot-review-container-data">
+          <i class="fa-solid fa-star fa-sm star-icon"></i>
+          {spot?.avgRating} · {spot?.numReviews} reviews
+          <div className="spot-create-review">
+            {sessionUser && <ReviewFormModal spotId={spotId} />}
+          </div>
+        </div>
+        <div className="spot-reviews">
+          {reviews.map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
         </div>
       </div>
     </div>
