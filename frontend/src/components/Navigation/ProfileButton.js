@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import SpotCreateModal from "../SpotCreateModal";
 import "./ProfileButton.css";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
+  const history = useHistory();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -28,19 +32,24 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  /*
+TODO:
+  - use same ProfileButton Component to render both Login/Signup links.
+*/
   return (
     <div className="session-links">
       <div className="profile-menu">
         <button onClick={openMenu}>
-          <i class="fa-solid fa-bars profile-bars"></i>
-          <i className="fas fa-user-circle" />
+          <i class="fa-solid fa-bars profile-bars fa-lg"></i>
+          <i className="fas fa-user-circle fa-2xl" />
         </button>
         {showMenu && (
           <div className="profile-dropdown-container">
-            <div>
-              <p>{user.username}</p>
-              <p>{user.email}</p>
-              <button onClick={logout}>Log Out</button>
+            <div className="dropdown-items-container">
+              <div className="profile-email">{user.email}</div>
+              <div className="profile-log-out" onClick={logout}>
+                Log Out
+              </div>
             </div>
           </div>
         )}

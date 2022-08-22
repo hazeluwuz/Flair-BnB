@@ -1,8 +1,8 @@
-ul.login_error {
+ul.spot_error {
   color: red;
 }
 
-.login-modal-header {
+.spot-modal-header {
   display: flex;
   flex: 0 0 auto;
   min-height: 64px;
@@ -15,18 +15,18 @@ ul.login_error {
   line-height: 20px;
   font-weight: 550;
 }
-.login-modal-exit-button-div {
+.spot-modal-exit-button-div {
   position: absolute;
   top: 22px;
   left: 24px;
   z-index: 1;
 }
 
-.login-modal-greeting {
+.spot-modal-greeting {
   margin-top: 8px;
   margin-bottom: 24px;
 }
-.login-modal-greeting > h3 {
+.spot-modal-greeting > h3 {
   margin-top: 0px;
   font-size: 22px;
   margin-bottom: 8px;
@@ -34,7 +34,7 @@ ul.login_error {
   line-height: 26px;
 }
 
-.login-modal-exit-button {
+.spot-modal-exit-button {
   display: inline-block;
   position: relative;
   border: medium none;
@@ -47,25 +47,25 @@ ul.login_error {
   transition: -ms-transform 0.25s ease 0s, transform 0.25s ease 0s,
     transform 0.25s ease 0s;
 }
-.login-modal-form {
+.spot-modal-form {
   padding: 24px;
 }
-.login-modal-header-text {
+.spot-modal-header-text {
   font-size: 1em;
   margin: 0px;
   padding: 0px;
 }
-.login-inputs {
+.spot-inputs {
   position: relative;
   width: 100%;
 }
-.login-input-item {
+.spot-input-item {
   display: flex;
   position: relative;
   flex: 1 1 0%;
   width: 100%;
 }
-.login-input-item > input {
+.spot-input-item > input {
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
@@ -74,7 +74,7 @@ ul.login_error {
   background-color: transparent !important;
 }
 
-.login-modal-h3-container {
+.spot-modal-h3-container {
   text-align: center;
   margin-left: 16px;
   margin-right: 16px;
@@ -83,14 +83,14 @@ ul.login_error {
   overflow: hidden;
 }
 
-.login-modal-form > h3 {
+.spot-modal-form > h3 {
   color: rgb(34, 34, 34);
   font-size: 22px;
   line-height: 26px;
   font-weight: 600;
   margin-bottom: 8px;
 }
-.login-modal-submit {
+.spot-modal-submit {
   display: block;
   border-radius: 8px;
   width: 100%;
@@ -112,6 +112,6 @@ ul.login_error {
     )
     repeat scroll 0% 0%;
 }
-.login-form {
+.spot-form {
   padding-top: 0px;
 }

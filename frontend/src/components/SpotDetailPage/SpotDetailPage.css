@@ -1,0 +1,90 @@
+.main-spot-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.spot-name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.spot-details {
+  display: flex;
+  flex-direction: column;
+  width: 59%;
+}
+.spot-button {
+  /* display: inline; */
+  padding-left: 86%;
+}
+.spot-button > button {
+  color: white;
+  padding: 9px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 100px;
+  background-color: #e51d53;
+}
+.spot-review-details {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+.spot-img-container {
+  width: 59%;
+  height: 600px;
+}
+.spot-image {
+  border-radius: 10px;
+  width: 1200px;
+  height: 600px;
+  object-fit: fill;
+}
+
+.spot-desc {
+  width: 59%;
+}
+.star-icon {
+  padding-right: 5px;
+}
+.bottom-details-container {
+  display: flex;
+  width: 59%;
+  padding-top: 15px;
+}
+
+.spot-desc {
+  /* width: 58.3%; */
+  font-weight: 375;
+}
+
+.spot-detail-price-container {
+  margin-left: 8%;
+  width: 33%;
+  padding: 24px;
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  align-items: baseline;
+  box-sizing: border-box;
+  position: relative;
+  max-height: 75px;
+}
+.spot-detail-price {
+  font-size: 20px;
+  font-weight: 550;
+  padding-right: 3px;
+}
+
+.spot-detail-price-night {
+  font-size: 14px;
+}
+.spot-detail-review-info {
+  padding-left: 35%;
+}

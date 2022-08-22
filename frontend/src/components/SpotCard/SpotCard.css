@@ -1,0 +1,57 @@
+.spot-img {
+  width: 300px;
+  height: 285px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.spot-info-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 10px 0px;
+  width: 300px;
+}
+.spot-location {
+  font-weight: bold;
+}
+.spot-distance {
+  font-weight: lighter;
+}
+
+.spot-price-container {
+  display: flex;
+  align-items: baseline;
+}
+.spot-price {
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+.spot-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 225px;
+}
+
+.spot-info > div {
+  padding: 5px 0px;
+}
+
+.spot-review-data {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+.spot-container {
+  width: 300px;
+}
+
+.spot-star {
+  padding-right: 5px;
+}

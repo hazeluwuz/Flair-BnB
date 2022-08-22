@@ -1,32 +1,69 @@
 .profile-dropdown-container {
   border: 1px solid gray;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
   width: 200px;
-  height: 400px;
-  left: -200px;
-  top: 35px;
-  z-index: 0;
+  height: 250px;
+  left: -130px;
+  top: 50px;
+  border-radius: 15px;
+  border: none;
+  z-index: 1;
+  box-shadow: 0 2px 22px 0 hsla(240, 5%, 41%, 0.158);
 }
 
-.profile-dropdown-container > div {
-  padding-left: 10px;
+.profile-email {
+  border-bottom: 1px solid lightgray;
+  /* padding: 5px; */
 }
 
-.profile-dropdown-container button {
-  width: 55%;
+.dropdown-items-container {
+  /* padding-left: 15px; */
+  /* padding-top: 15px; */
+  font-size: 14px;
 }
 
+.dropdown-items-container > div {
+  padding: 10px;
+}
+.dropdown-items-container > div:hover {
+  background-color: #7171710e;
+}
+.log-out-button {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: left;
+  cursor: pointer;
+}
+.profile-log-out {
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+}
 .profile-menu {
   position: relative;
-  width: 100px;
-  z-index: 1;
+  border: none;
+  z-index: 0;
+}
+.profile-create-spot {
+  cursor: pointer;
+}
+.profile-menu > button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 .profile-menu > button {
   padding: 10px;
-  width: 75px;
-  background-color: transparent;
+  width: 77px;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
   border-radius: 20px;
+  transition: box-shadow 0.2s ease 0s;
 }
 
 .profile-bars {
