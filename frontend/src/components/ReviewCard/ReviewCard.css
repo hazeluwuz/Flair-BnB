@@ -1,0 +1,46 @@
+.review-card-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 25px;
+  width: 41.6667%;
+  margin-right: 8.333%;
+}
+
+.review-user-data {
+  display: flex;
+  align-items: center;
+}
+
+.review-user-name {
+  padding-left: 15px;
+}
+.review-user-name-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-date {
+  padding-left: 15px;
+}
+
+.review-data {
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+.review-delete {
+  padding-left: 50px;
+}
+
+.review-delete button {
+  color: white;
+  padding: 9px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 100px;
+  background-color: #e51d53;
+}

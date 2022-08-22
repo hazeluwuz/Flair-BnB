@@ -1,0 +1,11 @@
+.edit-spot-button {
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  padding: 9px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 100px;
+  background-color: #e51d53;
+}

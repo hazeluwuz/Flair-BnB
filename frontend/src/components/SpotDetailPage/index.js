@@ -1,16 +1,27 @@
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./SpotDetailPage.css";
-import { deleteSpotById } from "../../store/spots";
+import { deleteSpotById, getSpotById } from "../../store/spots";
+import { useEffect } from "react";
+import SpotEditModal from "../SpotEditModal";
+import { getReviewsBySpotId } from "../../store/reviews";
+import ReviewCard from "../ReviewCard";
+import ReviewFormModal from "../ReviewFormModal";
 function SpotDetailPage() {
   const spots = useSelector((state) => Object.values(state.spots));
+  const reviews = useSelector((state) => Object.values(state.reviews));
   const { spotId } = useParams();
   const spot = spots.find((spot) => spot.id == spotId);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
   let owner = false;
-  if (sessionUser) {
+  useEffect(() => {
+    dispatch(getSpotById(spotId));
+    dispatch(getReviewsBySpotId(spotId));
+  }, []);
+
+  if (sessionUser && spot) {
     owner = sessionUser.id === spot.ownerId;
   }
 
@@ -27,31 +38,54 @@ function SpotDetailPage() {
         <div className="spot-review-details">
           <i class="fa-solid fa-star fa-xs star-icon"></i>
           {spot?.avgRating} ·
+          <div className="spot-num-reviews">{spot?.numReviews} reviews</div> ·
+          <div className="spot-location">
+            {spot?.city}, {spot?.state}, {spot?.country}
+          </div>
           {owner && (
             <div className="spot-button">
-              <button onClick={(e) => handleDelete(e)}>DELETE</button>
+              <SpotEditModal spot={spot} />
+              <button onClick={(e) => handleDelete(e)}>Delete</button>
             </div>
           )}
         </div>
       </div>
       <div className="spot-img-container">
-        <img
-          className="spot-image"
-          src={
-            spot?.previewImage ||
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-          }
-        />
+        {spot?.Images && (
+          <img
+            className="spot-image"
+            src={
+              spot?.Images[0]?.url ||
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+            }
+          />
+        )}
       </div>
       <div className="bottom-details-container">
         <div className="spot-desc">{spot?.description}</div>
         <div className="spot-detail-price-container">
-          <div className="spot-detail-price">${spot?.price}</div>
+          <div className="spot-detail-price">
+            ${spot?.price.toLocaleString("en-US")}
+          </div>
           <div className="spot-detail-price-night">night</div>
           <div className="spot-detail-review-info">
             <i class="fa-solid fa-star fa-xs star-icon"></i>
-            {spot?.avgRating} ·
+            {spot?.avgRating} · {spot?.numReviews} reviews
           </div>
+        </div>
+      </div>
+      <div className="spot-review-container">
+        <div className="spot-review-container-data">
+          <i class="fa-solid fa-star fa-sm star-icon"></i>
+          {spot?.avgRating} · {spot?.numReviews} reviews
+          <div className="spot-create-review">
+            {sessionUser && <ReviewFormModal spotId={spotId} />}
+          </div>
+        </div>
+        <div className="spot-reviews">
+          {reviews.map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
         </div>
       </div>
     </div>

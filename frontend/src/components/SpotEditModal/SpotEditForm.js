@@ -2,42 +2,41 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import "./SpotCreateForm.css";
-import { createNewSpot } from "../../store/spots";
+import "./SpotEditForm.css";
+import { editSpot, editSpotById } from "../../store/spots";
 
-function SpotCreateForm({ showModal }) {
+function SpotEditForm({ spot }) {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [name, setName] = useState(spot?.name);
+  const [price, setPrice] = useState(spot?.price);
+  const [lat, setLat] = useState(spot?.lat);
+  const [lng, setLng] = useState(spot?.lng);
+  const [description, setDescription] = useState(spot?.description);
+  const [address, setAddress] = useState(spot?.address);
+  const [city, setCity] = useState(spot?.city);
+  const [state, setState] = useState(spot?.state);
+  const [country, setCountry] = useState(spot?.country);
   const [errors, setErrors] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      name,
-      price,
-      lat,
-      lng,
-      description,
-      address,
-      city,
-      state,
-      country,
-    };
+    const data = {};
+    if (name) data.name = name;
+    if (price) data.price = price;
+    if (lat) data.lat = lat;
+    if (lng) data.lng = lng;
+    if (description) data.description = description;
+    if (address) data.address = address;
+    if (city) data.city = city;
+    if (state) data.state = state;
+    if (country) data.country = country;
+
     setErrors([]);
-    dispatch(createNewSpot(data)).catch(async (res) => {
+    return dispatch(editSpotById(data, spot.id)).catch(async (res) => {
+      console.log("Res:", res);
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
-    showModal(false);
   };
 
   return (
@@ -53,7 +52,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -62,7 +60,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -71,7 +68,6 @@ function SpotCreateForm({ showModal }) {
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -80,7 +76,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -89,7 +84,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -98,7 +92,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -107,7 +100,6 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -116,7 +108,6 @@ function SpotCreateForm({ showModal }) {
           type="number"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
-          required
         />
       </div>
       <div className="spot-input-item">
@@ -125,7 +116,6 @@ function SpotCreateForm({ showModal }) {
           type="number"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
-          required
         />
       </div>
       {/* <div className="spot-input-item">
@@ -134,14 +124,14 @@ function SpotCreateForm({ showModal }) {
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          required
+
         />
       </div> */}
       <button className="spot-modal-submit" type="submit">
-        Create Spot
+        Edit Spot
       </button>
     </form>
   );
 }
 
-export default SpotCreateForm;
+export default SpotEditForm;
