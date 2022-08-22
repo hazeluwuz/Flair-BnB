@@ -82,7 +82,7 @@ export const editSpotById = (data, spotId) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json();
     console.log(data);
-    dispatch(createSpot(data));
+    dispatch(getSpotById(data.id));
   }
   return res;
 };
