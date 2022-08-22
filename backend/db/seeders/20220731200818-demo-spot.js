@@ -26,7 +26,7 @@ module.exports = {
         lng: 79.4899,
         name: "SkyView Treehouse- Luxury Waterfront Retreat",
         description:
-          "With direct access to Belgrade stream & Messalonskee lake, this treehouse is nestled within the pine trees on the waterfront of Belgrade Stream. Located 20 mins away from Colby College, we welcome families of students to come and stay with us during such a monumental transition. We are 10 mins from the Maine State Capitol, 10 mins from downtown Belgrade Lakes, an hour from Acadia National Park, and 45 mins from Sugarloaf. Our space is ideal for all vacationers looking for a getaway or adventure!",
+          "With direct access to Belgrade stream & Messalonskee lake, this treehouse is nestled within the pine trees on the waterfront of Belgrade Stream.",
         price: 541,
       },
       {
@@ -39,7 +39,7 @@ module.exports = {
         lng: -76.8594,
         name: "Lakefront home │3BR 2BA│Gameroom │ Firepit│ Garage",
         description:
-          "Want that 'Ahh' feeling that only comes from kicking back by the lake? This is just the right place to give you that: beautiful views, your own private beach and dock, abundant wildlife, fishing, boating, swimming and more! Enjoy grilling on the deck, have a meal and drinks by the fire, take in the peaceful views and sounds. And when it gets dark, cozy up by the fire place, or enjoy a game of ping-pong, darts, board games, or stream your favorite show. Then enjoy a restful sleep in a comfy bed.",
+          "Want that 'Ahh' feeling that only comes from kicking back by the lake? This is just the right place to give you that: beautiful views, your own private beach and dock, abundant wildlife, fishing, boating, swimming and more!",
         price: 393,
       },
       {
@@ -52,7 +52,7 @@ module.exports = {
         lng: 94.4609,
         name: "Lake or Ski Condo, close to Gunstock and the Lake",
         description:
-          "Location and Amenities! 10 min from Gunstock, couple hundred yards from the Lake, 50 yards from Gilford concert stage and the back entrance. Access to Barefoot Beach, Lake Winnipesaukee, indoor pool, indoor hot tub, outdoor pool, tennis courts, grill high speed WiFi and more. ",
+          "Location and Amenities! 10 min from Gunstock, couple hundred yards from the Lake, 50 yards from Gilford concert stage and the back entrance.",
         price: 125,
       },
       {
@@ -65,7 +65,7 @@ module.exports = {
         lng: -167.0376,
         name: "MoonLight Treehouse- Luxury Waterfront Escape",
         description:
-          "The luxurious MoonLight treehouse a stunning retreat nestled within the pine trees just behind the waterfront of Belgrade Stream. Located 10 minutes away from the Maine State Capitol of Augusta, 10 minutes away from the gorgeous downtown of the Belgrade Lakes region, one hour away from Acadia National Park, and 45 minutes away from Sugarloaf Mountain, this space is ideal for any and all vacationers looking for a getaway and any kind of adventure.",
+          "The luxurious MoonLight treehouse a stunning retreat nestled within the pine trees just behind the waterfront of Belgrade Stream. ",
         price: 569,
       },
       {
@@ -130,7 +130,7 @@ module.exports = {
         lng: -90.2581,
         name: "Cozy and Quiet Cottage on Lake Arrowhead",
         description:
-          "Enjoy your stay in North Waterboro, Maine on Lake Arrowhead! A perfect destination for adventure seekers and outdoor enthusiasts, this cottage is a great way to explore the waters and woods Southern Maine has to explore, or just take a break from the stresses of life. Enjoy the lake, the quiet, the relaxation and recharge.",
+          "Enjoy your stay in North Waterboro, Maine on Lake Arrowhead! A perfect destination for adventure seekers and outdoor enthusiasts!",
         price: 334,
       },
     ];
