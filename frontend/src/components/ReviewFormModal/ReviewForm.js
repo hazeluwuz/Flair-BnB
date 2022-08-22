@@ -21,6 +21,7 @@ function ReviewForm({ spotId }) {
     dispatch(createNewReview(data, spotId)).catch(async (res) => {
       console.log("Res:", res);
       const data = await res.json();
+      console.log(data);
       if (data && data.errors) setErrors(data.errors);
     });
   };
