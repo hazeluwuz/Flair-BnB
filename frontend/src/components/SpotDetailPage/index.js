@@ -19,10 +19,10 @@ function SpotDetailPage() {
       </div>
       <div className="bottom-details-container">
         <div className="spot-desc">{spot?.description}</div>
-        <div className="spot-price-container">
-          <div className="spot-price">${spot?.price}</div>
-          <div className="spot-price-night">night</div>
-          <div className="spot-review-info">
+        <div className="spot-detail-price-container">
+          <div className="spot-detail-price">${spot?.price}</div>
+          <div className="spot-detail-price-night">night</div>
+          <div className="spot-detail-review-info">
             <i class="fa-solid fa-star fa-xs star-icon"></i>
             {spot?.avgRating} ·
           </div>

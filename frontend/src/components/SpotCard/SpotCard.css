@@ -19,6 +19,7 @@
 
 .spot-price-container {
   display: flex;
+  align-items: baseline;
 }
 .spot-price {
   font-weight: bold;

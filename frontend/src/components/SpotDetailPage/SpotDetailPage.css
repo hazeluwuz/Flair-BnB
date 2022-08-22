@@ -47,10 +47,11 @@
   font-weight: 375;
 }
 
-.spot-price-container {
+.spot-detail-price-container {
   margin-left: 8%;
   width: 33%;
   padding: 24px;
+  display: flex;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
@@ -59,14 +60,15 @@
   position: relative;
   max-height: 75px;
 }
-.spot-price {
+.spot-detail-price {
   font-size: 20px;
   font-weight: 550;
+  padding-right: 3px;
 }
 
-.spot-price-night {
+.spot-detail-price-night {
   font-size: 14px;
 }
-.spot-review-info {
+.spot-detail-review-info {
   padding-left: 35%;
 }
