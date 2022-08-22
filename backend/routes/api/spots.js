@@ -242,6 +242,7 @@ router.put(
     }
     const spot = await Spot.findByPk(req.params.spotId);
     // Check if we found the spot and that the current user is the spot owner
+    console.log(req.body);
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
       spot.set(req.body);
       await spot.save();

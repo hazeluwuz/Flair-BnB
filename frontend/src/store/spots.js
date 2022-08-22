@@ -36,7 +36,9 @@ export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   if (res.ok) {
     const data = await res.json();
-    dispatch(loadSpots(data.Spots));
+    data.Spots.forEach((spot) => {
+      dispatch(getSpotById(spot.id));
+    });
   }
 };
 
@@ -67,6 +69,24 @@ export const createNewSpot = (spotData) => async (dispatch) => {
   return res;
 };
 
+export const editSpotById = (data, spotId) => async (dispatch) => {
+  const reqData = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  const res = await csrfFetch(`/api/spots/${spotId}`, reqData);
+
+  if (res.ok) {
+    const data = await res.json();
+    console.log(data);
+    dispatch(createSpot(data));
+  }
+  return res;
+};
+
 export const deleteSpotById = (spotId) => async (dispatch) => {
   const reqData = {
     method: "DELETE",
@@ -77,24 +97,24 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
   }
   return res;
 };
-const initialState = { allSpots: {}, spotDetails: {} };
-export default function spotsReducer(state = initialState, action) {
+
+export default function spotsReducer(state = {}, action) {
   let newState;
   switch (action.type) {
     case READ:
       newState = { ...state };
       action.spots.forEach((spot) => {
-        newState["allSpots"][spot.id] = spot;
+        newState[spot.id] = spot;
       });
       return newState;
     case CREATE: {
       newState = { ...state };
-      newState["allSpots"][action.spot.id] = action.spot;
+      newState[action.spot.id] = action.spot;
       return newState;
     }
     case READBYID: {
       newState = { ...state };
-      newState["spotDetails"][action.spot.id] = action.spot;
+      newState[action.spot.id] = action.spot;
       return newState;
     }
     case DELETE: {

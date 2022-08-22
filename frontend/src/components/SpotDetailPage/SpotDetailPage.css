@@ -18,6 +18,9 @@
 }
 .spot-button {
   /* display: inline; */
+  display: flex;
+  padding-left: 45%;
+  font-size: 14px;
 }
 .spot-num-reviews {
   font-weight: 450;
@@ -32,6 +35,7 @@
   color: white;
   padding: 9px;
   border: none;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 16px;
   width: 100px;
