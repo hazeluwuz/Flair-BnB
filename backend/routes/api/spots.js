@@ -160,7 +160,7 @@ router.get("/:spotId", async (req, res, next) => {
     createdAt: "",
     updatedAt: "",
     numReviews: 0,
-    avgStarRating: 0,
+    avgRating: 0,
     Images: [
       {
         id: 0,
@@ -200,9 +200,10 @@ router.get("/:spotId", async (req, res, next) => {
       ],
     });
     spot.dataValues.numReviews = parseInt(reviewData[0].dataValues.numReviews);
-    spot.dataValues.avgStarRating = parseFloat(
-      Number(reviewData[0].dataValues.avgRating).toFixed(1)
-    );
+    spot.dataValues.avgRating = Number(
+      reviewData[0].dataValues.avgRating
+    ).toFixed(2);
+
     const out = Object.assign(template, spot.toJSON());
     res.json(out);
   }

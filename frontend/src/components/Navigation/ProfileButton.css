@@ -50,7 +50,9 @@
   border: none;
   z-index: 0;
 }
-
+.profile-create-spot {
+  cursor: pointer;
+}
 .profile-menu > button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }

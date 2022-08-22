@@ -11,6 +11,11 @@
   padding-bottom: 22px;
   padding-top: 10px;
 }
+.session-links {
+  display: flex;
+  align-items: center;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;

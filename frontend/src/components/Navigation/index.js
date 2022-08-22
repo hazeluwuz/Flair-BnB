@@ -5,13 +5,19 @@ import LoginFormModal from "../LoginFormModal";
 import ProfileButton from "./ProfileButton";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
+import SpotCreateModal from "../SpotCreateModal";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = <ProfileButton user={sessionUser} />;
+    sessionLinks = (
+      <div className="session-links">
+        <SpotCreateModal />
+        <ProfileButton user={sessionUser} />
+      </div>
+    );
   } else {
     sessionLinks = (
       <div className="session-links">

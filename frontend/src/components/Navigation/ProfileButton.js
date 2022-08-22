@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import SpotCreateModal from "../SpotCreateModal";
 import "./ProfileButton.css";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
+  const history = useHistory();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -28,7 +32,7 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-/*
+  /*
 TODO:
   - use same ProfileButton Component to render both Login/Signup links.
 */

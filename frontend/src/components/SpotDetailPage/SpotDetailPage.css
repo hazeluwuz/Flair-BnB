@@ -12,10 +12,26 @@
 }
 
 .spot-details {
+  display: flex;
+  flex-direction: column;
   width: 59%;
 }
-
+.spot-button {
+  /* display: inline; */
+  padding-left: 86%;
+}
+.spot-button > button {
+  color: white;
+  padding: 9px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 100px;
+  background-color: #e51d53;
+}
 .spot-review-details {
+  display: flex;
+  align-items: center;
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -27,7 +43,7 @@
   border-radius: 10px;
   width: 1200px;
   height: 600px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .spot-desc {

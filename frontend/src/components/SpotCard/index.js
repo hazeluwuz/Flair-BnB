@@ -4,10 +4,16 @@ function Spotcard({ spot }) {
   return (
     <Link className="spot-container" to={`/spots/${spot?.id}`}>
       <div className="spot-container">
-        <img className="spot-img" src={spot?.previewImage} />
+        <img
+          className="spot-img"
+          src={
+            spot?.previewImage ||
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+          }
+        />
         <div className="spot-info-container">
           <div className="spot-info">
-            <div className="spot-location">{`${spot?.city}, ${spot.state}`}</div>
+            <div className="spot-location">{`${spot?.city}, ${spot?.state}`}</div>
             <div className="spot-price-container">
               <div className="spot-price">
                 ${spot?.price.toLocaleString("en-US")}

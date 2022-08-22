@@ -27,6 +27,8 @@ function App() {
           <Route path="/spots/:spotId">
             <SpotDetailPage />
           </Route>
+          {/* <Route path="/create-spot">
+          </Route> */}
           <Route>
             <Redirect to="/" />
           </Route>
