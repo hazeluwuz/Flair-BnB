@@ -6,6 +6,7 @@ import SplashPage from "./components/SplashPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import { getAllSpots } from "./store/spots";
+import SpotDetailPage from "./components/SpotDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
             <SplashPage />
           </Route>
           <Route path="/spots/:spotId">
-            <h1>TODO: Spot Details</h1>
+            <SpotDetailPage />
           </Route>
           <Route>
             <Redirect to="/" />

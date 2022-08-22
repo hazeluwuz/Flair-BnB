@@ -11,8 +11,9 @@ module.exports = {
         country: "United States",
         lat: -34.8344,
         lng: 26.4944,
-        name: "Random Spot 0",
-        description: "hacking",
+        name: "Blue Breeze - Spacious lakefront w/ private beach",
+        description:
+          "This huge lakeside house is a great experience for all of your friends and family to enjoy all the New Hampshire lakes region has to offer. There is incredible nature all around!",
         price: 360,
       },
       {
@@ -23,8 +24,9 @@ module.exports = {
         country: "Cyprus",
         lat: 37.1393,
         lng: 79.4899,
-        name: "Random Spot 1",
-        description: "Rubber",
+        name: "SkyView Treehouse- Luxury Waterfront Retreat",
+        description:
+          "With direct access to Belgrade stream & Messalonskee lake, this treehouse is nestled within the pine trees on the waterfront of Belgrade Stream. Located 20 mins away from Colby College, we welcome families of students to come and stay with us during such a monumental transition. We are 10 mins from the Maine State Capitol, 10 mins from downtown Belgrade Lakes, an hour from Acadia National Park, and 45 mins from Sugarloaf. Our space is ideal for all vacationers looking for a getaway or adventure!",
         price: 541,
       },
       {
@@ -35,8 +37,9 @@ module.exports = {
         country: "Jersey",
         lat: -74.1759,
         lng: -76.8594,
-        name: "Random Spot 2",
-        description: "virtual Lanka",
+        name: "Lakefront home │3BR 2BA│Gameroom │ Firepit│ Garage",
+        description:
+          "Want that 'Ahh' feeling that only comes from kicking back by the lake? This is just the right place to give you that: beautiful views, your own private beach and dock, abundant wildlife, fishing, boating, swimming and more! Enjoy grilling on the deck, have a meal and drinks by the fire, take in the peaceful views and sounds. And when it gets dark, cozy up by the fire place, or enjoy a game of ping-pong, darts, board games, or stream your favorite show. Then enjoy a restful sleep in a comfy bed.",
         price: 393,
       },
       {
@@ -47,8 +50,9 @@ module.exports = {
         country: "Hungary",
         lat: 86.4034,
         lng: 94.4609,
-        name: "Random Spot 3",
-        description: "transmitter Architect",
+        name: "Lake or Ski Condo, close to Gunstock and the Lake",
+        description:
+          "Location and Amenities! 10 min from Gunstock, couple hundred yards from the Lake, 50 yards from Gilford concert stage and the back entrance. Access to Barefoot Beach, Lake Winnipesaukee, indoor pool, indoor hot tub, outdoor pool, tennis courts, grill high speed WiFi and more. ",
         price: 125,
       },
       {
@@ -59,8 +63,9 @@ module.exports = {
         country: "Equatorial Guinea",
         lat: -47.7604,
         lng: -167.0376,
-        name: "Random Spot 4",
-        description: "panel scale",
+        name: "MoonLight Treehouse- Luxury Waterfront Escape",
+        description:
+          "The luxurious MoonLight treehouse a stunning retreat nestled within the pine trees just behind the waterfront of Belgrade Stream. Located 10 minutes away from the Maine State Capitol of Augusta, 10 minutes away from the gorgeous downtown of the Belgrade Lakes region, one hour away from Acadia National Park, and 45 minutes away from Sugarloaf Mountain, this space is ideal for any and all vacationers looking for a getaway and any kind of adventure.",
         price: 569,
       },
       {
@@ -71,8 +76,9 @@ module.exports = {
         country: "Kuwait",
         lat: 50.8287,
         lng: 124.844,
-        name: "Random Spot 5",
-        description: "impactful",
+        name: "SWE175Wfa - Great Lake Winni Waterfront Home",
+        description:
+          "Spend a week at 'WeSeekANook' and you'll never want to go home! This awesome water front vacation home on Lake Winnipesaukee has all the charm and modern updates you could wish for.",
         price: 670,
       },
       {
@@ -83,8 +89,9 @@ module.exports = {
         country: "Botswana",
         lat: -47.5909,
         lng: -63.9005,
-        name: "Random Spot 6",
-        description: "Rial yellow",
+        name: "Sunset Chalet- Stylish Waterfront Gem",
+        description:
+          "This lakefront rustic chalet with direct access to Messalonskee Lake, features Knotty Pine, gas fireplace, room enough for 4 adults and high beamed ceilings. ",
         price: 391,
       },
       {
@@ -95,8 +102,9 @@ module.exports = {
         country: "Taiwan",
         lat: 68.2095,
         lng: -14.0116,
-        name: "Random Spot 7",
-        description: "Bedfordshire",
+        name: "Luxury Lakefront Home on gated 155 Private Acres",
+        description:
+          "Stay where Country Music Star Luke Bryan chose to spend his 40th Birthday! Year-round vacation home. Great for Families, Friends, and Office Retreats!",
         price: 1000,
       },
       {
@@ -107,8 +115,9 @@ module.exports = {
         country: "Uganda",
         lat: 69.6015,
         lng: -87.2652,
-        name: "Random Spot 8",
-        description: "Forward",
+        name: "Nicest Lake House in Maine. Private Beach!",
+        description:
+          "Crescent Lake is situated in the beautiful Sebago Lakes Region and this elegant, modern home is located on the desirable northern shore of the lake. This smaller, quieter lake is suitable for children of all ages.",
         price: 1149,
       },
       {
@@ -119,8 +128,9 @@ module.exports = {
         country: "Angola",
         lat: -39.2543,
         lng: -90.2581,
-        name: "Random Spot 9",
-        description: "reboot SAS wireless",
+        name: "Cozy and Quiet Cottage on Lake Arrowhead",
+        description:
+          "Enjoy your stay in North Waterboro, Maine on Lake Arrowhead! A perfect destination for adventure seekers and outdoor enthusiasts, this cottage is a great way to explore the waters and woods Southern Maine has to explore, or just take a break from the stresses of life. Enjoy the lake, the quiet, the relaxation and recharge.",
         price: 334,
       },
     ];

@@ -1,0 +1,72 @@
+.main-spot-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.spot-name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.spot-details {
+  width: 59%;
+}
+
+.spot-review-details {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+.spot-img-container {
+  width: 59%;
+  height: 600px;
+}
+.spot-image {
+  border-radius: 10px;
+  width: 1200px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.spot-desc {
+  width: 59%;
+}
+.star-icon {
+  padding-right: 5px;
+}
+.bottom-details-container {
+  display: flex;
+  width: 59%;
+  padding-top: 15px;
+}
+
+.spot-desc {
+  /* width: 58.3%; */
+  font-weight: 375;
+}
+
+.spot-price-container {
+  margin-left: 8%;
+  width: 33%;
+  padding: 24px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  align-items: baseline;
+  box-sizing: border-box;
+  position: relative;
+  max-height: 75px;
+}
+.spot-price {
+  font-size: 20px;
+  font-weight: 550;
+}
+
+.spot-price-night {
+  font-size: 14px;
+}
+.spot-review-info {
+  padding-left: 35%;
+}
