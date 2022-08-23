@@ -139,6 +139,8 @@
 
 .spot-reviews {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .reviews-container {
