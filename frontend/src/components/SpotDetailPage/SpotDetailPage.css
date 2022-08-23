@@ -1,11 +1,15 @@
 .main-spot-container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
+  width: 100%;
   padding-top: 25px;
 }
-
+.main-spot-inner-container {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+}
 .spot-name {
   font-size: 24px;
   font-weight: 500;
@@ -14,12 +18,11 @@
 .spot-details {
   display: flex;
   flex-direction: column;
-  width: 59%;
+  flex-wrap: nowrap;
 }
 .spot-button {
-  /* display: inline; */
   display: flex;
-  padding-left: 45%;
+  /* flex-wrap: wrap; */
   font-size: 14px;
 }
 .spot-num-reviews {
@@ -44,51 +47,59 @@
 .spot-review-details {
   display: flex;
   flex-wrap: nowrap;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 20px;
 }
+.spot-review-details-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
 .spot-img-container {
-  width: 59%;
+  width: 100%;
   height: 600px;
 }
 .spot-image {
   border-radius: 10px;
-  width: 1200px;
+  width: 100%;
   height: 600px;
   object-fit: fill;
 }
 
 .spot-desc {
-  width: 59%;
+  width: 100%;
 }
 .star-icon {
   padding-right: 5px;
 }
 .bottom-details-container {
   display: flex;
-  width: 59%;
+  width: 100%;
   padding-top: 15px;
 }
 
 .spot-desc {
-  /* width: 58.3%; */
   font-weight: 375;
 }
 
 .spot-detail-price-container {
   margin-left: 8%;
-  width: 33%;
+  width: 50%;
   padding: 24px;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
-  align-items: baseline;
+  align-items: center;
   box-sizing: border-box;
   position: relative;
-  max-height: 75px;
+  max-height: 25%;
 }
 .spot-detail-price {
   font-size: 20px;
@@ -100,11 +111,14 @@
   font-size: 14px;
 }
 .spot-detail-review-info {
-  padding-left: 6em;
+  font-size: 16px;
+}
+.spot-detail-price-inner-container {
+  display: flex;
+  align-items: baseline;
 }
 
 .spot-review-container {
-  /* display: flex; */
   align-items: center;
   margin-top: 25px;
   padding-top: 50px;
@@ -120,6 +134,7 @@
   font-size: 20px;
   font-weight: 500;
   align-items: center;
+  justify-content: space-between;
 }
 
 .spot-reviews {
@@ -135,7 +150,7 @@
 }
 
 .spot-create-review {
-  padding-left: 75%;
+  /* padding-left: 75%; */
 }
 .spot-create-review > button {
   color: white;
