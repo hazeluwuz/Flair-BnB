@@ -305,13 +305,18 @@ router.post(
         spotId: spot.id,
       };
       const reviewData = Object.assign(template, req.body);
-      const newReview = await Review.create(reviewData).catch((e) => {
-        res.status(403);
-        res.json({
-          message: "User already has a review for this spot",
-          statusCode: 403,
-        });
+      const reviews = await Review.findAll({
+        where: {
+          [Op.and]: [{ userId: req.user.id }, { spotId: req.params.spotId }],
+        },
       });
+      if (reviews.length) {
+        const error = new Error("User already has a review for this spot");
+        error.status = 403;
+        error.errors = ["User already has a review for this spot"];
+        return next(error);
+      }
+      const newReview = await Review.create(reviewData);
       res.status(201);
       res.json(newReview);
     }
