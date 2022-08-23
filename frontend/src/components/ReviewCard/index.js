@@ -23,7 +23,7 @@ function ReviewCard({ review }) {
           <i className="fas fa-user-circle fa-2xl" />
         </div>
         <div className="review-user-name-date">
-          <div className="review-user-name">User</div>
+          <div className="review-user-name">{review?.User?.firstName}</div>
           <div className="review-date">{date}</div>
         </div>
         <div className="review-delete">
