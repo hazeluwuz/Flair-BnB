@@ -17,13 +17,19 @@ function ReviewForm({ spotId }) {
       review,
       stars,
     };
-    setErrors([]);
-    dispatch(createNewReview(data, spotId)).catch(async (res) => {
-      console.log("Res:", res);
-      const data = await res.json();
-      console.log("Data:", data);
-      if (data && data.errors) setErrors(data.errors);
-    });
+    if (review.length >= 256) {
+      setErrors({ review: "Review must be less than 255 Characters!" });
+    }
+    console.log(review.length);
+    if (review.length <= 255) {
+      setErrors([]);
+      dispatch(createNewReview(data, spotId)).catch(async (res) => {
+        console.log("Res:", res);
+        const data = await res.json();
+        console.log("Data:", data);
+        if (data && data.errors) setErrors(data.errors);
+      });
+    }
   };
 
   return (
@@ -37,6 +43,7 @@ function ReviewForm({ spotId }) {
         <input
           placeholder="Review Description"
           type="text"
+          maxlength="255"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required

@@ -313,6 +313,7 @@ router.post(
       if (reviews.length) {
         const error = new Error("User already has a review for this spot");
         error.status = 403;
+        error.message = "User already has a review for this spot";
         error.errors = ["User already has a review for this spot"];
         return next(error);
       }
