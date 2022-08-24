@@ -36,6 +36,15 @@ export const getReviewsBySpotId = (spotId) => async (dispatch) => {
   }
 };
 
+export const getUserReviews = () => async (dispatch) => {
+  const res = await csrfFetch("/api/reviews/current");
+  if (res.ok) {
+    const data = await res.json();
+    console.log(data.Reviews);
+    dispatch(loadReviews(data.Reviews));
+  }
+};
+
 export const deleteReviewById = (reviewId, spotId) => async (dispatch) => {
   const reqData = {
     method: "DELETE",

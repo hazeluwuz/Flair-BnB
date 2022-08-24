@@ -1,0 +1,10 @@
+.user-spots-page-container {
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+.user-listings-header {
+  text-align: center;
+}
+.user-spots-container > h1 {
+  text-align: center;
+}

@@ -5,10 +5,18 @@ const READ = "spots/READ";
 const UPDATE = "spots/UPDATE";
 const DELETE = "spots/DELETE";
 const READBYID = "spots/READBYID";
+const LOAD_USER_SPOTS = "spots/LOAD_USER_SPOTS";
 
 export const loadSpots = (spots) => {
   return {
     type: READ,
+    spots,
+  };
+};
+
+export const loadUserSpots = (spots) => {
+  return {
+    type: LOAD_USER_SPOTS,
     spots,
   };
 };
@@ -37,9 +45,15 @@ export const getAllSpots = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   if (res.ok) {
     const data = await res.json();
-    data.Spots.forEach((spot) => {
-      dispatch(getSpotById(spot.id));
-    });
+    dispatch(loadSpots(data.Spots));
+  }
+};
+
+export const getUserSpots = () => async (dispatch) => {
+  const res = await csrfFetch("/api/spots/current");
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(loadUserSpots(data.Spots));
   }
 };
 
@@ -106,6 +120,20 @@ export default function spotsReducer(state = {}, action) {
     case CREATE: {
       newState = { ...state };
       newState[action.spot.id] = action.spot;
+      return newState;
+    }
+    case READ: {
+      newState = {};
+      action.spots.forEach((spot) => {
+        newState[spot.id] = spot;
+      });
+      return newState;
+    }
+    case LOAD_USER_SPOTS: {
+      newState = {};
+      action.spots.forEach((spot) => {
+        newState[spot.id] = spot;
+      });
       return newState;
     }
     case READBYID: {

@@ -7,6 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import { getAllSpots } from "./store/spots";
 import SpotDetailPage from "./components/SpotDetailPage";
+import UserListings from "./components/UserListings";
+import UserReviews from "./components/UserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,8 +29,12 @@ function App() {
           <Route path="/spots/:spotId">
             <SpotDetailPage />
           </Route>
-          {/* <Route path="/create-spot">
-          </Route> */}
+          <Route path="/manage-listings">
+            <UserListings />
+          </Route>
+          <Route path="/manage-reviews">
+            <UserReviews />
+          </Route>
           <Route>
             <Redirect to="/" />
           </Route>
