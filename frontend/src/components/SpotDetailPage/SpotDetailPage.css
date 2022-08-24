@@ -1,14 +1,20 @@
 .main-spot-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch !important;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 25px;
 }
 .main-spot-inner-container {
   display: flex;
   flex-direction: column;
-  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1120px;
 }
 .spot-name {
   font-size: 24px;
@@ -61,16 +67,53 @@
 }
 .spot-img-container {
   width: 100%;
-  height: 100%;
   object-fit: fill;
+  align-items: center;
 }
 .spot-image {
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 100%;
   max-width: 100%;
-  max-height: 100%;
-  /* object-fit: fill; */
+  object-fit: cover;
+}
+.preview-images {
+  object-fit: cover;
+  width: 100%;
+  overflow: hidden;
 }
 
+.spot-img-grid {
+  display: flex;
+  gap: 0.5%;
+  width: 100%;
+  flex-basis: 100%;
+  max-height: 500px;
+}
+.spot-first-image {
+  display: flex;
+  width: 100%;
+}
+.spot-preview-images {
+  display: flex;
+  gap: 1%;
+  width: 100%;
+  overflow: hidden;
+}
+.preview-containers {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1%;
+  flex-shrink: 1;
+  width: 50%;
+}
+.spot-preview-image {
+  display: flex;
+  max-height: 50%;
+  min-height: 50%;
+  flex-grow: 1;
+}
 .spot-desc {
   width: 100%;
 }
@@ -137,9 +180,18 @@
   align-items: center;
   justify-content: space-between;
 }
+.round-top-right {
+  border-top-right-radius: 10px;
+}
+
+.round-bottom-right {
+  border-bottom-right-radius: 10px;
+}
 
 .spot-reviews {
   display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
   justify-content: space-between;
 }
 
