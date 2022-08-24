@@ -13,12 +13,16 @@ function SplashPage() {
   }, [dispatch]);
   return (
     isLoaded && (
-      <div className="splash-page-container">
-        <div className="spots-container">
-          <div className="spots-grid">
-            {spots.map((spot) => (
-              <Spotcard key={spot?.id} spot={spot} />
-            ))}
+      <div className="splash-page-outer-container">
+        <div className="splash-page-container">
+          <div className="spots-container">
+            <div className="spots-inner-container">
+              <div className="spots-grid">
+                {spots.map((spot) => (
+                  <Spotcard key={spot?.id} spot={spot} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

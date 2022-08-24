@@ -13,13 +13,17 @@ function UserListings() {
   }, [dispatch]);
   return (
     isLoaded && (
-      <div className="splash-page-container">
-        <div className="user-spots-container">
-          <h1>User Listings</h1>
-          <div className="spots-grid">
-            {spots.map((spot) => (
-              <Spotcard key={spot?.id} spot={spot} />
-            ))}
+      <div className="splash-page-outer-container">
+        <div className="splash-page-container">
+          <div className="user-spots-container">
+            <h1>User Listings</h1>
+            <div className="spots-inner-container">
+              <div className="spots-grid">
+                {spots.map((spot) => (
+                  <Spotcard key={spot?.id} spot={spot} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
