@@ -25,9 +25,9 @@ function SpotDetailPage() {
     owner = sessionUser.id === spot.ownerId;
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    dispatch(deleteSpotById(spotId));
+    await dispatch(deleteSpotById(spotId));
     history.push("/");
   };
 
