@@ -1,14 +1,21 @@
 .splash-page-container {
+  display: flex;
+  justify-content: center;
   margin-top: 16px;
+  /* width: 100vw; */
 }
 .spots-container {
   display: flex;
   justify-content: center;
+  width: 80%;
 }
 
 .spots-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  /* grid-template-columns: repeat(5, 1fr); */
   place-items: center;
   gap: 20px;
 }
@@ -19,14 +26,24 @@
     padding-right: 24px;
   }
 }
-
+@media (min-width: 744px) {
+  .spots-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
 @media (min-width: 950px) {
   .spots-container {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
-
+@media (min-width: 1128px) {
+  .spots-container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 @media (min-width: 1440px) {
   .spots-container {
     max-width: none;

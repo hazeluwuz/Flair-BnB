@@ -1,15 +1,18 @@
 .review-card-container {
   display: flex;
   flex-direction: column;
-  padding-left: 8px;
-  padding-right: 8px;
+
   padding-top: 25px;
   width: 41.6667%;
-  margin-right: 8.333%;
 }
-
+.review-user-inner-container {
+  display: flex;
+  align-items: center;
+}
 .review-user-data {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
 }
 
@@ -26,6 +29,9 @@
 }
 
 .review-data {
+  display: flex;
+  width: 100%;
+  word-wrap: break-word;
   padding-top: 15px;
   padding-bottom: 20px;
 }
@@ -33,7 +39,9 @@
 .review-delete {
   padding-left: 50px;
 }
-
+.review {
+  width: 100%;
+}
 .review-delete button {
   color: white;
   padding: 9px;

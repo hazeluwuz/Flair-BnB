@@ -33,59 +33,68 @@ function SpotDetailPage() {
 
   return (
     <div className="main-spot-container">
-      <div className="spot-details">
-        <div className="spot-name">{spot?.name}</div>
-        <div className="spot-review-details">
-          <i class="fa-solid fa-star fa-xs star-icon"></i>
-          {spot?.avgRating} ·
-          <div className="spot-num-reviews">{spot?.numReviews} reviews</div> ·
-          <div className="spot-location">
-            {spot?.city}, {spot?.state}, {spot?.country}
-          </div>
-          {owner && (
-            <div className="spot-button">
-              <SpotEditModal spot={spot} />
-              <button onClick={(e) => handleDelete(e)}>Delete</button>
+      <div className="main-spot-inner-container">
+        <div className="spot-details">
+          <div className="spot-name">{spot?.name}</div>
+          <div className="spot-review-details">
+            <div className="spot-review-details-container">
+              <i class="fa-solid fa-star fa-xs star-icon"></i>
+              {spot?.avgRating} ·
+              <div className="spot-num-reviews">{spot?.numReviews} reviews</div>{" "}
+              ·
+              <div className="spot-location">
+                {spot?.city}, {spot?.state}, {spot?.country}
+              </div>
             </div>
+            {owner && (
+              <div className="spot-button">
+                <SpotEditModal spot={spot} />
+                <button onClick={(e) => handleDelete(e)}>Delete</button>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="spot-img-container">
+          {spot?.Images && (
+            <img
+              className="spot-image"
+              src={
+                spot?.Images[0]?.url ||
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+              }
+            />
           )}
         </div>
-      </div>
-      <div className="spot-img-container">
-        {spot?.Images && (
-          <img
-            className="spot-image"
-            src={
-              spot?.Images[0]?.url ||
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-            }
-          />
-        )}
-      </div>
-      <div className="bottom-details-container">
-        <div className="spot-desc">{spot?.description}</div>
-        <div className="spot-detail-price-container">
-          <div className="spot-detail-price">
-            ${spot?.price.toLocaleString("en-US")}
-          </div>
-          <div className="spot-detail-price-night">night</div>
-          <div className="spot-detail-review-info">
-            <i class="fa-solid fa-star fa-xs star-icon"></i>
-            {spot?.avgRating} · {spot?.numReviews} reviews
+        <div className="bottom-details-container">
+          <div className="spot-desc">{spot?.description}</div>
+          <div className="spot-detail-price-container">
+            <div className="spot-detail-price-inner-container">
+              <div className="spot-detail-price">
+                ${spot?.price.toLocaleString("en-US")}
+              </div>
+              <div className="spot-detail-price-night">night</div>
+            </div>
+            <div className="spot-detail-review-info">
+              <i class="fa-solid fa-star fa-xs star-icon"></i>
+              {spot?.avgRating} · {spot?.numReviews} reviews
+            </div>
           </div>
         </div>
-      </div>
-      <div className="spot-review-container">
-        <div className="spot-review-container-data">
-          <i class="fa-solid fa-star fa-sm star-icon"></i>
-          {spot?.avgRating} · {spot?.numReviews} reviews
-          <div className="spot-create-review">
-            {sessionUser && <ReviewFormModal spotId={spotId} />}
+        <div className="spot-review-container">
+          <div className="spot-review-container-data">
+            <div>
+              <i class="fa-solid fa-star fa-sm star-icon"></i>
+              {spot?.avgRating} · {spot?.numReviews} reviews
+            </div>
+            <div className="spot-create-review">
+              {sessionUser && <ReviewFormModal spotId={spotId} />}
+            </div>
           </div>
-        </div>
-        <div className="spot-reviews">
-          {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
-          ))}
+          <div className="spot-reviews">
+            {reviews.map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

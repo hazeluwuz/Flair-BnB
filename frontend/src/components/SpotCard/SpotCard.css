@@ -1,5 +1,5 @@
 .spot-img {
-  width: 300px;
+  width: 100%;
   height: 285px;
   border-radius: 12px;
   object-fit: cover;
@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   padding: 10px 0px;
-  width: 300px;
+  width: 100%;
 }
 .spot-location {
   font-weight: bold;
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 225px;
+  width: 100%;
 }
 
 .spot-info > div {
@@ -49,7 +49,7 @@ a {
   color: black;
 }
 .spot-container {
-  width: 300px;
+  width: 19rem;
 }
 
 .spot-star {

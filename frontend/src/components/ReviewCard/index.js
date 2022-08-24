@@ -19,12 +19,14 @@ function ReviewCard({ review }) {
   return (
     <div className="review-card-container">
       <div className="review-user-data">
-        <div className="review-user-picture">
-          <i className="fas fa-user-circle fa-2xl" />
-        </div>
-        <div className="review-user-name-date">
-          <div className="review-user-name">User</div>
-          <div className="review-date">{date}</div>
+        <div className="review-user-inner-container">
+          <div className="review-user-picture">
+            <i className="fas fa-user-circle fa-2xl" />
+          </div>
+          <div className="review-user-name-date">
+            <div className="review-user-name">{review?.User?.firstName}</div>
+            <div className="review-date">{date}</div>
+          </div>
         </div>
         <div className="review-delete">
           {owner && (

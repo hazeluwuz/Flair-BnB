@@ -61,6 +61,7 @@ export const createNewReview = (reviewData, spotId) => async (dispatch) => {
     const data = await res.json();
     dispatch(createReview(data));
     dispatch(getSpotById(data.spotId));
+    dispatch(getReviewsBySpotId(data.spotId));
   }
   return res;
 };

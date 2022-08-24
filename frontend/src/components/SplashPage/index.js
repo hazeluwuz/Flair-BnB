@@ -6,7 +6,6 @@ import Spotcard from "../SpotCard";
 import "./SplashPage.css";
 function SplashPage() {
   const spots = useSelector((state) => Object.values(state.spots));
-
   const dispatch = useDispatch();
   return (
     <div className="splash-page-container">

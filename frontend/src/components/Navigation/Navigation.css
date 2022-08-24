@@ -4,7 +4,7 @@
   position: sticky;
   top: 0px;
   background-color: white;
-  width: 100%;
+  width: 100vw;
   height: 38px;
   justify-content: space-between;
   border-bottom: 1px solid rgb(228, 228, 228);
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 100rem;
+  width: 75%;
   padding-left: 80px;
   padding-right: 80px;
   height: 38px;
