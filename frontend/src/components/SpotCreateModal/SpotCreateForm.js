@@ -38,14 +38,18 @@ function SpotCreateForm() {
       url: imageUrl,
     };
     setErrors([]);
-    const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
-    if (imageUrl !== "") {
-      await dispatch(createImageForSpot(imgData, newSpot.id));
-    }
-    history.push(`/spots/${newSpot.id}`);
+    const newSpot = await dispatch(createNewSpot(data))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+        return;
+      })
+      .then(() => {
+        if (imageUrl !== "") {
+          dispatch(createImageForSpot(imgData, newSpot.id));
+        }
+        history.push(`/spots/${newSpot.id}`);
+      });
   };
 
   return (
@@ -138,8 +142,8 @@ function SpotCreateForm() {
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Preview Image (Optional)"
-          type="text"
+          placeholder="Preview Image URL (Optional)"
+          type="url"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />

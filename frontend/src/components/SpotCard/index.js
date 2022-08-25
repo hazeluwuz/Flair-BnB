@@ -13,8 +13,8 @@ function Spotcard({ spot }) {
           }
         />
         <div className="spot-info-container">
-          <div className="spot-info">
-            <div className="spot-location">{`${spot?.city}, ${spot?.state}`}</div>
+          <div className="spot-card-info contain-text">
+            <div className="spot-card-location contain-text">{`${spot?.city}, ${spot?.state}`}</div>
             <div className="spot-price-container">
               <div className="spot-price">
                 ${spot?.price.toLocaleString("en-US")}

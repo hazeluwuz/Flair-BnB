@@ -41,7 +41,7 @@ function ReviewForm({ spotId }) {
         <input
           placeholder="Review Description"
           type="text"
-          maxlength="255"
+          maxLength="255"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required
@@ -49,9 +49,9 @@ function ReviewForm({ spotId }) {
       </div>
       <div className="review-input-item">
         <input
-          placeholder="Rating (0-5)"
+          placeholder="Rating (1-5)"
           type="number"
-          min="0"
+          min="1"
           max="5"
           value={stars}
           onChange={(e) => setStars(e.target.value)}
