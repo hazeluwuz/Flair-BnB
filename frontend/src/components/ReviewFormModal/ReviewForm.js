@@ -24,9 +24,7 @@ function ReviewForm({ spotId }) {
     if (review.length <= 255) {
       setErrors([]);
       dispatch(createNewReview(data, spotId)).catch(async (res) => {
-        console.log("Res:", res);
         const data = await res.json();
-        console.log("Data:", data);
         if (data && data.errors) setErrors(data.errors);
       });
     }

@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import "./SpotCreateForm.css";
-import { createNewSpot } from "../../store/spots";
+import { createImageForSpot, createNewSpot } from "../../store/spots";
 
 function SpotCreateForm() {
   const dispatch = useDispatch();
@@ -33,11 +33,18 @@ function SpotCreateForm() {
       state,
       country,
     };
+    const imgData = {
+      previewImage: true,
+      url: imageUrl,
+    };
     setErrors([]);
     const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
+    if (imageUrl !== "") {
+      await dispatch(createImageForSpot(imgData, newSpot.id));
+    }
     history.push(`/spots/${newSpot.id}`);
   };
 
@@ -129,15 +136,14 @@ function SpotCreateForm() {
           required
         />
       </div>
-      {/* <div className="spot-input-item">
+      <div className="spot-input-item">
         <input
-          placeholder="Spot Image"
+          placeholder="Preview Image (Optional)"
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          required
         />
-      </div> */}
+      </div>
       <button className="spot-modal-submit" type="submit">
         Create Spot
       </button>
