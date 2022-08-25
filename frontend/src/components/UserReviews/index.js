@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { getUserReviews } from "../../store/reviews";
 import ReviewCard from "../ReviewCard";
 import "./UserReviews.css";
 function UserReviews() {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => Object.values(state.reviews));
+  const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getUserReviews());
   }, [dispatch]);
+  if (!sessionUser) return <Redirect to="/" />;
   return (
     <div className="main-user-container">
       <div className="main-user-inner-container">
