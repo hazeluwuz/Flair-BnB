@@ -47,6 +47,18 @@ TODO:
           <div className="profile-dropdown-container">
             <div className="dropdown-items-container">
               <div className="profile-email">{user.email}</div>
+              <div
+                className="profile-manage-reviews"
+                onClick={() => history.push("/manage-listings")}
+              >
+                Manage Listings
+              </div>
+              <div
+                className="profile-manage-reviews"
+                onClick={() => history.push("/manage-reviews")}
+              >
+                Manage Reviews
+              </div>
               <div className="profile-log-out" onClick={logout}>
                 Log Out
               </div>

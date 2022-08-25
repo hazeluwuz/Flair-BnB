@@ -9,3 +9,38 @@ body {
   font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }
+
+.center {
+}
+
+@media (min-width: 375px) {
+  .center {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media (min-width: 744px) {
+  .center {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media (min-width: 950px) {
+  .center {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media (min-width: 1128px) {
+  .center {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+@media (min-width: 1440px) {
+  .center {
+    max-width: none;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}

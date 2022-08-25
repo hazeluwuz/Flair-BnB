@@ -11,10 +11,7 @@
   width: 100%;
 }
 .spot-location {
-  font-weight: bold;
-}
-.spot-distance {
-  font-weight: lighter;
+  font-weight: bold !important;
 }
 
 .spot-price-container {
@@ -49,7 +46,7 @@ a {
   color: black;
 }
 .spot-container {
-  width: 19rem;
+  width: 18.778em;
 }
 
 .spot-star {

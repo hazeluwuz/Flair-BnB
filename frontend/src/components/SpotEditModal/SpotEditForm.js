@@ -51,6 +51,7 @@ function SpotEditForm({ spot }) {
           placeholder="Spot Name"
           type="text"
           value={name}
+          required
           onChange={(e) => setName(e.target.value)}
         />
       </div>
@@ -59,6 +60,7 @@ function SpotEditForm({ spot }) {
           placeholder="Description"
           type="text"
           value={description}
+          required
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
@@ -67,6 +69,7 @@ function SpotEditForm({ spot }) {
           placeholder="Price"
           type="number"
           value={price}
+          required
           onChange={(e) => setPrice(e.target.value)}
         />
       </div>
@@ -75,6 +78,7 @@ function SpotEditForm({ spot }) {
           placeholder="Address"
           type="text"
           value={address}
+          required
           onChange={(e) => setAddress(e.target.value)}
         />
       </div>
@@ -83,6 +87,7 @@ function SpotEditForm({ spot }) {
           placeholder="City"
           type="text"
           value={city}
+          required
           onChange={(e) => setCity(e.target.value)}
         />
       </div>
@@ -91,6 +96,7 @@ function SpotEditForm({ spot }) {
           placeholder="State"
           type="text"
           value={state}
+          required
           onChange={(e) => setState(e.target.value)}
         />
       </div>
@@ -99,6 +105,7 @@ function SpotEditForm({ spot }) {
           placeholder="Country"
           type="text"
           value={country}
+          required
           onChange={(e) => setCountry(e.target.value)}
         />
       </div>
@@ -106,6 +113,7 @@ function SpotEditForm({ spot }) {
         <input
           placeholder="Latitude"
           type="number"
+          required
           value={lat}
           onChange={(e) => setLat(e.target.value)}
         />
@@ -114,6 +122,7 @@ function SpotEditForm({ spot }) {
         <input
           placeholder="Longitude"
           type="number"
+          required
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />

@@ -21,7 +21,7 @@ module.exports = {
       {
         url: "https://a0.muscache.com/im/pictures/miso/Hosting-637090369513451459/original/a3f2e40c-fe00-4478-ac88-acc4b5b98c50.jpeg?im_w=720",
         previewImage: false,
-        reviewId: 1,
+        spotId: 1,
         userId: 1,
       },
       {

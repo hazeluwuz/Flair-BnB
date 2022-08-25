@@ -5,7 +5,7 @@
   flex-direction: column;
   background-color: white;
   width: 200px;
-  height: 250px;
+  /* height: 250px; */
   left: -130px;
   top: 50px;
   border-radius: 15px;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 .profile-log-out {
-  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   cursor: pointer;
 }
 .profile-menu {
@@ -68,4 +68,9 @@
 
 .profile-bars {
   padding-right: 10px;
+}
+
+.profile-manage-reviews,
+.profile-manage-listings {
+  cursor: pointer;
 }
