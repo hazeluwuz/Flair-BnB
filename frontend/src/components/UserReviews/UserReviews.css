@@ -77,11 +77,6 @@
 .star-icon {
   padding-right: 5px;
 }
-.bottom-details-container {
-  display: flex;
-  width: 100%;
-  padding-top: 15px;
-}
 
 .user-desc {
   font-weight: 375;
