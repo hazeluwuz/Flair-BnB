@@ -61,7 +61,6 @@ export const getSpotById = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
     dispatch(readSpot(data));
   }
 };
@@ -74,12 +73,11 @@ export const createNewSpot = (spotData) => async (dispatch) => {
     },
     body: JSON.stringify(spotData),
   };
-  console.log(reqData);
   const res = await csrfFetch("/api/spots", reqData);
-  console.log(res);
   if (res.ok) {
     const data = await res.json();
     dispatch(getSpotById(data.id));
+    return data;
   }
   return res;
 };
@@ -96,7 +94,6 @@ export const editSpotById = (data, spotId) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
     dispatch(getSpotById(data.id));
   }
   return res;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import "./SpotCreateForm.css";
 import { createNewSpot } from "../../store/spots";
 
-function SpotCreateForm({ showModal }) {
+function SpotCreateForm() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(null);
@@ -18,7 +18,8 @@ function SpotCreateForm({ showModal }) {
   const [country, setCountry] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
-  const handleSubmit = (e) => {
+  const history = useHistory();
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -33,11 +34,11 @@ function SpotCreateForm({ showModal }) {
       country,
     };
     setErrors([]);
-    dispatch(createNewSpot(data)).catch(async (res) => {
+    const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
-    showModal(false);
+    history.push(`/spots/${newSpot.id}`);
   };
 
   return (

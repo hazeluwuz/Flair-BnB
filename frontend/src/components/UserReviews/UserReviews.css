@@ -142,6 +142,8 @@
 
 .user-reviews {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10%;
   justify-content: space-between;
 }
 
