@@ -5,6 +5,8 @@ import { Redirect, useHistory } from "react-router-dom";
 import "./SpotCreateForm.css";
 import { createImageForSpot, createNewSpot } from "../../store/spots";
 
+const imageURLRegex = /\.(jpeg|jpg|png)$/;
+
 function SpotCreateForm() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -21,35 +23,36 @@ function SpotCreateForm() {
   const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {
-      name,
-      price,
-      lat,
-      lng,
-      description,
-      address,
-      city,
-      state,
-      country,
-    };
-    const imgData = {
-      previewImage: true,
-      url: imageUrl,
-    };
-    setErrors([]);
-    const newSpot = await dispatch(createNewSpot(data))
-      .catch(async (res) => {
+    if (!imageUrl.match(imageURLRegex)) {
+      setErrors([
+        "Preview url must end in valid img extension! [png/jpg/jpeg]",
+      ]);
+    } else {
+      const data = {
+        name,
+        price,
+        lat,
+        lng,
+        description,
+        address,
+        city,
+        state,
+        country,
+      };
+      const imgData = {
+        previewImage: true,
+        url: imageUrl,
+      };
+      setErrors([]);
+      const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-        return;
-      })
-      .then(() => {
-        if (imageUrl !== "") {
-          dispatch(createImageForSpot(imgData, newSpot.id));
-        }
-        history.push(`/spots/${newSpot.id}`);
       });
+      if (imageUrl !== "") {
+        await dispatch(createImageForSpot(imgData, newSpot.id));
+      }
+      history.push(`/spots/${newSpot.id}`);
+    }
   };
 
   return (
@@ -142,10 +145,11 @@ function SpotCreateForm() {
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Preview Image URL (Optional)"
+          placeholder="Preview Image URL ex: png/jpg/jpeg"
           type="url"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
+          required
         />
       </div>
       <button className="spot-modal-submit" type="submit">

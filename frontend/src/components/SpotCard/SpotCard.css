@@ -4,6 +4,10 @@
   border-radius: 12px;
   object-fit: cover;
 }
+.spot-image-container {
+  background-color: #efefef;
+  border-radius: 12px;
+}
 .spot-info-container {
   display: grid;
   grid-template-columns: 3fr 1fr;

@@ -42,7 +42,7 @@ function SpotDetailPage() {
               <div className="spot-name">{spot?.name}</div>
               <div className="spot-review-details">
                 <div className="spot-review-details-container">
-                  <i class="fa-solid fa-star fa-xs star-icon"></i>
+                  <i className="fa-solid fa-star fa-xs star-icon"></i>
                   {spot?.avgRating} ·
                   <div className="spot-num-reviews">
                     {spot?.numReviews} reviews
@@ -70,6 +70,7 @@ function SpotDetailPage() {
                         spot?.Images[0]?.url ||
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
                       }
+                      onError={(e) => (e.target.style.visibility = "hidden")}
                     />
                   )}
                 </div>
@@ -83,6 +84,9 @@ function SpotDetailPage() {
                             spot?.Images[1]?.url ||
                             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
                           }
+                          onError={(e) =>
+                            (e.target.style.visibility = "hidden")
+                          }
                         />
                       )}
                     </div>
@@ -94,12 +98,15 @@ function SpotDetailPage() {
                             spot?.Images[3]?.url ||
                             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
                           }
+                          onError={(e) =>
+                            (e.target.style.visibility = "hidden")
+                          }
                         />
                       )}
                     </div>
                   </div>
                   <div className="preview-containers">
-                    <div className="spot-preview-image">
+                    <div className="spot-preview-image round-top-right">
                       {spot?.Images && (
                         <img
                           className="preview-images round-top-right"
@@ -107,17 +114,23 @@ function SpotDetailPage() {
                             spot?.Images[2]?.url ||
                             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
                           }
+                          // onError={(e) =>
+                          //   (e.target.style.visibility = "hidden")
+                          // }
                         />
                       )}
                     </div>
 
-                    <div className="spot-preview-image">
+                    <div className="spot-preview-image round-bottom-right">
                       {spot?.Images && (
                         <img
                           className="preview-images round-bottom-right"
                           src={
                             spot?.Images[4]?.url ||
                             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+                          }
+                          onError={(e) =>
+                            (e.target.style.visibility = "hidden")
                           }
                         />
                       )}

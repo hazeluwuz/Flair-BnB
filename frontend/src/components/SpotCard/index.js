@@ -4,14 +4,16 @@ function Spotcard({ spot }) {
   return (
     <Link className="spot-container" to={`/spots/${spot?.id}`}>
       <div className="spot-container">
-        <img
-          className="spot-img"
-          src={
-            // (spot?.Images && spot?.Images[0]?.url) ||
-            spot?.previewImage ||
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-          }
-        />
+        <div className="spot-image-container">
+          <img
+            className="spot-img"
+            src={
+              spot?.previewImage ||
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+            }
+            onError={(e) => (e.target.style.visibility = "hidden")}
+          />
+        </div>
         <div className="spot-info-container">
           <div className="spot-card-info contain-text">
             <div className="spot-card-location contain-text">{`${spot?.city}, ${spot?.state}`}</div>

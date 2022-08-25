@@ -26,6 +26,7 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 1120px;
+  min-width: 52vw;
 }
 .spot-name {
   font-size: 24px;
@@ -50,7 +51,7 @@
   font-weight: bold !important;
   padding-left: 5px;
   font-weight: 400;
-  max-width: 20%;
+  max-width: 75%;
 }
 .spot-button > button {
   color: white;
@@ -75,6 +76,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 80%;
   width: 100%;
 }
 .spot-img-container {
@@ -93,6 +95,7 @@
   object-fit: cover;
   width: 100%;
   overflow: hidden;
+  border: none;
 }
 
 .spot-img-grid {
@@ -105,6 +108,9 @@
 }
 .spot-first-image {
   display: flex;
+  background-color: #efefef;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   object-fit: cover;
   width: 100%;
 }
@@ -126,6 +132,7 @@
   display: flex;
   max-height: 49.25%;
   min-height: 49.25%;
+  background-color: #efefef;
   flex-grow: 1;
 }
 
@@ -140,7 +147,7 @@
 
 .spot-desc {
   max-width: 60%;
-  /* max-height: 300px; */
+  width: 60%;
   font-weight: 375;
   word-wrap: break-word;
 }
