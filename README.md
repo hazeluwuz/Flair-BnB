@@ -1,6 +1,6 @@
 # FlairBnB (AirBnB Clone)
 
-FlairBnB is a clone of [AirBnB](https://www.airbnb.com/). It was made using React, Redux, and NodeJS. 
+FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its current state, is used to browsw/create listings, and create/browse reviews for listings.
 
 # Site Information
 - [Api Documentation](https://github.com/hazeluwuz/Flair-BnB/wiki/API-Documentation)
@@ -9,4 +9,11 @@ FlairBnB is a clone of [AirBnB](https://www.airbnb.com/). It was made using Reac
 - [Redux State Shape](https://github.com/hazeluwuz/Flair-BnB/wiki/Redux-State-Shape)
 
 
+# Tech Stack
+- JavaScript
+- Sequelize
+- Express
+- React
+- Redux
+- PostgreSQL
 
