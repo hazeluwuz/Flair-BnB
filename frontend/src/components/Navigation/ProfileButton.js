@@ -40,7 +40,7 @@ TODO:
     <div className="session-links">
       <div className="profile-menu">
         <button onClick={openMenu}>
-          <i class="fa-solid fa-bars profile-bars fa-lg"></i>
+          <i className="fa-solid fa-bars profile-bars fa-lg"></i>
           <i className="fas fa-user-circle fa-2xl" />
         </button>
         {showMenu && (

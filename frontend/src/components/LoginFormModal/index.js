@@ -17,7 +17,7 @@ function LoginFormModal() {
               onClick={() => setShowModal(false)}
               className="login-modal-exit-button"
             >
-              <i class="fa-solid fa-x"></i>
+              <i className="fa-solid fa-x"></i>
             </button>
           </div>
           <div className="login-modal-header">

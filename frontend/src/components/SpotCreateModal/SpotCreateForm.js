@@ -23,7 +23,7 @@ function SpotCreateForm({ hideModal }) {
   const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!imageUrl.match(imageURLRegex)) {
+    if (!imageUrl.split("?")[0].match(imageURLRegex)) {
       setErrors([
         "Preview url must end in valid img extension! [png/jpg/jpeg]",
       ]);
@@ -46,6 +46,7 @@ function SpotCreateForm({ hideModal }) {
       setErrors([]);
       const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
         const data = await res.json();
+        console.log(data);
         if (data && data.errors) setErrors(data.errors);
       });
       if (imageUrl !== "") {
@@ -68,6 +69,7 @@ function SpotCreateForm({ hideModal }) {
           placeholder="Spot Name"
           type="text"
           value={name}
+          maxlength="50"
           onChange={(e) => setName(e.target.value)}
           required
         />

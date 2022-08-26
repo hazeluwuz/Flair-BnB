@@ -71,7 +71,7 @@ function SpotDetailPage() {
                     />
                   )}
                 </div>
-                <div class="spot-preview-images">
+                <div className="spot-preview-images">
                   <div className="preview-containers">
                     <div className="spot-preview-image">
                       {spot?.Images && (
@@ -134,7 +134,7 @@ function SpotDetailPage() {
                   <div className="spot-detail-price-night">night</div>
                 </div>
                 <div className="spot-detail-review-info">
-                  <i class="fa-solid fa-star fa-xs star-icon"></i>
+                  <i className="fa-solid fa-star fa-xs star-icon"></i>
                   {spot?.avgRating} · {spot?.numReviews} reviews
                 </div>
               </div>
@@ -142,7 +142,7 @@ function SpotDetailPage() {
             <div className="spot-review-container">
               <div className="spot-review-container-data">
                 <div>
-                  <i class="fa-solid fa-star fa-sm star-icon"></i>
+                  <i className="fa-solid fa-star fa-sm star-icon"></i>
                   {spot?.avgRating} · {spot?.numReviews} reviews
                 </div>
                 <div className="spot-create-review">

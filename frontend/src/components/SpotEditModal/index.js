@@ -26,7 +26,7 @@ function SpotEditModal({ spot }) {
               onClick={() => setShowModal(false)}
               className="spot-modal-exit-button"
             >
-              <i class="fa-solid fa-x"></i>
+              <i className="fa-solid fa-x"></i>
             </button>
           </div>
           <div className="spot-modal-header">

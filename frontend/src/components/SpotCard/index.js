@@ -26,7 +26,7 @@ function Spotcard({ spot }) {
           </div>
           <div className="spot-review-data">
             <div className="spot-star">
-              <i class="fa-solid fa-star fa-xs"></i>
+              <i className="fa-solid fa-star fa-xs"></i>
             </div>
             <div className="spot-rating">{spot?.avgRating}</div>
           </div>
