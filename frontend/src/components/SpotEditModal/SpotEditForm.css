@@ -1,5 +1,10 @@
 ul.spot_error {
-  color: red;
+  color: #ff385c;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  margin-top: 0px;
+  padding-left: 5%;
 }
 
 .spot-modal-header {
