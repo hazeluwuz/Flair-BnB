@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import "./SpotEditForm.css";
 import { editSpot, editSpotById } from "../../store/spots";
 
-function SpotEditForm({ spot }) {
+function SpotEditForm({ spot, hideModal }) {
   const dispatch = useDispatch();
   const [name, setName] = useState(spot?.name);
   const [price, setPrice] = useState(spot?.price);
@@ -17,7 +17,7 @@ function SpotEditForm({ spot }) {
   const [state, setState] = useState(spot?.state);
   const [country, setCountry] = useState(spot?.country);
   const [errors, setErrors] = useState([]);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {};
@@ -32,11 +32,12 @@ function SpotEditForm({ spot }) {
     if (country) data.country = country;
 
     setErrors([]);
-    return dispatch(editSpotById(data, spot.id)).catch(async (res) => {
+    await dispatch(editSpotById(data, spot.id)).catch(async (res) => {
       console.log("Res:", res);
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
+    hideModal();
   };
 
   return (
@@ -127,15 +128,6 @@ function SpotEditForm({ spot }) {
           onChange={(e) => setLng(e.target.value)}
         />
       </div>
-      {/* <div className="spot-input-item">
-        <input
-          placeholder="Spot Image"
-          type="text"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-
-        />
-      </div> */}
       <button className="spot-modal-submit" type="submit">
         Edit Spot
       </button>

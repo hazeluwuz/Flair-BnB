@@ -7,7 +7,7 @@ import { createImageForSpot, createNewSpot } from "../../store/spots";
 
 const imageURLRegex = /\.(jpeg|jpg|png)$/;
 
-function SpotCreateForm() {
+function SpotCreateForm({ hideModal }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(null);
@@ -51,6 +51,7 @@ function SpotCreateForm() {
       if (imageUrl !== "") {
         await dispatch(createImageForSpot(imgData, newSpot.id));
       }
+      hideModal();
       history.push(`/spots/${newSpot.id}`);
     }
   };

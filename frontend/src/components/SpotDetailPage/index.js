@@ -18,9 +18,9 @@ function SpotDetailPage() {
   const history = useHistory();
   let owner = false;
   useEffect(() => {
-    dispatch(getSpotById(spotId)).then(() => {
-      dispatch(getReviewsBySpotId(spotId)).then(() => setIsLoaded(true));
-    });
+    dispatch(getSpotById(spotId))
+      .then(() => dispatch(getReviewsBySpotId(spotId)))
+      .then(() => setIsLoaded(true));
   }, []);
 
   if (sessionUser && spot) {
@@ -66,10 +66,7 @@ function SpotDetailPage() {
                   {spot?.Images && (
                     <img
                       className="spot-image"
-                      src={
-                        spot?.Images[0]?.url ||
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                      }
+                      src={spot?.Images[0]?.url || ""}
                       onError={(e) => (e.target.style.visibility = "hidden")}
                     />
                   )}
@@ -80,10 +77,7 @@ function SpotDetailPage() {
                       {spot?.Images && (
                         <img
                           className="preview-images"
-                          src={
-                            spot?.Images[1]?.url ||
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                          }
+                          src={spot?.Images[1]?.url || ""}
                           onError={(e) =>
                             (e.target.style.visibility = "hidden")
                           }
@@ -94,10 +88,7 @@ function SpotDetailPage() {
                       {spot?.Images && (
                         <img
                           className="preview-images"
-                          src={
-                            spot?.Images[3]?.url ||
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                          }
+                          src={spot?.Images[3]?.url || ""}
                           onError={(e) =>
                             (e.target.style.visibility = "hidden")
                           }
@@ -110,13 +101,10 @@ function SpotDetailPage() {
                       {spot?.Images && (
                         <img
                           className="preview-images round-top-right"
-                          src={
-                            spot?.Images[2]?.url ||
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+                          src={spot?.Images[2]?.url || ""}
+                          onError={(e) =>
+                            (e.target.style.visibility = "hidden")
                           }
-                          // onError={(e) =>
-                          //   (e.target.style.visibility = "hidden")
-                          // }
                         />
                       )}
                     </div>
@@ -125,10 +113,7 @@ function SpotDetailPage() {
                       {spot?.Images && (
                         <img
                           className="preview-images round-bottom-right"
-                          src={
-                            spot?.Images[4]?.url ||
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                          }
+                          src={spot?.Images[4]?.url || ""}
                           onError={(e) =>
                             (e.target.style.visibility = "hidden")
                           }

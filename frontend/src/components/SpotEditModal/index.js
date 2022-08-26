@@ -6,9 +6,14 @@ import "./SpotEditModal.css";
 function SpotEditModal({ spot }) {
   const [showModal, setShowModal] = useState(false);
   const spots = useSelector((state) => state.spots);
-  useEffect(() => {
+  // useEffect(() => {
+  //   setShowModal(false);
+  // }, [spots]);
+
+  const hideModal = () => {
     setShowModal(false);
-  }, [spots]);
+  };
+
   return (
     <>
       <div className="edit-spot-button" onClick={() => setShowModal(true)}>
@@ -32,7 +37,7 @@ function SpotEditModal({ spot }) {
             </div>
           </div>
           <div className="spot-modal-form">
-            <SpotEditForm spot={spot} />
+            <SpotEditForm hideModal={hideModal} spot={spot} />
           </div>
         </Modal>
       )}

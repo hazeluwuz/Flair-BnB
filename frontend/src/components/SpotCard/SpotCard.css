@@ -7,6 +7,7 @@
 .spot-image-container {
   background-color: #efefef;
   border-radius: 12px;
+  height: 285px;
 }
 .spot-info-container {
   display: grid;
