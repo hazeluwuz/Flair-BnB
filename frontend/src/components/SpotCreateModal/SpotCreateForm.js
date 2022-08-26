@@ -153,6 +153,8 @@ function SpotCreateForm({ hideModal }) {
           placeholder="Latitude"
           type="number"
           value={lat}
+          min="-90"
+          max="90"
           onChange={(e) => setLat(e.target.value)}
           required
         />
@@ -162,6 +164,8 @@ function SpotCreateForm({ hideModal }) {
           placeholder="Longitude"
           type="number"
           value={lng}
+          min="-180"
+          max="180"
           onChange={(e) => setLng(e.target.value)}
           required
         />

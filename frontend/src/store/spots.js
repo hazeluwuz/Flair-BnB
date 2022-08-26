@@ -150,7 +150,10 @@ export default function spotsReducer(state = {}, action) {
     }
     case READBYID: {
       newState = { ...state };
-      newState[action.spot.id] = action.spot;
+      newState[action.spot.id] = {
+        ...newState[action.spot.id],
+        ...action.spot,
+      };
       return newState;
     }
     case DELETE: {
