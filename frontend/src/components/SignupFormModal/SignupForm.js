@@ -67,7 +67,7 @@ function SignupForm() {
       <div className="signup-input-item">
         <input
           placeholder="Email"
-          type="text"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

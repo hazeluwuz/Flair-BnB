@@ -1,5 +1,8 @@
 ul.signup_error {
-  color: red;
+  color: #ff385c;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 5px;
 }
 
 .signup-modal-header {

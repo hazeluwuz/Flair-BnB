@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
@@ -20,9 +20,27 @@ function SpotCreateForm({ hideModal }) {
   const [country, setCountry] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const history = useHistory();
+
+  // useEffect(() => {
+  //   const inputErrors = [];
+  //   if (!name.length) inputErrors.push("Name is required");
+  //   if (!price) inputErrors.push("Price is required");
+  //   if (!lat) inputErrors.push("Latitude is required");
+  //   if (!lng) inputErrors.push("Longitude is required");
+  //   if (!description.length) inputErrors.push("Description is required");
+  //   if (!address.length) inputErrors.push("Address is required");
+  //   if (!city.length) inputErrors.push("City is required");
+  //   if (!state.length) inputErrors.push("State is required");
+  //   if (!country.length) inputErrors.push("Country is required");
+  //   setErrors(inputErrors);
+  // }, [name, price, lat, lng, description, address, city, state, country]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitted(true);
+    if (errors.length) return;
     if (!imageUrl.split("?")[0].match(imageURLRegex)) {
       setErrors([
         "Preview url must end in valid img extension! [png/jpg/jpeg]",
@@ -49,7 +67,7 @@ function SpotCreateForm({ hideModal }) {
         console.log(data);
         if (data && data.errors) setErrors(data.errors);
       });
-      if (imageUrl !== "") {
+      if (imageUrl !== "" && newSpot) {
         await dispatch(createImageForSpot(imgData, newSpot.id));
       }
       hideModal();
@@ -59,11 +77,13 @@ function SpotCreateForm({ hideModal }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul className="spot_error">
-        {Object.values(errors).map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+      {isSubmitted && errors.length > 0 && (
+        <ul className="spot_error">
+          {Object.values(errors).map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+      )}
       <div className="spot-input-item">
         <input
           placeholder="Spot Name"
