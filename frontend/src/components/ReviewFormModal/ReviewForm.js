@@ -9,7 +9,7 @@ function ReviewForm({ spotId }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ function ReviewForm({ spotId }) {
       <div className="review-input-item">
         <textarea
           className="hide-scroll"
-          placeholder="Review Description"
+          placeholder=" "
           type="text"
           id="review-description"
           maxlength="255"
@@ -47,11 +47,12 @@ function ReviewForm({ spotId }) {
           onChange={(e) => setReview(e.target.value)}
           required
         />
+        <label>Review Description</label>
       </div>
       <div className="review-input-item">
         <input
           className="number-input"
-          placeholder="Rating (1-5)"
+          placeholder=" "
           type="number"
           min="1"
           max="5"
@@ -59,6 +60,7 @@ function ReviewForm({ spotId }) {
           onChange={(e) => setStars(e.target.value)}
           required
         />
+        <label>Rating (1-5)</label>
       </div>
       <button className="review-modal-submit" type="submit">
         Create Review

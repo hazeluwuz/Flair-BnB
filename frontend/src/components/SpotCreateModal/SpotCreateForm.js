@@ -86,14 +86,16 @@ function SpotCreateForm({ hideModal }) {
       if (imageUrl !== "" && newSpot) {
         await dispatch(createImageForSpot(imgData, newSpot.id));
       }
-      hideModal();
-      history.push(`/spots/${newSpot.id}`);
+      if (newSpot) {
+        hideModal();
+        history.push(`/spots/${newSpot.id}`);
+      }
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {isSubmitted && errors.length > 0 && (
+      {isSubmitted && Object.values(errors).length > 0 && (
         <ul className="spot_error">
           {Object.values(errors).map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -102,79 +104,74 @@ function SpotCreateForm({ hideModal }) {
       )}
       <div className="spot-input-item">
         <input
-          placeholder="Spot Name"
           type="text"
+          placeholder=" "
           value={name}
           maxlength="50"
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </div>
-      <div className="spot-input-item">
-        <textarea
-          className="hide-scroll"
-          placeholder="Description"
-          type="text"
-          maxlength="255"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+        <label>Spot Name</label>
       </div>
       <div className="spot-input-item">
         <input
           className="number-input"
-          placeholder="Price"
           type="number"
+          placeholder=" "
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
         />
+        <label>Price</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Address"
           maxlength="255"
           type="text"
+          placeholder=" "
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
         />
+        <label>Address</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="City"
           maxlength="255"
           type="text"
+          placeholder=" "
           value={city}
           onChange={(e) => setCity(e.target.value)}
           required
         />
+        <label>City</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="State"
           maxlength="255"
+          placeholder=" "
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
           required
         />
+        <label>State</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Country"
           maxlength="255"
+          placeholder=" "
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           required
         />
+        <label>Country</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Latitude"
-          type="number"
+          type="text"
+          placeholder=" "
           className="number-input"
           value={lat}
           min="-90"
@@ -182,11 +179,12 @@ function SpotCreateForm({ hideModal }) {
           onChange={(e) => setLat(e.target.value)}
           required
         />
+        <label>Latitude</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Longitude"
-          type="number"
+          type="text"
+          placeholder=" "
           className="number-input"
           value={lng}
           min="-180"
@@ -194,15 +192,29 @@ function SpotCreateForm({ hideModal }) {
           onChange={(e) => setLng(e.target.value)}
           required
         />
+        <label>Longitude</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Preview Image URL ex: png/jpg/jpeg"
           type="url"
+          placeholder=" "
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           required
         />
+        <label>Preview Image URL ex: png/jpg/jpeg</label>
+      </div>
+      <div className="spot-input-item">
+        <textarea
+          className="hide-scroll"
+          type="text"
+          placeholder=" "
+          maxlength="255"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <label>Description</label>
       </div>
       <button className="spot-modal-submit" type="submit">
         Create Spot

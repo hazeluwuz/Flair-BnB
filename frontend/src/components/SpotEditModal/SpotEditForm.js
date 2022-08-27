@@ -49,90 +49,99 @@ function SpotEditForm({ spot, hideModal }) {
       </ul>
       <div className="spot-input-item">
         <input
-          placeholder="Spot Name"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={name}
           required
           onChange={(e) => setName(e.target.value)}
         />
+        <label>Name</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Description"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={description}
           required
           onChange={(e) => setDescription(e.target.value)}
         />
+        <label>Description</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Price"
+          placeholder=" "
           type="number"
           value={price}
           required
           onChange={(e) => setPrice(e.target.value)}
         />
+        <label>Price</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Address"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={address}
           required
           onChange={(e) => setAddress(e.target.value)}
         />
+        <label>Address</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="City"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={city}
           required
           onChange={(e) => setCity(e.target.value)}
         />
+        <label>City</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="State"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={state}
           required
           onChange={(e) => setState(e.target.value)}
         />
+        <label>State</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Country"
+          placeholder=" "
           type="text"
           maxlength="255"
           value={country}
           required
           onChange={(e) => setCountry(e.target.value)}
         />
+        <label>Country</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Latitude"
+          placeholder=" "
           type="number"
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)}
         />
+        <label>Latitude</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Longitude"
+          placeholder=" "
           type="number"
           required
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />
+        <label>Longitude</label>
       </div>
       <button className="spot-modal-submit" type="submit">
         Edit Spot
