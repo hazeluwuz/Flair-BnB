@@ -9,7 +9,13 @@ body {
   font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }
-
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 @media (min-width: 375px) {
   .center {
     padding-left: 24px;

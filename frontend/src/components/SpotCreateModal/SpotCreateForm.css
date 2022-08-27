@@ -78,7 +78,18 @@ ul.spot_error {
   border-radius: 5px;
   background-color: transparent !important;
 }
-
+.spot-input-item > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  max-height: 4em;
+  margin: 0px;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
 .spot-modal-h3-container {
   text-align: center;
   margin-left: 16px;

@@ -1,10 +1,5 @@
 ul.review_error {
-  color: #ff385c;
-  font-weight: 600;
-  line-height: 1.5rem;
-  border-radius: 5px;
-  margin-top: 0px;
-  padding-left: 5%;
+  color: red;
 }
 
 .review-modal-header {
@@ -78,7 +73,27 @@ ul.review_error {
   border-radius: 5px;
   background-color: transparent !important;
 }
-
+.review-input-item > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  max-height: 4em;
+  font-size: 14px;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.review-input-item::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.number-input {
+  padding-right: 0px !important;
+}
 .review-modal-h3-container {
   text-align: center;
   margin-left: 16px;

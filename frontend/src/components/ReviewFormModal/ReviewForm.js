@@ -20,7 +20,6 @@ function ReviewForm({ spotId }) {
     if (review.length >= 256) {
       setErrors({ review: "Review must be less than 255 Characters!" });
     }
-    console.log(review.length);
     if (review.length <= 255) {
       setErrors([]);
       dispatch(createNewReview(data, spotId)).catch(async (res) => {
@@ -38,9 +37,11 @@ function ReviewForm({ spotId }) {
         ))}
       </ul>
       <div className="review-input-item">
-        <input
+        <textarea
+          className="hide-scroll"
           placeholder="Review Description"
           type="text"
+          id="review-description"
           maxLength="255"
           value={review}
           onChange={(e) => setReview(e.target.value)}
@@ -49,6 +50,7 @@ function ReviewForm({ spotId }) {
       </div>
       <div className="review-input-item">
         <input
+          className="number-input"
           placeholder="Rating (1-5)"
           type="number"
           min="1"

@@ -23,19 +23,35 @@ function SpotCreateForm({ hideModal }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const history = useHistory();
 
-  // useEffect(() => {
-  //   const inputErrors = [];
-  //   if (!name.length) inputErrors.push("Name is required");
-  //   if (!price) inputErrors.push("Price is required");
-  //   if (!lat) inputErrors.push("Latitude is required");
-  //   if (!lng) inputErrors.push("Longitude is required");
-  //   if (!description.length) inputErrors.push("Description is required");
-  //   if (!address.length) inputErrors.push("Address is required");
-  //   if (!city.length) inputErrors.push("City is required");
-  //   if (!state.length) inputErrors.push("State is required");
-  //   if (!country.length) inputErrors.push("Country is required");
-  //   setErrors(inputErrors);
-  // }, [name, price, lat, lng, description, address, city, state, country]);
+  useEffect(() => {
+    const inputErrors = [];
+    if (!name.length) inputErrors.push("Name is required");
+    if (!price) inputErrors.push("Price is required");
+    if (!lat) inputErrors.push("Latitude is required");
+    if (!lng) inputErrors.push("Longitude is required");
+    if (!description.length) inputErrors.push("Description is required");
+    if (!address.length) inputErrors.push("Address is required");
+    if (!city.length) inputErrors.push("City is required");
+    if (!state.length) inputErrors.push("State is required");
+    if (!country.length) inputErrors.push("Country is required");
+    if (!imageUrl.split("?")[0].match(imageURLRegex)) {
+      inputErrors.push([
+        "Preview url must end in valid img extension! [png/jpg/jpeg]",
+      ]);
+    }
+    setErrors(inputErrors);
+  }, [
+    name,
+    price,
+    lat,
+    lng,
+    description,
+    address,
+    city,
+    state,
+    country,
+    imageUrl,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +111,8 @@ function SpotCreateForm({ hideModal }) {
         />
       </div>
       <div className="spot-input-item">
-        <input
+        <textarea
+          className="hide-scroll"
           placeholder="Description"
           type="text"
           value={description}
@@ -105,6 +122,7 @@ function SpotCreateForm({ hideModal }) {
       </div>
       <div className="spot-input-item">
         <input
+          className="number-input"
           placeholder="Price"
           type="number"
           value={price}
@@ -152,6 +170,7 @@ function SpotCreateForm({ hideModal }) {
         <input
           placeholder="Latitude"
           type="number"
+          className="number-input"
           value={lat}
           min="-90"
           max="90"
@@ -163,6 +182,7 @@ function SpotCreateForm({ hideModal }) {
         <input
           placeholder="Longitude"
           type="number"
+          className="number-input"
           value={lng}
           min="-180"
           max="180"
