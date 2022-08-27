@@ -27,9 +27,6 @@ function SignupFormModal() {
             </div>
           </div>
           <div className="signup-modal-form">
-            <div className="signup-modal-greeting">
-              <h3>Welcome to FlairBnB</h3>
-            </div>
             <SignupForm />
           </div>
         </Modal>

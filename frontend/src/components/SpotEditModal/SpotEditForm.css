@@ -54,10 +54,11 @@ ul.spot_error {
 }
 .spot-modal-form {
   padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
 }
 .spot-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .spot-inputs {

@@ -54,10 +54,12 @@ ul.signup_error {
 }
 .signup-modal-form {
   padding: 24px;
+  padding-top: 10px;
+  overflow-y: auto;
+  height: 5%;
 }
 .signup-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .signup-inputs {

@@ -28,9 +28,6 @@ function LoginFormModal() {
             </div>
           </div>
           <div className="login-modal-form">
-            <div className="login-modal-greeting">
-              <h3>Welcome to FlairBnB</h3>
-            </div>
             <LoginForm />
           </div>
         </Modal>

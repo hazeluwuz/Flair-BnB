@@ -47,17 +47,16 @@ ul.login_error {
   margin: 0px;
   padding: 0px;
   z-index: 1;
-  background: transparent none repeat scroll 0% 0%;
+  background: transparent;
   border-radius: 50%;
-  transition: -ms-transform 0.25s ease 0s, transform 0.25s ease 0s,
-    transform 0.25s ease 0s;
 }
 .login-modal-form {
   padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
 }
 .login-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .login-inputs {
