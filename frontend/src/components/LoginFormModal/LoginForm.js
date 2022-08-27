@@ -30,6 +30,7 @@ function LoginForm() {
       <div className="login-inputs">
         <div className="login-input-item">
           <input
+            placeholder=" "
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -39,6 +40,7 @@ function LoginForm() {
         </div>
         <div className="login-input-item" id="password-field">
           <input
+            placeholder=" "
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
