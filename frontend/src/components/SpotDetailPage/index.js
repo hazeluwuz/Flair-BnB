@@ -67,7 +67,10 @@ function SpotDetailPage() {
                     <img
                       className="spot-image"
                       src={spot?.Images[0]?.url || ""}
-                      onError={(e) => (e.target.style.visibility = "hidden")}
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
+                      }
                     />
                   )}
                 </div>
@@ -79,7 +82,8 @@ function SpotDetailPage() {
                           className="preview-images"
                           src={spot?.Images[1]?.url || ""}
                           onError={(e) =>
-                            (e.target.style.visibility = "hidden")
+                            (e.target.src =
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
                           }
                         />
                       )}
@@ -90,7 +94,8 @@ function SpotDetailPage() {
                           className="preview-images"
                           src={spot?.Images[3]?.url || ""}
                           onError={(e) =>
-                            (e.target.style.visibility = "hidden")
+                            (e.target.src =
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
                           }
                         />
                       )}
@@ -103,7 +108,8 @@ function SpotDetailPage() {
                           className="preview-images round-top-right"
                           src={spot?.Images[2]?.url || ""}
                           onError={(e) =>
-                            (e.target.style.visibility = "hidden")
+                            (e.target.src =
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
                           }
                         />
                       )}
@@ -115,7 +121,8 @@ function SpotDetailPage() {
                           className="preview-images round-bottom-right"
                           src={spot?.Images[4]?.url || ""}
                           onError={(e) =>
-                            (e.target.style.visibility = "hidden")
+                            (e.target.src =
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
                           }
                         />
                       )}

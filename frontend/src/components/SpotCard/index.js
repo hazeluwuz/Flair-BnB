@@ -11,7 +11,10 @@ function Spotcard({ spot }) {
               spot?.previewImage ||
               "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
             }
-            onError={(e) => (e.target.style.visibility = "hidden")}
+            onError={(e) =>
+              (e.target.src =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png")
+            }
           />
         </div>
         <div className="spot-info-container">
