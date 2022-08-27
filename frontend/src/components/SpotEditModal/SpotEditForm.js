@@ -51,6 +51,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="Spot Name"
           type="text"
+          maxlength="255"
           value={name}
           required
           onChange={(e) => setName(e.target.value)}
@@ -60,6 +61,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="Description"
           type="text"
+          maxlength="255"
           value={description}
           required
           onChange={(e) => setDescription(e.target.value)}
@@ -78,6 +80,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="Address"
           type="text"
+          maxlength="255"
           value={address}
           required
           onChange={(e) => setAddress(e.target.value)}
@@ -87,6 +90,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="City"
           type="text"
+          maxlength="255"
           value={city}
           required
           onChange={(e) => setCity(e.target.value)}
@@ -96,6 +100,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="State"
           type="text"
+          maxlength="255"
           value={state}
           required
           onChange={(e) => setState(e.target.value)}
@@ -105,6 +110,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder="Country"
           type="text"
+          maxlength="255"
           value={country}
           required
           onChange={(e) => setCountry(e.target.value)}

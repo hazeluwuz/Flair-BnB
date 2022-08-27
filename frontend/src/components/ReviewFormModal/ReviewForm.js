@@ -42,7 +42,7 @@ function ReviewForm({ spotId }) {
           placeholder="Review Description"
           type="text"
           id="review-description"
-          maxLength="255"
+          maxlength="255"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required

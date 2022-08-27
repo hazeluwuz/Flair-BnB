@@ -115,6 +115,7 @@ function SpotCreateForm({ hideModal }) {
           className="hide-scroll"
           placeholder="Description"
           type="text"
+          maxlength="255"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -133,6 +134,7 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           placeholder="Address"
+          maxlength="255"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -142,6 +144,7 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           placeholder="City"
+          maxlength="255"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -151,6 +154,7 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           placeholder="State"
+          maxlength="255"
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
@@ -160,6 +164,7 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           placeholder="Country"
+          maxlength="255"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
