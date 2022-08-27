@@ -1,6 +1,6 @@
 # FlairBnB (AirBnB Clone)
 
-FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its current state, is used to browsw/create listings, and create/browse reviews for listings.
+FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its current state, is used to browse/create listings, and create/browse reviews for listings.
 
 # Site Information
 - [Api Documentation](https://github.com/hazeluwuz/Flair-BnB/wiki/API-Documentation)
