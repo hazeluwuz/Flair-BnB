@@ -4,10 +4,13 @@ import "./ReviewCard.css";
 function ReviewCard({ review }) {
   const dispatch = useDispatch();
   const createdAt = review?.createdAt;
-  const date = new Date(createdAt).toLocaleDateString(undefined, {
-    month: "long",
-    year: "numeric",
-  });
+  let date;
+  if (createdAt) {
+    date = new Date(createdAt).toLocaleDateString(undefined, {
+      month: "long",
+      year: "numeric",
+    });
+  }
   let owner;
   const sessionUser = useSelector((state) => state.session.user);
   if (sessionUser && review) {
