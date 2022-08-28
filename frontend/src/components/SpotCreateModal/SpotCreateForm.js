@@ -177,6 +177,7 @@ function SpotCreateForm({ hideModal }) {
           value={lat}
           min="-90"
           max="90"
+          step="any"
           onChange={(e) => setLat(e.target.value)}
           required
         />
@@ -190,6 +191,7 @@ function SpotCreateForm({ hideModal }) {
           value={lng}
           min="-180"
           max="180"
+          step="any"
           onChange={(e) => setLng(e.target.value)}
           required
         />
