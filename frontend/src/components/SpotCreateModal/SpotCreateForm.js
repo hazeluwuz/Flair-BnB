@@ -118,6 +118,7 @@ function SpotCreateForm({ hideModal }) {
           className="number-input"
           type="number"
           placeholder=" "
+          min={0}
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
@@ -170,7 +171,7 @@ function SpotCreateForm({ hideModal }) {
       </div>
       <div className="spot-input-item">
         <input
-          type="text"
+          type="number"
           placeholder=" "
           className="number-input"
           value={lat}
@@ -183,7 +184,7 @@ function SpotCreateForm({ hideModal }) {
       </div>
       <div className="spot-input-item">
         <input
-          type="text"
+          type="number"
           placeholder=" "
           className="number-input"
           value={lng}
@@ -205,8 +206,8 @@ function SpotCreateForm({ hideModal }) {
         <label>Preview Image URL ex: png/jpg/jpeg</label>
       </div>
       <div className="spot-input-item">
-        <textarea
-          className="hide-scroll"
+        <input
+          className="spot-description-input hide-scroll"
           type="text"
           placeholder=" "
           maxlength="255"

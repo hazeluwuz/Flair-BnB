@@ -61,18 +61,9 @@ function SpotEditForm({ spot, hideModal }) {
       <div className="spot-input-item">
         <input
           placeholder=" "
-          type="text"
-          maxlength="255"
-          value={description}
-          required
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label>Description</label>
-      </div>
-      <div className="spot-input-item">
-        <input
-          placeholder=" "
+          className="number-input"
           type="number"
+          min={0}
           value={price}
           required
           onChange={(e) => setPrice(e.target.value)}
@@ -127,6 +118,7 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder=" "
           type="number"
+          className="number-input"
           required
           value={lat}
           onChange={(e) => setLat(e.target.value)}
@@ -137,11 +129,23 @@ function SpotEditForm({ spot, hideModal }) {
         <input
           placeholder=" "
           type="number"
+          className="number-input"
           required
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />
         <label>Longitude</label>
+      </div>{" "}
+      <div className="spot-input-item">
+        <input
+          placeholder=" "
+          type="text"
+          maxlength="255"
+          value={description}
+          required
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <label>Description</label>
       </div>
       <button className="spot-modal-submit" type="submit">
         Edit Spot

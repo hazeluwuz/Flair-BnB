@@ -39,7 +39,7 @@ function ReviewForm({ spotId }) {
         ))}
       </ul>
       <div className="review-input-item">
-        <textarea
+        <input
           className="hide-scroll"
           placeholder=" "
           type="text"
