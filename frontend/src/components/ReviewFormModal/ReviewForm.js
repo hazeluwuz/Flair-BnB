@@ -28,9 +28,6 @@ function ReviewForm({ spotId }) {
           if (data && data.errors) setErrors(data.errors);
         }
       );
-      if (review) {
-        console.log(review);
-      }
     }
   };
 
