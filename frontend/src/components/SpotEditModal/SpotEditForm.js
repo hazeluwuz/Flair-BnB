@@ -120,6 +120,9 @@ function SpotEditForm({ spot, hideModal }) {
           type="number"
           className="number-input"
           required
+          step="any"
+          min="-90"
+          max="90"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
         />
@@ -131,6 +134,9 @@ function SpotEditForm({ spot, hideModal }) {
           type="number"
           className="number-input"
           required
+          min="-180"
+          max="180"
+          step="any"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />
