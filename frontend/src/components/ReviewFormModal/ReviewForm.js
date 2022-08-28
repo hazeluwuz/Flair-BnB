@@ -22,10 +22,15 @@ function ReviewForm({ spotId }) {
     }
     if (review.length <= 255) {
       setErrors([]);
-      dispatch(createNewReview(data, spotId)).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      const review = dispatch(createNewReview(data, spotId)).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+      if (review) {
+        console.log(review);
+      }
     }
   };
 

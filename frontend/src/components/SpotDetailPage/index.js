@@ -16,6 +16,7 @@ function SpotDetailPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  console.log(reviews);
   let owner = false;
   useEffect(() => {
     dispatch(getSpotById(spotId))
