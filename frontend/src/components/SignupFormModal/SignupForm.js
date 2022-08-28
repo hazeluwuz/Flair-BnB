@@ -80,6 +80,7 @@ function SignupForm() {
         <input
           type="text"
           placeholder=" "
+          minLength={4}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required

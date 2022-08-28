@@ -10,7 +10,7 @@ body {
     sans-serif;
 }
 label {
-  color: #999;
+  color: rgb(129, 129, 129);
   font-size: 15px;
   font-weight: normal;
   position: absolute;
