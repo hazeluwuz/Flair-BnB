@@ -57,7 +57,7 @@ export const deleteReviewById = (reviewId, spotId) => async (dispatch) => {
   return res;
 };
 
-export const createNewReview = (reviewData, spotId) => async (dispatch) => {
+export const  createNewReview = (reviewData, spotId) => async (dispatch) => {
   const reqData = {
     method: "POST",
     headers: {

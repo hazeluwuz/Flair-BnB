@@ -11,6 +11,9 @@ function ReviewCard({ review }) {
       year: "numeric",
     });
   }
+  if (date) {
+    console.log("DATE:", date);
+  }
   let owner;
   const sessionUser = useSelector((state) => state.session.user);
   if (sessionUser && review) {
