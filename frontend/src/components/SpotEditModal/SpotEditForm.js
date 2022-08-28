@@ -33,7 +33,6 @@ function SpotEditForm({ spot, hideModal }) {
 
     setErrors([]);
     await dispatch(editSpotById(data, spot.id)).catch(async (res) => {
-      console.log("Res:", res);
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });

@@ -80,7 +80,6 @@ function SpotCreateForm({ hideModal }) {
       setErrors([]);
       const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
         const data = await res.json();
-        console.log(data);
         if (data && data.errors) setErrors(data.errors);
       });
       if (imageUrl !== "" && newSpot) {
