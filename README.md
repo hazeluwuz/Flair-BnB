@@ -17,3 +17,7 @@ FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its cu
 - Redux
 - PostgreSQL
 
+
+
+# Splash Page
+![image](https://user-images.githubusercontent.com/28935811/187096820-4d4db58b-1d5a-4234-8c54-e8ab47d58d3c.png)
