@@ -9,12 +9,24 @@
   margin-right: auto;
   padding-top: 25px;
 }
+.spot-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.contain-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .main-spot-inner-container {
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   max-width: 1120px;
+  min-width: 55vw;
 }
 .spot-name {
   font-size: 24px;
@@ -28,7 +40,6 @@
 }
 .spot-button {
   display: flex;
-  /* flex-wrap: wrap; */
   font-size: 14px;
 }
 .spot-num-reviews {
@@ -37,8 +48,10 @@
   padding-right: 5px;
 }
 .spot-location {
+  font-weight: bold !important;
   padding-left: 5px;
   font-weight: 400;
+  max-width: 75%;
 }
 .spot-button > button {
   color: white;
@@ -63,11 +76,12 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 80%;
   width: 100%;
 }
 .spot-img-container {
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   align-items: center;
 }
 .spot-image {
@@ -81,6 +95,7 @@
   object-fit: cover;
   width: 100%;
   overflow: hidden;
+  border: none;
 }
 
 .spot-img-grid {
@@ -88,15 +103,20 @@
   gap: 0.5%;
   width: 100%;
   flex-basis: 100%;
-  max-height: 500px;
+  max-height: 550px;
+  min-height: 550px;
 }
 .spot-first-image {
   display: flex;
+  background-color: #efefef;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  object-fit: cover;
   width: 100%;
 }
 .spot-preview-images {
   display: flex;
-  gap: 1%;
+  gap: 1.5%;
   width: 100%;
   overflow: hidden;
 }
@@ -104,30 +124,32 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 1%;
+  gap: 1.5%;
   flex-shrink: 1;
   width: 50%;
 }
 .spot-preview-image {
   display: flex;
-  max-height: 50%;
-  min-height: 50%;
+  max-height: 49.25%;
+  min-height: 49.25%;
+  background-color: #efefef;
   flex-grow: 1;
 }
-.spot-desc {
-  width: 100%;
-}
+
 .star-icon {
   padding-right: 5px;
 }
 .bottom-details-container {
   display: flex;
   width: 100%;
-  padding-top: 15px;
+  padding-top: 3em;
 }
 
 .spot-desc {
+  max-width: 60%;
+  width: 60%;
   font-weight: 375;
+  word-wrap: break-word;
 }
 
 .spot-detail-price-container {
@@ -143,7 +165,10 @@
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  height: 5%;
   max-height: 25%;
+  font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
+    sans-serif;
 }
 .spot-detail-price {
   font-size: 20px;
@@ -206,7 +231,6 @@
 .spot-create-review > button {
   color: white;
   padding: 9px;
-  line-height: 1rem;
   border: none;
   font-size: 14px;
   cursor: pointer;

@@ -1,5 +1,10 @@
 ul.login_error {
-  color: red;
+  color: #ff385c;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  margin-top: 0px;
+  padding-left: 5%;
 }
 
 .login-modal-header {
@@ -42,17 +47,16 @@ ul.login_error {
   margin: 0px;
   padding: 0px;
   z-index: 1;
-  background: transparent none repeat scroll 0% 0%;
+  background: transparent;
   border-radius: 50%;
-  transition: -ms-transform 0.25s ease 0s, transform 0.25s ease 0s,
-    transform 0.25s ease 0s;
 }
 .login-modal-form {
   padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
 }
 .login-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .login-inputs {
@@ -70,6 +74,7 @@ ul.login_error {
   width: 100%;
   padding: 20px;
   border: 1px solid #dadada;
+  font-size: 16px;
   border-radius: 5px;
   background-color: transparent !important;
 }

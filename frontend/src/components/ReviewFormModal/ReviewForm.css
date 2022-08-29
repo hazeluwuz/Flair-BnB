@@ -49,10 +49,11 @@ ul.review_error {
 }
 .review-modal-form {
   padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
 }
 .review-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .review-inputs {
@@ -73,7 +74,27 @@ ul.review_error {
   border-radius: 5px;
   background-color: transparent !important;
 }
-
+.review-input-item > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  max-height: 4em;
+  font-size: 14px;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.review-input-item::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.number-input {
+  padding-right: 0px !important;
+}
 .review-modal-h3-container {
   text-align: center;
   margin-left: 16px;

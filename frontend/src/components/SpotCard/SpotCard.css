@@ -4,13 +4,23 @@
   border-radius: 12px;
   object-fit: cover;
 }
+.spot-image-container {
+  background-color: #efefef;
+  border-radius: 12px;
+  height: 285px;
+}
 .spot-info-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
   padding: 10px 0px;
   width: 100%;
 }
-.spot-location {
+.contain-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spot-card-location {
   font-weight: bold !important;
 }
 
@@ -23,14 +33,16 @@
   padding-right: 3px;
 }
 
-.spot-info {
+.spot-card-info {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.spot-info > div {
+.spot-card-info > div {
   padding: 5px 0px;
 }
 

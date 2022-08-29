@@ -21,7 +21,7 @@ function ReviewFormModal({ spotId }) {
               onClick={() => setShowModal(false)}
               className="review-modal-exit-button"
             >
-              <i class="fa-solid fa-x"></i>
+              <i className="fa-solid fa-x"></i>
             </button>
           </div>
           <div className="review-modal-header">

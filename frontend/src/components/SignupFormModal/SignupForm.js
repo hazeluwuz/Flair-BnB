@@ -48,57 +48,64 @@ function SignupForm() {
       </ul>
       <div className="signup-input-item">
         <input
-          placeholder="First Name"
           type="text"
+          placeholder=" "
           value={firstName}
           onChange={(e) => setFirstname(e.target.value)}
           required
         />
+        <label>First Name</label>
       </div>
       <div className="signup-input-item">
         <input
-          placeholder="Last Name"
           type="text"
+          placeholder=" "
           value={lastName}
           onChange={(e) => setLastname(e.target.value)}
           required
         />
+        <label>Last Name</label>
       </div>
       <div className="signup-input-item">
         <input
-          placeholder="Email"
           type="text"
+          placeholder=" "
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <label>Email</label>
       </div>
       <div className="signup-input-item">
         <input
-          placeholder="Username"
           type="text"
+          placeholder=" "
+          minLength={4}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
+        <label>Username</label>
       </div>
       <div className="signup-input-item">
         <input
-          placeholder="Password"
+          placeholder=" "
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <label>Password</label>
       </div>
       <div className="signup-input-item">
         <input
-          placeholder="Confirm Password"
           type="password"
+          placeholder=" "
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
+        <label>Confirm Password</label>
       </div>
       <button className="signup-modal-submit" type="submit">
         Create Account

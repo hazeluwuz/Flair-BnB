@@ -1,5 +1,10 @@
 ul.signup_error {
-  color: red;
+  color: #ff385c;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  margin-top: 0px;
+  padding-left: 5%;
 }
 
 .signup-modal-header {
@@ -49,10 +54,12 @@ ul.signup_error {
 }
 .signup-modal-form {
   padding: 24px;
+  padding-top: 10px;
+  overflow-y: auto;
+  height: 5%;
 }
 .signup-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .signup-inputs {

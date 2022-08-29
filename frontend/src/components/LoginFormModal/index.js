@@ -17,7 +17,7 @@ function LoginFormModal() {
               onClick={() => setShowModal(false)}
               className="login-modal-exit-button"
             >
-              <i class="fa-solid fa-x"></i>
+              <i className="fa-solid fa-x"></i>
             </button>
           </div>
           <div className="login-modal-header">
@@ -28,9 +28,6 @@ function LoginFormModal() {
             </div>
           </div>
           <div className="login-modal-form">
-            <div className="login-modal-greeting">
-              <h3>Welcome to FlairBnB</h3>
-            </div>
             <LoginForm />
           </div>
         </Modal>

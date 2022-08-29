@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import "./SpotEditForm.css";
 import { editSpot, editSpotById } from "../../store/spots";
 
-function SpotEditForm({ spot }) {
+function SpotEditForm({ spot, hideModal }) {
   const dispatch = useDispatch();
   const [name, setName] = useState(spot?.name);
   const [price, setPrice] = useState(spot?.price);
@@ -17,7 +17,7 @@ function SpotEditForm({ spot }) {
   const [state, setState] = useState(spot?.state);
   const [country, setCountry] = useState(spot?.country);
   const [errors, setErrors] = useState([]);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {};
@@ -32,11 +32,11 @@ function SpotEditForm({ spot }) {
     if (country) data.country = country;
 
     setErrors([]);
-    return dispatch(editSpotById(data, spot.id)).catch(async (res) => {
-      console.log("Res:", res);
+    await dispatch(editSpotById(data, spot.id)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
+    hideModal();
   };
 
   return (
@@ -48,94 +48,110 @@ function SpotEditForm({ spot }) {
       </ul>
       <div className="spot-input-item">
         <input
-          placeholder="Spot Name"
+          placeholder=" "
           type="text"
+          maxlength="255"
           value={name}
           required
           onChange={(e) => setName(e.target.value)}
         />
+        <label>Name</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Description"
-          type="text"
-          value={description}
-          required
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <div className="spot-input-item">
-        <input
-          placeholder="Price"
+          placeholder=" "
+          className="number-input"
           type="number"
+          min={0}
           value={price}
           required
           onChange={(e) => setPrice(e.target.value)}
         />
+        <label>Price</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Address"
+          placeholder=" "
           type="text"
+          maxlength="255"
           value={address}
           required
           onChange={(e) => setAddress(e.target.value)}
         />
+        <label>Address</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="City"
+          placeholder=" "
           type="text"
+          maxlength="255"
           value={city}
           required
           onChange={(e) => setCity(e.target.value)}
         />
+        <label>City</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="State"
+          placeholder=" "
           type="text"
+          maxlength="255"
           value={state}
           required
           onChange={(e) => setState(e.target.value)}
         />
+        <label>State</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Country"
+          placeholder=" "
           type="text"
+          maxlength="255"
           value={country}
           required
           onChange={(e) => setCountry(e.target.value)}
         />
+        <label>Country</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Latitude"
+          placeholder=" "
           type="number"
+          className="number-input"
           required
+          step="any"
+          min="-90"
+          max="90"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
         />
+        <label>Latitude</label>
       </div>
       <div className="spot-input-item">
         <input
-          placeholder="Longitude"
+          placeholder=" "
           type="number"
+          className="number-input"
           required
+          min="-180"
+          max="180"
+          step="any"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />
-      </div>
-      {/* <div className="spot-input-item">
+        <label>Longitude</label>
+      </div>{" "}
+      <div className="spot-input-item">
         <input
-          placeholder="Spot Image"
+          placeholder=" "
           type="text"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-
+          maxlength="255"
+          value={description}
+          required
+          onChange={(e) => setDescription(e.target.value)}
         />
-      </div> */}
+        <label>Description</label>
+      </div>
       <button className="spot-modal-submit" type="submit">
         Edit Spot
       </button>

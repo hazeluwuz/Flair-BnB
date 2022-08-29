@@ -99,6 +99,21 @@ export const editSpotById = (data, spotId) => async (dispatch) => {
   return res;
 };
 
+export const createImageForSpot = (imgData, spotId) => async (dispatch) => {
+  const reqData = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(imgData),
+  };
+  const res = await csrfFetch(`/api/spots/${spotId}/images`, reqData);
+  if (res.ok) {
+    dispatch(getSpotById(spotId));
+  }
+  return res;
+};
+
 export const deleteSpotById = (spotId) => async (dispatch) => {
   const reqData = {
     method: "DELETE",
@@ -135,7 +150,10 @@ export default function spotsReducer(state = {}, action) {
     }
     case READBYID: {
       newState = { ...state };
-      newState[action.spot.id] = action.spot;
+      newState[action.spot.id] = {
+        ...newState[action.spot.id],
+        ...action.spot,
+      };
       return newState;
     }
     case DELETE: {

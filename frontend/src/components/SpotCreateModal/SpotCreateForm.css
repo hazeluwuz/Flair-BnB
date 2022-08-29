@@ -1,5 +1,10 @@
 ul.spot_error {
-  color: red;
+  color: #ff385c;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  margin-top: 0px;
+  padding-left: 5%;
 }
 
 .spot-modal-header {
@@ -52,7 +57,6 @@ ul.spot_error {
 }
 .spot-modal-header-text {
   font-size: 1em;
-  margin: 0px;
   padding: 0px;
 }
 .spot-inputs {
@@ -73,7 +77,18 @@ ul.spot_error {
   border-radius: 5px;
   background-color: transparent !important;
 }
-
+.spot-input-item > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  max-height: 4em;
+  margin: 0px;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
 .spot-modal-h3-container {
   text-align: center;
   margin-left: 16px;

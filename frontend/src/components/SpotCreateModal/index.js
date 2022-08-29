@@ -6,9 +6,14 @@ import "./SpotCreateModal.css";
 function SpotCreateModal() {
   const [showModal, setShowModal] = useState(false);
   const spots = useSelector((state) => state.spots);
-  useEffect(() => {
+  // useEffect(() => {
+  //   setShowModal(false);
+  // }, [spots]);
+
+  const hideModal = () => {
     setShowModal(false);
-  }, [spots]);
+  };
+
   return (
     <>
       <div className="create-spot-button" onClick={() => setShowModal(true)}>
@@ -21,7 +26,7 @@ function SpotCreateModal() {
               onClick={() => setShowModal(false)}
               className="spot-modal-exit-button"
             >
-              <i class="fa-solid fa-x"></i>
+              <i className="fa-solid fa-x"></i>
             </button>
           </div>
           <div className="spot-modal-header">
@@ -32,7 +37,7 @@ function SpotCreateModal() {
             </div>
           </div>
           <div className="spot-modal-form">
-            <SpotCreateForm />
+            <SpotCreateForm hideModal={hideModal} />
           </div>
         </Modal>
       )}

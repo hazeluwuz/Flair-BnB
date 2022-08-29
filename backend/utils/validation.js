@@ -46,7 +46,9 @@ const validateSpotData = [
     .withMessage("Description is required"),
   check("price")
     .exists({ checkFalsy: true })
-    .withMessage("Price per day is required"),
+    .withMessage("Price per day is required")
+    .isInt({ allow_leading_zeroes: false })
+    .withMessage("Price must with a whole integer! (No Decimal!)"),
   handleValidationErrors,
 ];
 

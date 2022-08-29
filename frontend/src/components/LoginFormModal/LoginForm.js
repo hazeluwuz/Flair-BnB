@@ -30,21 +30,23 @@ function LoginForm() {
       <div className="login-inputs">
         <div className="login-input-item">
           <input
-            placeholder="Username or Email"
+            placeholder=" "
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
+          <label>Username or Email</label>
         </div>
         <div className="login-input-item" id="password-field">
           <input
-            placeholder="Password"
+            placeholder=" "
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <label>Password</label>
         </div>
       </div>
       <button type="submit" className="login-modal-submit">

@@ -9,10 +9,37 @@ body {
   font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }
-
-.center {
+label {
+  color: rgb(129, 129, 129);
+  font-size: 15px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 19px;
+  top: 20px;
+  transition: 0.2s ease all;
 }
-
+input:focus ~ label,
+input:valid ~ label {
+  top: 6px;
+  font-size: 12px;
+}
+input:not(:placeholder-shown) ~ label {
+  top: 6px;
+  font-size: 12px;
+}
+textarea:focus ~ label,
+textarea:valid ~ label {
+  top: 6px;
+  font-size: 12px;
+}
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 @media (min-width: 375px) {
   .center {
     padding-left: 24px;

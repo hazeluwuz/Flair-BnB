@@ -9,7 +9,7 @@ function ReviewForm({ spotId }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(0);
+  const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,15 +20,14 @@ function ReviewForm({ spotId }) {
     if (review.length >= 256) {
       setErrors({ review: "Review must be less than 255 Characters!" });
     }
-    console.log(review.length);
     if (review.length <= 255) {
       setErrors([]);
-      dispatch(createNewReview(data, spotId)).catch(async (res) => {
-        console.log("Res:", res);
-        const data = await res.json();
-        console.log("Data:", data);
-        if (data && data.errors) setErrors(data.errors);
-      });
+      const review = dispatch(createNewReview(data, spotId)).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
     }
   };
 
@@ -41,24 +40,29 @@ function ReviewForm({ spotId }) {
       </ul>
       <div className="review-input-item">
         <input
-          placeholder="Review Description"
+          className="hide-scroll"
+          placeholder=" "
           type="text"
+          id="review-description"
           maxlength="255"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required
         />
+        <label>Review Description</label>
       </div>
       <div className="review-input-item">
         <input
-          placeholder="Rating (0-5)"
+          className="number-input"
+          placeholder=" "
           type="number"
-          min="0"
+          min="1"
           max="5"
           value={stars}
           onChange={(e) => setStars(e.target.value)}
           required
         />
+        <label>Rating (1-5)</label>
       </div>
       <button className="review-modal-submit" type="submit">
         Create Review

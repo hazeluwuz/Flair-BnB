@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserSpots } from "../../store/spots";
 import "./UserListings.css";
 import Spotcard from "../SpotCard";
+import { Redirect } from "react-router-dom";
 
 function UserListings() {
   const [isLoaded, setIsLoaded] = useState(false);
   const spots = useSelector((state) => Object.values(state.spots));
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getUserSpots()).then(() => setIsLoaded(true));
   }, [dispatch]);
+  if (!sessionUser) return <Redirect to="/" />;
   return (
     isLoaded && (
       <div className="splash-page-outer-container">
