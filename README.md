@@ -31,8 +31,8 @@ DB_FILE=<DB_FILE_LOCATION>
 JWT_SECRET=<SECRET_KEY>
 JWT_EXPIRES_IN=<EXPIRATION_TIMER>
 ```
-- `npm run sequelize db:migrate` in the backend folder
-- `npm run sequelize db:seed:all` in the backend folder
+- `npx dotenv sequelize db:migrate` in the backend folder
+- `npx dotenv sequelize db:seed:all` in the backend folder
 
 Running the app:
 - `npm start` in the backend folder FIRST
