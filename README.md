@@ -18,12 +18,13 @@ FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its cu
 
 # Build Guide
 
-To install locally: 
+
+### To install locally: 
 - Clone the repo to a folder of your choice `git clone https://github.com/hazeluwuz/Flair-BnB.git`
 - `npm install` in the backend folder
 - `npm install` in the frontend folder
 
-Setup/Seed database: 
+### Setup/Seed database: 
 - Create a .env file in the backend folder with the following data
 ```
 PORT=<PORT_NUMBER>
@@ -34,7 +35,7 @@ JWT_EXPIRES_IN=<EXPIRATION_TIMER>
 - `npx dotenv sequelize db:migrate` in the backend folder
 - `npx dotenv sequelize db:seed:all` in the backend folder
 
-Running the app:
+### Running the app:
 - `npm start` in the backend folder FIRST
 - `npm start` in the frontend folder AFTER
 
