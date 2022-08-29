@@ -41,3 +41,9 @@ Running the app:
 
 # Splash Page
 ![image](https://user-images.githubusercontent.com/28935811/187096820-4d4db58b-1d5a-4234-8c54-e8ab47d58d3c.png)
+
+# Spot Detail Page
+![image](https://user-images.githubusercontent.com/28935811/187160325-b5823b39-2bc1-4f7d-a678-e53f7d5a3faf.png)
+
+# User Listings
+![image](https://user-images.githubusercontent.com/28935811/187160392-a3f1cdc2-d52e-427f-b011-cb5d09d9977d.png)
