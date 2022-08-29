@@ -13,7 +13,8 @@ FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its cu
 - Express
 - React
 - Redux
-- PostgreSQL
+- Heroku PostgreSQL
+- SQLite3 (For Local Testing) 
 
 # Build Guide
 
