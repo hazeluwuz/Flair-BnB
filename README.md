@@ -15,5 +15,21 @@ FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its cu
 - Redux
 - PostgreSQL
 
+# Build Guide
+
+To install locally: 
+- Clone the repo to a folder of your choice.
+- `npm install` in the backend folder
+- `npm install` in the frontend folder
+
+Setup/Seed database: 
+- `npm run sequelize db:migrate` in the backend folder
+- `npm run sequelize db:seed:all` in the backend folder
+
+Running the app:
+- `npm start` in the backend folder FIRST
+- `npm start` in the frontend folder AFTER
+
+
 # Splash Page
 ![image](https://user-images.githubusercontent.com/28935811/187096820-4d4db58b-1d5a-4234-8c54-e8ab47d58d3c.png)
