@@ -18,7 +18,7 @@ function SpotCreateForm({ hideModal }) {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const history = useHistory();
@@ -34,11 +34,11 @@ function SpotCreateForm({ hideModal }) {
     if (!city.length) inputErrors.push("City is required");
     if (!state.length) inputErrors.push("State is required");
     if (!country.length) inputErrors.push("Country is required");
-    if (!imageUrl.split("?")[0].match(imageURLRegex)) {
-      inputErrors.push([
-        "Preview url must end in valid img extension! [png/jpg/jpeg]",
-      ]);
-    }
+    // if (!imageUrl.split("?")[0].match(imageURLRegex)) {
+    //   inputErrors.push([
+    //     "Preview url must end in valid img extension! [png/jpg/jpeg]",
+    //   ]);
+    // }
     setErrors(inputErrors);
   }, [
     name,
@@ -50,18 +50,19 @@ function SpotCreateForm({ hideModal }) {
     city,
     state,
     country,
-    imageUrl,
+    // imageUrl,
   ]);
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
     if (errors.length) return;
-    if (!imageUrl.split("?")[0].match(imageURLRegex)) {
-      setErrors([
-        "Preview url must end in valid img extension! [png/jpg/jpeg]",
-      ]);
-    } else {
+    else {
       const data = {
         name,
         price,
@@ -73,18 +74,14 @@ function SpotCreateForm({ hideModal }) {
         state,
         country,
       };
-      const imgData = {
-        previewImage: true,
-        url: imageUrl,
-      };
       setErrors([]);
+      const imgData = new FormData();
+      imgData.append("image", image);
       const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
-      if (imageUrl !== "" && newSpot) {
-        await dispatch(createImageForSpot(imgData, newSpot.id));
-      }
+      await dispatch(createImageForSpot(imgData, newSpot.id));
       if (newSpot) {
         hideModal();
         history.push(`/spots/${newSpot.id}`);
@@ -93,7 +90,7 @@ function SpotCreateForm({ hideModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} enctype="multipart/form-data">
       {isSubmitted && Object.values(errors).length > 0 && (
         <ul className="spot_error">
           {Object.values(errors).map((error, idx) => (
@@ -198,10 +195,12 @@ function SpotCreateForm({ hideModal }) {
       </div>
       <div className="spot-input-item">
         <input
-          type="url"
+          name="image"
+          accept="image/*"
+          type="file"
           placeholder=" "
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          // value={image}
+          onChange={handleImage}
           required
         />
         <label>Preview Image URL ex: png/jpg/jpeg</label>

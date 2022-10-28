@@ -15,6 +15,11 @@ const app = express();
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
+// app.use(
+//   fileUpload({
+//     limits: { fileSize: 50 * 1024 * 1024 },
+//   })
+// );
 // Security Middleware
 if (!isProduction) {
   // enable cors only in development
