@@ -83,8 +83,11 @@ function SpotCreateForm({ hideModal }) {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
-      await dispatch(createImageForSpot(imgData, newSpot.id));
-      if (newSpot) {
+      const res = await dispatch(createImageForSpot(imgData, newSpot.id));
+      if (res && res.errors) {
+        setErrors(res.errors);
+        setIsSubmitted(false);
+      } else if (newSpot) {
         hideModal();
         history.push(`/spots/${newSpot.id}`);
       }
@@ -126,9 +129,8 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           maxlength="255"
-          type="number"
+          type="text"
           placeholder=" "
-          min={1}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
