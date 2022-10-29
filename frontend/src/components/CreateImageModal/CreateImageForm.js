@@ -57,7 +57,13 @@ function CreateImageForm({ hideModal }) {
         </ul>
       )}
       <div className="spot-input-item">
-        <input type="file" placeholder=" " onChange={handleImage} required />
+        <input
+          type="file"
+          accept="image/png, image/jpeg, image/jpg"
+          placeholder=" "
+          onChange={handleImage}
+          required
+        />
         <label>Upload Image</label>
       </div>
       <button className="spot-modal-submit" type="submit">
