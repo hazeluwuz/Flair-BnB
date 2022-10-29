@@ -21,11 +21,11 @@ label {
 }
 input:focus ~ label,
 input:valid ~ label {
-  top: 6px;
+  top: 5px;
   font-size: 12px;
 }
 input:not(:placeholder-shown) ~ label {
-  top: 6px;
+  top: 5px;
   font-size: 12px;
 }
 textarea:focus ~ label,

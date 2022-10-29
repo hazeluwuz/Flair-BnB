@@ -15,6 +15,11 @@ const app = express();
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
+// app.use(
+//   fileUpload({
+//     limits: { fileSize: 50 * 1024 * 1024 },
+//   })
+// );
 // Security Middleware
 if (!isProduction) {
   // enable cors only in development
@@ -58,6 +63,15 @@ app.use((err, _req, _res, next) => {
       errors[e.path] = e.message;
     });
     err.errors = errors;
+    err.status = 403;
+  }
+  next(err);
+});
+
+app.use((err, _req, _res, next) => {
+  // check if error is a Multer error
+  if (err.code === "LIMIT_FILE_SIZE") {
+    err.errors = ["File size must be less than 5MB"];
     err.status = 403;
   }
   next(err);
