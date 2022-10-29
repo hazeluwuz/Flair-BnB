@@ -34,11 +34,10 @@ function SpotCreateForm({ hideModal }) {
     if (!city.length) inputErrors.push("City is required");
     if (!state.length) inputErrors.push("State is required");
     if (!country.length) inputErrors.push("Country is required");
-    // if (!imageUrl.split("?")[0].match(imageURLRegex)) {
-    //   inputErrors.push([
-    //     "Preview url must end in valid img extension! [png/jpg/jpeg]",
-    //   ]);
-    // }
+    if (!image) inputErrors.push("Image is required");
+    if (image && image.size > 5 * 1024 * 1024) {
+      inputErrors.push("Image must be less than 5MB");
+    }
     setErrors(inputErrors);
   }, [
     name,
@@ -50,11 +49,13 @@ function SpotCreateForm({ hideModal }) {
     city,
     state,
     country,
+    image,
     // imageUrl,
   ]);
 
   const handleImage = (e) => {
     const file = e.target.files[0];
+    console.log(file.size);
     if (file) setImage(file);
   };
 
@@ -77,6 +78,7 @@ function SpotCreateForm({ hideModal }) {
       setErrors([]);
       const imgData = new FormData();
       imgData.append("image", image);
+      imgData.append("previewImage", true);
       const newSpot = await dispatch(createNewSpot(data)).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -124,8 +126,9 @@ function SpotCreateForm({ hideModal }) {
       <div className="spot-input-item">
         <input
           maxlength="255"
-          type="text"
+          type="number"
           placeholder=" "
+          min={1}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
@@ -198,12 +201,15 @@ function SpotCreateForm({ hideModal }) {
           name="image"
           accept="image/*"
           type="file"
+          id="file-input"
           placeholder=" "
           // value={image}
           onChange={handleImage}
           required
         />
-        <label>Preview Image URL ex: png/jpg/jpeg</label>
+        <label id="file-input-label" for="file-input">
+          Preview Image
+        </label>
       </div>
       <div className="spot-input-item">
         <input

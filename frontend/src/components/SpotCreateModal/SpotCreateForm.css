@@ -69,7 +69,8 @@ ul.spot_error {
   flex: 1 1 0%;
   width: 100%;
 }
-.spot-input-item > input {
+.spot-input-item > input,
+.file-input-container {
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
@@ -129,4 +130,15 @@ ul.spot_error {
 }
 .spot-form {
   padding-top: 0px;
+}
+input::file-selector-button {
+  /* color: white;
+  padding: 9px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 120px;
+  background-color: #e51d53; */
+  display: none;
 }

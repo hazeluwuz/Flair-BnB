@@ -106,9 +106,6 @@ export const createImageForSpot = (imgData, spotId) => async (dispatch) => {
   };
   console.log(reqData);
   const res = await csrfFetch(`/api/spots/${spotId}/images`, reqData);
-  // if (res.ok) {
-  //   dispatch(getSpotById(spotId));
-  // }
   return res;
 };
 

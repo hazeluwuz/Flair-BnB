@@ -21,7 +21,7 @@ const { Op, where } = require("sequelize");
 const multer = require("multer");
 const upload = multer({
   limits: {
-    fileSize: 10 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024,
   },
 });
 const express = require("express");
@@ -350,7 +350,6 @@ router.post(
     const { url, previewImage } = req.body;
 
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
-      console.log(req.file);
       const buffer = req.file.buffer;
       const Key = new Date().getTime().toString() + req.file.originalname;
       const result = await s3

@@ -68,6 +68,15 @@ app.use((err, _req, _res, next) => {
   next(err);
 });
 
+app.use((err, _req, _res, next) => {
+  // check if error is a Multer error
+  if (err.code === "LIMIT_FILE_SIZE") {
+    err.errors = ["File size must be less than 5MB"];
+    err.status = 403;
+  }
+  next(err);
+});
+
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   res.json({
