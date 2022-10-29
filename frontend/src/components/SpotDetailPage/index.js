@@ -22,6 +22,7 @@ function SpotDetailPage() {
     dispatch(getSpotById(spotId))
       .then(() => dispatch(getReviewsBySpotId(spotId)))
       .then(() => setIsLoaded(true));
+    console.log(reviews);
   }, []);
 
   if (sessionUser && spot) {
