@@ -1,6 +1,9 @@
 # FlairBnB (AirBnB Clone)
 FlairBnB is a simple clone of [AirBnB](https://www.airbnb.com/). The site its current state, is used to browse/create listings, and create/browse reviews for listings.
 
+### Note: Flairbnb's website has been flagged as "suspicious" by Google, this is a false positive, the site is strictly a clone of Airbnb and does not attempt to phish users.
+
+
 # Site Information
 - [Api Documentation](https://github.com/hazeluwuz/Flair-BnB/wiki/API-Documentation)
 - [App Features](https://github.com/hazeluwuz/Flair-BnB/wiki/App-Features)
