@@ -1,0 +1,138 @@
+ul.review_error {
+  color: red;
+}
+
+.review-modal-header {
+  display: flex;
+  flex: 0 0 auto;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 24px;
+  border-bottom: 1px solid rgb(235, 235, 235);
+  color: rgb(34, 34, 34);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 550;
+}
+.review-modal-exit-button-div {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 1;
+}
+
+.review-modal-greeting {
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+.review-modal-greeting > h3 {
+  margin-top: 0px;
+  font-size: 22px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.review-modal-exit-button {
+  display: inline-block;
+  position: relative;
+  border: medium none;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+  background: transparent none repeat scroll 0% 0%;
+  border-radius: 50%;
+  transition: -ms-transform 0.25s ease 0s, transform 0.25s ease 0s,
+    transform 0.25s ease 0s;
+}
+.review-modal-form {
+  padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
+}
+.review-modal-header-text {
+  font-size: 1em;
+  padding: 0px;
+}
+.review-inputs {
+  position: relative;
+  width: 100%;
+}
+.review-input-item {
+  display: flex;
+  position: relative;
+  flex: 1 1 0%;
+  width: 100%;
+}
+.review-input-item > input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
+.review-input-item > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  max-height: 4em;
+  font-size: 14px;
+  padding: 20px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  background-color: transparent !important;
+}
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.review-input-item::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.number-input {
+  padding-right: 0px !important;
+}
+.review-modal-h3-container {
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  width: 100%;
+  flex: 0 1 auto;
+  overflow: hidden;
+}
+
+.review-modal-form > h3 {
+  color: rgb(34, 34, 34);
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.review-modal-submit {
+  display: block;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+  border: none;
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(
+      to right,
+      rgb(230, 30, 77) 0%,
+      rgb(227, 28, 95) 50%,
+      rgb(215, 4, 102) 100%
+    )
+    repeat scroll 0% 0%;
+}
+.review-form {
+  padding-top: 0px;
+}
