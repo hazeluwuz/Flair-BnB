@@ -9,6 +9,7 @@ import { getAllSpots } from "./store/spots";
 import SpotDetailPage from "./components/SpotDetailPage";
 import UserListings from "./components/UserListings";
 import UserReviews from "./components/UserReviews";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

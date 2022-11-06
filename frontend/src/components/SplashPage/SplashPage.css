@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 16px;
-  width: 100vw;
+  width: 100%;
 }
 .splash-page-outer-container {
   width: 100%;
