@@ -1,0 +1,43 @@
+.warning-text {
+  text-align: center;
+  font-size: 16px;
+}
+.modal-warning-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.cancel-delete {
+  display: block;
+  border-radius: 8px;
+  width: 100px;
+  height: 100%;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(
+      to right,
+      rgb(230, 30, 77) 0%,
+      rgb(227, 28, 95) 50%,
+      rgb(215, 4, 102) 100%
+    )
+    repeat scroll 0% 0%;
+}
+
+.confirm-delete {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #7f7f7f;
+  height: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
