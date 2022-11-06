@@ -16,7 +16,6 @@ function DeleteForm({ item, setShowModal }) {
     if (item.type === "review") {
       await dispatch(deleteReviewById(item.data.id, item.data.spotId));
     } else if (item.type === "spot") {
-      console.log("wat");
       await dispatch(deleteSpotById(item.data.id));
       history.push("/");
     }
