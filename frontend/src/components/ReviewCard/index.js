@@ -35,10 +35,10 @@ function ReviewCard({ review }) {
         </div>
         <div className="review-delete">
           {owner && (
-            <div>
+            <>
               <ReviewEditModal curReview={review} />
               <DeleteModal item={{ type: "review", data: review }} />
-            </div>
+            </>
           )}
         </div>
       </div>
