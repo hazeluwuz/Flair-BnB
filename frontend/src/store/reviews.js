@@ -22,6 +22,12 @@ export const createReview = (review) => {
     review,
   };
 };
+export const updateReview = (review) => {
+  return {
+    type: UPDATE,
+    review,
+  };
+};
 export const deleteReview = (reviewId) => {
   return {
     type: DELETE,
@@ -56,7 +62,7 @@ export const deleteReviewById = (reviewId, spotId) => async (dispatch) => {
   return res;
 };
 
-export const  createNewReview = (reviewData, spotId) => async (dispatch) => {
+export const createNewReview = (reviewData, spotId) => async (dispatch) => {
   const reqData = {
     method: "POST",
     headers: {
@@ -70,6 +76,23 @@ export const  createNewReview = (reviewData, spotId) => async (dispatch) => {
     dispatch(createReview(data));
     dispatch(getSpotById(data.spotId));
     dispatch(getReviewsBySpotId(data.spotId));
+  }
+  return res;
+};
+
+export const editReview = (reviewData, reviewId) => async (dispatch) => {
+  const reqData = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reviewData),
+  };
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, reqData);
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(updateReview(data));
+    dispatch(getSpotById(data.spotId));
   }
   return res;
 };
@@ -92,6 +115,11 @@ export default function reviewsReducer(state = {}, action) {
     case DELETE: {
       newState = { ...state };
       delete newState[action.reviewId];
+      return newState;
+    }
+    case UPDATE: {
+      newState = { ...state };
+      Object.assign(newState[action.review.id], action.review);
       return newState;
     }
     case CLEAR: {

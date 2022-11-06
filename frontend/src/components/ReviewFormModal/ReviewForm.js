@@ -14,8 +14,8 @@ function ReviewForm({ spotId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      review,
-      stars,
+      review: review,
+      stars: stars,
     };
     if (review.length >= 256) {
       setErrors({ review: "Review must be less than 255 Characters!" });

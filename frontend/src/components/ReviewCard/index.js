@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReviewById } from "../../store/reviews";
+import ReviewEditModal from "../ReviewEditModal";
 import "./ReviewCard.css";
 function ReviewCard({ review }) {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function ReviewCard({ review }) {
         <div className="review-delete">
           {owner && (
             <div>
+              <ReviewEditModal curReview={review} />
               <button onClick={handleDelete}>Delete</button>
             </div>
           )}
