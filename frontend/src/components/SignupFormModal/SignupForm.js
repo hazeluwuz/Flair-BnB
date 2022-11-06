@@ -38,6 +38,12 @@ function SignupForm() {
       password: "Confirm Password field must be the same as the Password field",
     });
   };
+  const demoLogin = (e) => {
+    e.preventDefault();
+    return dispatch(
+      sessionActions.login({ credential: "demo1", password: "password" })
+    );
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -109,6 +115,9 @@ function SignupForm() {
       </div>
       <button className="signup-modal-submit" type="submit">
         Create Account
+      </button>
+      <button type="submit" className="login-modal-submit" onClick={demoLogin}>
+        Demo User
       </button>
     </form>
   );
