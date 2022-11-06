@@ -3,7 +3,9 @@
   /* flex-direction: column; */
 }
 .user-listings-header {
+  width: 100%;
   text-align: center;
+  height: 50px;
 }
 .user-spots-container > h1 {
   text-align: center;

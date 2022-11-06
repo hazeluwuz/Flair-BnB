@@ -22,6 +22,10 @@
   width: 100%;
   margin-left: 0px;
   margin-right: 0px;
+  min-height: 70%;
+  min-height: -webkit-calc(100% - 180px);
+  min-height: -moz-calc(100% - 180px);
+  min-height: calc(100vh - 290px);
 }
 
 .spots-grid {

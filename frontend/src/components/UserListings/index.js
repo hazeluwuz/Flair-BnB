@@ -17,9 +17,9 @@ function UserListings() {
   return (
     isLoaded && (
       <div className="splash-page-outer-container">
+        <h1 className="user-listings-header">User Listings</h1>
         <div className="splash-page-container">
-          <div className="user-spots-container">
-            <h1>User Listings</h1>
+          <div className="spots-container">
             <div className="spots-inner-container">
               <div className="spots-grid">
                 {spots.map((spot) => (
