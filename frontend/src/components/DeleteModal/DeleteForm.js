@@ -16,6 +16,7 @@ function DeleteForm({ item, setShowModal }) {
     if (item.type === "review") {
       await dispatch(deleteReviewById(item.data.id, item.data.spotId));
     } else if (item.type === "spot") {
+      console.log("wat");
       await dispatch(deleteSpotById(item.data.id));
       history.push("/");
     }
@@ -28,10 +29,7 @@ function DeleteForm({ item, setShowModal }) {
         {`You are about to remove this ${item.type}. Are you sure you wish to proceed?`}
       </h3>
       <div className="modal-warning-actions">
-        <button
-          className="cancel-delete"
-          onClick={() => setShowModal(false)}
-        >
+        <button className="cancel-delete" onClick={() => setShowModal(false)}>
           Cancel
         </button>
         <div className="confirm-delete" onClick={handleDelete}>
