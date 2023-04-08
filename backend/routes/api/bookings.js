@@ -141,16 +141,16 @@ router.delete("/:bookingId", requireAuth, async (req, res, next) => {
     }
 
     await booking.destroy();
-    res.json({
+    return res.json({
       message: "Successfully deleted",
       statusCode: 200,
     });
-  } else {
-    const err = new Error("Forbidden");
-    err.message = "Forbidden";
-    err.status = 403;
-    next(err);
   }
+
+  const err = new Error("Forbidden");
+  err.message = "Forbidden";
+  err.status = 403;
+  next(err);
 });
 
 module.exports = router;

@@ -73,17 +73,16 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       reviewId: review.id,
       userId: req.user.id,
     });
-    res.json({
+    return res.json({
       id: image.id,
       imageableId: image.reviewId,
       url,
     });
-  } else {
-    const err = new Error("Forbidden");
-    err.message = "Forbidden";
-    err.status = 403;
-    return next(err);
   }
+  const err = new Error("Forbidden");
+  err.message = "Forbidden";
+  err.status = 403;
+  return next(err);
 });
 
 // Edit an existing Review by reviewId
@@ -105,7 +104,7 @@ router.put(
     const userId = req.user.id;
     if (!review) {
       res.status(404);
-      res.json({
+      return res.json({
         message: "Review couldn't be found",
         statusCode: 404,
       });
@@ -146,7 +145,7 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
   }
 
   await review.destroy();
-  res.json({
+  return res.json({
     message: "Successfully deleted",
     statusCode: 200,
   });

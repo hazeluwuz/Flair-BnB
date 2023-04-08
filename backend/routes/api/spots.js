@@ -35,9 +35,8 @@ const spotFound = function (spot, next) {
     err.status = 404;
     next(err);
     return false;
-  } else {
-    return true;
   }
+  return true;
 };
 
 const invalidIdError = function () {
@@ -116,7 +115,7 @@ router.get("/", validateQueryParams, async (req, res, next) => {
       spot.dataValues.previewImage = previewImage.dataValues.url;
     }
   }
-  res.json({
+  return res.json({
     Spots: spots,
     page: page,
     size: size,
