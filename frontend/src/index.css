@@ -33,6 +33,14 @@ textarea:valid ~ label {
   top: 6px;
   font-size: 12px;
 }
+
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 84px);
+  justify-content: space-between;
+}
+
 .hide-scroll {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
