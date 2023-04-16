@@ -18,6 +18,7 @@ export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const response = await csrfFetch("/api/session", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       credential,
       password,
@@ -49,6 +50,7 @@ export const signup = (user) => async (dispatch) => {
   const { firstName, lastName, username, email, password } = user;
   const response = await csrfFetch("/api/users", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       firstName,
       lastName,
