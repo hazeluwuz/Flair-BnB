@@ -1,7 +1,11 @@
 "use strict";
-
+let options = {};
+if (process.env.NODE_ENV === "production") {
+  options.schema = process.env.SCHEMA; // define your schema in options object
+}
 module.exports = {
   async up(queryInterface, Sequelize) {
+    options.tableName = "Spots";
     const spots = [
       {
         ownerId: 1,
@@ -134,7 +138,7 @@ module.exports = {
         price: 334,
       },
     ];
-    await queryInterface.bulkInsert("Spots", spots);
+    await queryInterface.bulkInsert(options, spots);
   },
 
   async down(queryInterface, Sequelize) {
@@ -145,8 +149,9 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     const { Op } = require("sequelize");
+    options.tableName = "Spots";
     await queryInterface.bulkDelete(
-      "Spots",
+      options,
       {
         name: {
           [Op.like]: "Random Spot%",
