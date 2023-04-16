@@ -1,13 +1,8 @@
-ul.spot_error {
-  color: #ff385c;
-  font-weight: 600;
-  line-height: 1.5rem;
-  border-radius: 5px;
-  margin-top: 0px;
-  padding-left: 5%;
+ul.review_error {
+  color: red;
 }
 
-.spot-modal-header {
+.review-modal-header {
   display: flex;
   flex: 0 0 auto;
   min-height: 64px;
@@ -20,18 +15,18 @@ ul.spot_error {
   line-height: 20px;
   font-weight: 550;
 }
-.spot-modal-exit-button-div {
+.review-modal-exit-button-div {
   position: absolute;
   top: 22px;
   left: 24px;
   z-index: 1;
 }
 
-.spot-modal-greeting {
+.review-modal-greeting {
   margin-top: 8px;
   margin-bottom: 24px;
 }
-.spot-modal-greeting > h3 {
+.review-modal-greeting > h3 {
   margin-top: 0px;
   font-size: 22px;
   margin-bottom: 8px;
@@ -39,7 +34,7 @@ ul.spot_error {
   line-height: 26px;
 }
 
-.spot-modal-exit-button {
+.review-modal-exit-button {
   display: inline-block;
   position: relative;
   border: medium none;
@@ -52,25 +47,26 @@ ul.spot_error {
   transition: -ms-transform 0.25s ease 0s, transform 0.25s ease 0s,
     transform 0.25s ease 0s;
 }
-.spot-modal-form {
+.review-modal-form {
   padding: 24px;
+  overflow-y: auto;
+  padding-top: 10px;
 }
-.spot-modal-header-text {
+.review-modal-header-text {
   font-size: 1em;
   padding: 0px;
 }
-.spot-inputs {
+.review-inputs {
   position: relative;
   width: 100%;
 }
-.spot-input-item {
+.review-input-item {
   display: flex;
   position: relative;
   flex: 1 1 0%;
   width: 100%;
 }
-.spot-input-item > input,
-.file-input-container {
+.review-input-item > input {
   box-sizing: border-box;
   width: 100%;
   padding: 20px;
@@ -78,19 +74,28 @@ ul.spot_error {
   border-radius: 5px;
   background-color: transparent !important;
 }
-.spot-input-item > textarea {
+.review-input-item > textarea {
   box-sizing: border-box;
   width: 100%;
   resize: none;
-  font-size: 14px;
   max-height: 4em;
-  margin: 0px;
+  font-size: 14px;
   padding: 20px;
   border: 1px solid #dadada;
   border-radius: 5px;
   background-color: transparent !important;
 }
-.spot-modal-h3-container {
+.hide-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.review-input-item::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.number-input {
+  padding-right: 0px !important;
+}
+.review-modal-h3-container {
   text-align: center;
   margin-left: 16px;
   margin-right: 16px;
@@ -99,14 +104,14 @@ ul.spot_error {
   overflow: hidden;
 }
 
-.spot-modal-form > h3 {
+.review-modal-form > h3 {
   color: rgb(34, 34, 34);
   font-size: 22px;
   line-height: 26px;
   font-weight: 600;
   margin-bottom: 8px;
 }
-.spot-modal-submit {
+.review-modal-submit {
   display: block;
   border-radius: 8px;
   width: 100%;
@@ -128,17 +133,6 @@ ul.spot_error {
     )
     repeat scroll 0% 0%;
 }
-.spot-form {
+.review-form {
   padding-top: 0px;
-}
-input::file-selector-button {
-  /* color: white;
-  padding: 9px;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 16px;
-  width: 120px;
-  background-color: #e51d53; */
-  display: none;
 }

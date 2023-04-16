@@ -1,3 +1,4 @@
+const AWS = require("aws-sdk");
 const { check } = require("express-validator");
 const {
   validateReviewData,
@@ -17,6 +18,12 @@ const {
   sequelize,
 } = require("../../db/models");
 const { Op, where } = require("sequelize");
+const multer = require("multer");
+const upload = multer({
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
 const express = require("express");
 const router = express.Router();
 
@@ -39,6 +46,11 @@ const invalidIdError = function () {
   err.status = 404;
   throw err;
 };
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
 // Get All Spots
 router.get("/", validateQueryParams, async (req, res, next) => {
@@ -327,26 +339,42 @@ router.post(
 router.post(
   "/:spotId/images",
   requireAuth,
-  validateImageData,
+  upload.single("image"),
+  // validateImageData,
   async (req, res, next) => {
     if (!parseInt(req.params.spotId)) {
       invalidIdError();
     }
+
     const spot = await Spot.findByPk(req.params.spotId);
     const { url, previewImage } = req.body;
 
     if (spotFound(spot, next) && verifyOwner(req.user, spot, next)) {
-      const image = await spot.createImage({
-        url,
-        previewImage,
-        spotId: req.params.spotId,
-        userId: req.user.id,
-      });
-      res.json({
-        id: image.id,
-        imageableId: image.spotId,
-        url: image.url,
-      });
+      const buffer = req.file.buffer;
+      const Key = new Date().getTime().toString() + req.file.originalname;
+      const result = await s3
+        .upload({
+          Bucket: process.env.AWS_BUCKET_NAME,
+          Key,
+          Body: buffer,
+          ACL: "public-read",
+        })
+        .promise();
+      if (!result) {
+        res.json({ message: "Image upload failed" });
+      } else {
+        const image = await spot.createImage({
+          url: result.Location,
+          previewImage,
+          spotId: req.params.spotId,
+          userId: req.user.id,
+        });
+        res.json({
+          id: image.id,
+          imageableId: image.spotId,
+          url: image.url,
+        });
+      }
     }
   }
 );

@@ -7,6 +7,8 @@ import SpotEditModal from "../SpotEditModal";
 import { getReviewsBySpotId } from "../../store/reviews";
 import ReviewCard from "../ReviewCard";
 import ReviewFormModal from "../ReviewFormModal";
+import CreateImageModal from "../CreateImageModal";
+import DeleteModal from "../DeleteModal";
 function SpotDetailPage() {
   const spots = useSelector((state) => Object.values(state.spots));
   const reviews = useSelector((state) => Object.values(state.reviews));
@@ -21,6 +23,7 @@ function SpotDetailPage() {
     dispatch(getSpotById(spotId))
       .then(() => dispatch(getReviewsBySpotId(spotId)))
       .then(() => setIsLoaded(true));
+    console.log(reviews);
   }, []);
 
   if (sessionUser && spot) {
@@ -54,8 +57,9 @@ function SpotDetailPage() {
                 </div>
                 {owner && (
                   <div className="spot-button">
+                    {spot?.Images.length < 5 && <CreateImageModal />}
                     <SpotEditModal spot={spot} />
-                    <button onClick={(e) => handleDelete(e)}>Delete</button>
+                    <DeleteModal item={{ type: "spot", data: spot }} />
                   </div>
                 )}
               </div>

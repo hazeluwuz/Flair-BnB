@@ -1,7 +1,7 @@
 /* TODO Add site wide styles */
 body {
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0;
+  padding: 0;
   font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
     sans-serif;
 }
@@ -21,11 +21,11 @@ label {
 }
 input:focus ~ label,
 input:valid ~ label {
-  top: 6px;
+  top: 5px;
   font-size: 12px;
 }
 input:not(:placeholder-shown) ~ label {
-  top: 6px;
+  top: 5px;
   font-size: 12px;
 }
 textarea:focus ~ label,

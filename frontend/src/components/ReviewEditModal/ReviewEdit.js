@@ -2,27 +2,27 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import "./ReviewForm.css";
-import { createNewReview } from "../../store/reviews";
+import "./ReviewEdit.css";
+import { createNewReview, editReview } from "../../store/reviews";
 
-function ReviewForm({ spotId }) {
+function ReviewEdit({ curReview }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [review, setReview] = useState(curReview.review || "");
+  const [stars, setStars] = useState(curReview.stars || "");
   const [errors, setErrors] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      review: review,
-      stars: stars,
+      review,
+      stars,
     };
     if (review.length >= 256) {
       setErrors({ review: "Review must be less than 255 Characters!" });
     }
     if (review.length <= 255) {
       setErrors([]);
-      const review = dispatch(createNewReview(data, spotId)).catch(
+      const review = dispatch(editReview(data, curReview.id)).catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -65,10 +65,10 @@ function ReviewForm({ spotId }) {
         <label>Rating (1-5)</label>
       </div>
       <button className="review-modal-submit" type="submit">
-        Create Review
+        Edit Review
       </button>
     </form>
   );
 }
 
-export default ReviewForm;
+export default ReviewEdit;

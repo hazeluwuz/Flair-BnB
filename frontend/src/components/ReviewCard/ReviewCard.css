@@ -3,7 +3,7 @@
   flex-direction: column;
 
   padding-top: 25px;
-  width: 41.6667%;
+  min-width: 41.6667%;
 }
 .review-user-inner-container {
   display: flex;
@@ -37,6 +37,7 @@
 }
 
 .review-delete {
+  display: flex;
   padding-left: 15px;
 }
 .review {

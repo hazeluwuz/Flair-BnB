@@ -102,15 +102,10 @@ export const editSpotById = (data, spotId) => async (dispatch) => {
 export const createImageForSpot = (imgData, spotId) => async (dispatch) => {
   const reqData = {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(imgData),
+    body: imgData,
   };
+  console.log(reqData);
   const res = await csrfFetch(`/api/spots/${spotId}/images`, reqData);
-  if (res.ok) {
-    dispatch(getSpotById(spotId));
-  }
   return res;
 };
 
