@@ -22,7 +22,7 @@ const validateLogin = [
 ];
 
 // Login and create new User session
-router.post("/", async (req, res, next) => {
+router.post("/", validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
   console.log("credential", credential);
   console.log("password", password);
