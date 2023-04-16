@@ -7,7 +7,8 @@ import "./UserReviews.css";
 function UserReviews() {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
-  const reviews = useSelector((state) => Object.values(state.reviews));
+  const reviewSlice = useSelector((state) => state.reviews);
+  const reviews = Object.values(reviewSlice);
   const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getUserReviews()).then(() => setIsLoaded(true));

@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: 70%;
+  min-height: -webkit-calc(100% - 195px);
+  min-height: -moz-calc(100% - 195px);
+  min-height: calc(100vh - 195px);
   padding-top: 25px;
+  box-sizing: border-box;
 }
 .main-user-inner-container {
   display: flex;

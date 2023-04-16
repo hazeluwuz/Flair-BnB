@@ -43,7 +43,9 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: {
         type: DataTypes.DATE,
         get() {
+          console.log(this.dataValues.createdAt);
           const date = new Date(this.dataValues.createdAt);
+          console.log(date.toISOString().split("T")[0]);
           return `${date.toISOString().split("T")[0]} ${date.toLocaleTimeString(
             [],
             { timeStyle: "medium", hour12: false }
