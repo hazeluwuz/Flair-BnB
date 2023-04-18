@@ -37,8 +37,8 @@ function SpotDetailPage() {
   };
 
   return (
-    isLoaded && (
-      <div className="main-spot-outer-container center">
+    <div className="main-spot-outer-container center">
+      {isLoaded && (
         <div className="main-spot-container">
           <div className="main-spot-inner-container">
             <div className="spot-details">
@@ -168,8 +168,8 @@ function SpotDetailPage() {
             </div>
           </div>
         </div>
-      </div>
-    )
+      )}
+    </div>
   );
 }
 
