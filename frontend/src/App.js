@@ -24,25 +24,27 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       <div className="main-page-container">
         {isLoaded && (
-          <Switch>
-            <Route exact path="/">
-              <SplashPage />
-            </Route>
-            <Route path="/spots/:spotId">
-              <SpotDetailPage />
-            </Route>
-            <Route path="/manage-listings">
-              <UserListings />
-            </Route>
-            <Route path="/manage-reviews">
-              <UserReviews />
-            </Route>
-            <Route>
-              <Redirect to="/" />
-            </Route>
-          </Switch>
+          <>
+            <Switch>
+              <Route exact path="/">
+                <SplashPage />
+              </Route>
+              <Route path="/spots/:spotId">
+                <SpotDetailPage />
+              </Route>
+              <Route path="/manage-listings">
+                <UserListings />
+              </Route>
+              <Route path="/manage-reviews">
+                <UserReviews />
+              </Route>
+              <Route>
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+            <Footer />
+          </>
         )}
-        <Footer />
       </div>
     </>
   );
