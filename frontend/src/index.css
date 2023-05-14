@@ -37,7 +37,7 @@ textarea:valid ~ label {
 .main-page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 84px);
+  min-height: calc(100vh - 84px);
   justify-content: space-between;
 }
 
