@@ -31,7 +31,7 @@ function SpotDetailPage() {
 
   return (
     <div className="main-spot-outer-container center">
-      {isLoaded && (
+      {isLoaded && spot && (
         <div className="main-spot-container">
           <div className="main-spot-inner-container">
             <div className="spot-details">
