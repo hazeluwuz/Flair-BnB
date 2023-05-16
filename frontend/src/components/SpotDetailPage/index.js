@@ -23,18 +23,11 @@ function SpotDetailPage() {
     dispatch(getSpotById(spotId))
       .then(() => dispatch(getReviewsBySpotId(spotId)))
       .then(() => setIsLoaded(true));
-    console.log(reviews);
   }, []);
 
   if (sessionUser && spot) {
     owner = sessionUser.id === spot.ownerId;
   }
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await dispatch(deleteSpotById(spotId));
-    history.push("/");
-  };
 
   return (
     <div className="main-spot-outer-container center">
@@ -57,7 +50,7 @@ function SpotDetailPage() {
                 </div>
                 {owner && (
                   <div className="spot-button">
-                    {spot?.Images.length < 5 && <CreateImageModal />}
+                    {spot?.Images?.length < 5 && <CreateImageModal />}
                     <SpotEditModal spot={spot} />
                     <DeleteModal item={{ type: "spot", data: spot }} />
                   </div>
